@@ -1,0 +1,21 @@
+<%= form_for(@caracteristica) do |f| %>
+<div class="modal-header">  
+    <h3>Eliminar Componente</h3>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body letra">    
+    
+        <div class="row" style="margin-top:2px">           
+            <div class="col-sm padding-div">
+                <%= f.label :nombre , "Nombre" %>
+                <%= f.text_field :nombre ,class: :"form-control-sm" %>
+              </div>
+        </div>        
+    
+</div>
+<div class="modal-footer">
+       <%= f.submit "Guardar" , class: :"btn btn-sm btn-secondary" %>        
+ <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+</div>    
+<% end %>    

@@ -1,0 +1,42 @@
+@import "bootstrap";
+
+.imagen-logo{
+    width: 100px;
+}
+td{
+    font-size: 20px;
+}
+.td{
+    width: 200px;
+}
+.tabla{
+    position: relative;  
+    width: 100%;
+}
+.cuadro-titulo{
+    border-color: black;
+    font-weight: bold;
+    border-width: 1px; 
+    border-style:solid;
+    padding-left: 100px;    
+    padding-right: 100px;    
+    margin-top: 3px;
+}
+.div{
+    border-color:black;
+    border-width: 2px; 
+    border-style:solid;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 3px;    
+}
+.footer{
+    position:absolute;
+    top:1500px;
+    left:50px;
+}
+.footer-2{
+    position:absolute;
+    top:1500px;
+    left:800px;
+}

@@ -1,0 +1,32 @@
+<div class="container letra borde-reporte"><h3>Lista de Usuarios</h3>
+  <form>
+    <input name="q" <%= @q %> ,class="form-control" >
+    <button type="submit" class="btn btn-secondary btn-sm">Buscar</button> <%= link_to "Crear nuevo usaurio", new_user_path, class: :"btn btn-success btn-sm" %>
+  </form>
+ 
+</div>
+<div class="container letra borde-reporte">
+  <% if user_signed_in? %>  
+    <table class="container table letra">
+      <thead>
+        <th>#</th>
+        <th colspan="2">Nombre Personal</th>
+        
+      </thead>
+      <tbody>
+        <% @users.each do |u| %>
+        <tr>
+          <td><%= u.id %></td>
+          <td><%= link_to u.nombre_personal.titleize, user_path(u.id), class: :"links-user style-no",style: :"background-color: white;" %></td>
+          <td><%= link_to "Editar",edit_user_path(u.id),class: :"btn btn-mod btn-sm" %></td>          
+        </tr>              
+        <% end %>  
+      </tbody>
+    </table>
+  <% else %>
+    <p>Atender solicitudes</p>  
+  <% end %>
+</div>
+<footer >
+  <%= will_paginate @users, class: :footer%>
+</footer>

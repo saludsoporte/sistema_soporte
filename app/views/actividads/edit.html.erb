@@ -1,0 +1,7 @@
+<div class="container borde-reporte">
+    <%= form_for(@actividad) do |f| %>   
+        <div> <%= f.label :descripcion, "Editar descripción" %></div>
+        <div ><%= f.text_area :descripcion, class: :"form-control borde-reporte" %></div>
+        <div style="float: right; padding-top: 2px;" ><%= f.submit "Guardar", class: :"btn btn-success btn-sm"%></div>
+    <% end %>      
+</div>

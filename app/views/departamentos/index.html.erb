@@ -1,0 +1,27 @@
+<div class="container letra borde-reporte">
+    <table class="container table">
+        <thead>
+            <th class="table-dark" colspan="3">
+                DEPARTAMENTO   <%= link_to raw("#{image_tag("plus-circle copy.svg")} Nuevo"),new_departamento_path, class: :" btn btn-light btn-sm style-no right-side letra"  %>
+                <%= link_to "Regresar a catalogos",opcions_path, style: :"margin-right:5px", class: :" btn btn-light btn-sm style-no right-side letra"  %>
+            </th>                   
+        </thead>
+        <tbody>            
+            <% @departamento.each do |a| %>
+                <% unless a.id ==0 %>
+                <tr>
+                    <td><%= a.id%></td>
+                    <td><%= a.nombre.capitalize %></td>
+                    <td style="text-align: right;">
+                        <%= link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_departamento_path(a.id), class: :"btn btn-mod btn-sm" %>
+                        <%= link_to raw("#{image_tag("trash.svg")} Eliminar"), departamento_path(a.id),data: { :confirm => '¿Estas seguro de eliminar el registro?, Puede causar errores en objetos que contengan este estado'},  method: :delete,class: :"btn btn-sm btn-danger", title: :Eliminar%>
+                    </td>       
+                </tr>
+                <%end%>
+            <% end %>   
+        </tbody>
+    </table>
+</div>
+<footer>
+    <%= will_paginate @departamento, class: :footer%>
+</footer>

@@ -1,0 +1,81 @@
+<div class="container borde-reporte">
+    <table class=" table container">
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody style="text-align: right;">
+            <tr>
+                <td colspan="3" style="text-align:left;"><b>Ficha Final de Reporte de Servicios</b></td>
+            </tr>
+            <tr>
+                <td style="text-align:left;">Folio</td>
+                <td style="text-align: left;"><%= @r.folio %></td>
+                <td>
+                    <%= link_to raw("#{image_tag("printer.svg")} Imprimir"), reportes_carga_pdf_path(:pdf,id:@r.id),{class: :"btn btn-success btn-sm",target: :'_blank'}%>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<table class="table table-striped container letra borde-reporte">
+    <thead>
+        <th>Campos</th>
+        <th>Datos
+            <%= link_to "Ver detalles de Solicitud", "",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window',class: :"btn btn-primary btn-sm detalles"}%>
+        </th>
+    </thead>
+    <tr class="row-reporte">
+        <td><b>Nombre del Solicitante:</b></td>
+        <td>
+            <%= @solicitante.nombre_completo %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Descripcion:</b></td>
+        <td>
+            <%= @solicitud.descripcion_sencilla %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>No de serie del equipo</b></td>
+        <td><%= @solicitud.serie %></td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Area:</b></td>
+        <td>
+            <%= @solicitante.area_nombre %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Dirección:</b></td>
+        <td>
+            <%= @solicitante.direccion_nombre %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Subdirección:</b></td>
+        <td>
+            <%= @solicitante.subdireccion_nombre %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Departamento</b></td>
+        <td>
+            <%= @solicitante.departamento_nombre %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Fecha de Ingreso</b></td>
+        <td>
+            <%= @r.fecha_ingreso %>
+        </td>
+    </tr>
+    <tr class="row-reporte">
+        <td><b>Fecha de Egreso</b></td>
+        <td>
+            <%= @r.fecha_entrega %>
+        </td>
+    </tr>
+</table>

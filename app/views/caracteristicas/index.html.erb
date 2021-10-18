@@ -1,0 +1,23 @@
+<div class="container borde-reporte letra">
+    <div class="titulos row">
+        <div class="col-sm"><h3>Características</h3></div>
+        <div class="col-sm" style="text-align:right"><%= link_to "Crear nueva característica", new_caracteristica_path, class: :"btn btn-sm btn-success" %></div>
+    </div>
+    <% @caracteristicas.each do |c| %>
+        <div class="row padding-div ">    
+            <div class="col-sm"><%= c.nombre %></div>
+            <div class="col-sm" style="text-align:right">
+                <%=link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_caracteristica_path(id:c.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-sm btn-mod"} %>
+                <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),caracteristica_path(c.id), data: { confirm:"Esta acción borrará todos los registros que contengan a esta caractrística en los componentes \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                
+            </div>            
+        </div>
+    <% end %>
+</div>
+<% unless @caracteristicas.nil? %>
+<footer >
+    <%= will_paginate @caracteristicas, class: :footer%>
+</footer>
+<% end %>
+
+<%= render "partials/modal_plantilla" %>
+

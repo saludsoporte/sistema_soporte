@@ -1,0 +1,45 @@
+<div class="container estado letra borde-reporte ">
+    <%= form_for(@reporte,url:folios_reporte_path) do |f| %>
+      <%= f.label :folio, "Ingresa el número del folio" %>
+      <%= f.text_field :folio, class: :"vobo-input-folio" %>
+      <%= f.submit "Ingresar",class: :"btn btn-secondary btn-sm vobo-folio"%>     
+      <% if @error == false && @vobo==false %>
+          <%= link_to "Dar visto bueno para terminar", edit_folio_path(@r.id,vobo:true,sol:true,sol_id:@r.solicitud_id),class: :"btn btn-primary btn-sm", :title=>@solicitud.reporte_edo_descripcion %>
+      <% elsif @vobo == true %>                    
+              <div style="height: 35px;" class=" alert-success" role="alert">Se ha terminado esta solicitud !!</div>                    
+      <% end %>            
+    <% end %>
+</div>  
+
+<% if @error == true %>
+    <div class="container alert alert-danger" role="alert">
+        El folio no existe !!
+  </div>
+<% end %>
+<% if @error == false %>
+<%= render "partials/reporte_show_acciones" %>
+<table class="container table table-striped borde-reporte">
+  <thead>
+    <th>Fecha</th>
+    <th>Hora </th>      
+    <th>Nombre del tecnico</th>
+  </thead>
+  <% @actividades.each do |a| %>
+    <tbody>
+      <tr style="background-color: rgb(83, 79, 79); color:white" class="clickable" data-toggle="collapse" data-target="#group-of-rows-<%=a.id%>">
+        <td><%= a.fecha %></td>
+        <td><%= a.hora_actividad %></td>          
+        <td><%= a.perfil.nombre %></td>          
+      </tr>   
+    </tbody>
+    <tbody  id="group-of-rows-<%=a.id%>" class="collapse">
+      <tr>
+        <td><b>Descripción:</b></td>
+        <td colspan="2"><%= raw(a.descripcion) %></td>
+      </tr>
+    </tbody>
+  <% end %>
+ 
+</table>  
+<% end %>
+<%= render "partials/modal_plantilla" %>

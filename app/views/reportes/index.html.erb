@@ -1,0 +1,7 @@
+<div class="container padding-div borde-reporte"><%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %></div>                
+<%= render "partials/lista_reportes" %>
+<% unless @reportes.nil? %>
+    <footer >
+        <%= will_paginate @reportes, class: :footer%>
+    </footer>
+<% end %>

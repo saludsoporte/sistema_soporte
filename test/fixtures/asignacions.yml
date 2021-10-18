@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reporte: one
+  perfil: one
+  fecha_asignacion: 2021-05-19
+  nombre_user: MyString
+  reasignada: false
+  motivo: MyText
+
+two:
+  reporte: two
+  perfil: two
+  fecha_asignacion: 2021-05-19
+  nombre_user: MyString
+  reasignada: false
+  motivo: MyText

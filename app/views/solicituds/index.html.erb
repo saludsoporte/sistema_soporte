@@ -1,0 +1,163 @@
+<% if @exist==false %>   
+    <script>
+         document.getElementById("boton").click();        
+    </script>
+<% end %>
+<% @columnas=3 %>
+<%= link_to  "","",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: :"btn btn-secondary btn-sm style-no",id:"boton",hidden:true }  %></td>               
+<div class="container padding-div borde-reporte"><%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %></div>                
+<div class="container borde-reporte">
+    <table style="width: 100%;" class="letra container table table-striped">
+        <thead class="table-dark">
+            <th style="width: 15%;">Id solicitud</th>
+            <th>Solicitante</th>
+            <th>Tecnico que atiende</th>      
+        </thead>    
+    <% @lista.each do |sol|%>
+        <tbody>
+            <tr style="background-color: rgb(83, 79, 79); color:white" class="clickable" data-toggle="collapse" data-target="#group-of-rows-<%=sol.id%>">
+                <td><%= link_to sol.id, solicitud_path(sol.id) , class: :"style-no ", title: :"Ver" %></td>         
+                <td><%= sol.nombre_user.titleize%></td>  
+                <td><%= sol.tecnico.titleize %></td>  
+            </tr>
+            <tr style="background-color: rgb(83, 79, 79); color:white; border-style:hidden"    class="clickable" data-toggle="collapse" data-target="#group-of-rows-<%=sol.id%>">
+                <td><b>Descripcion breve</b></td>
+                <td style="background-color:whitesmoke; color:black" colspan="2"><%= sol.descripcion_sencilla %></td>    
+            </tr>
+        </tbody>
+        <tbody id="group-of-rows-<%=sol.id%>" class="collapse">
+            <tr>
+                <td><b>Capturó: </b></td>
+                <td colspan="<%= @columnas %>"><%= User.find(sol.usuario_captura).nombre_personal.titleize %></td>
+            </tr>
+            <tr>
+                <td><b>Fecha Inicio</b></td>
+                <td colspan="<%= @columnas %>"><%= sol.fecha_inicio%></td>
+            </tr>
+            <tr>
+                <td><b>Fecha Termino</b></td>
+                <% if sol.revisar_cad==false %>
+                    <td colspan="<%= @columnas %>"><%= sol.fecha_termino%></td>
+                <% else%>
+                    <td colspan="<%= @columnas %>"><div class="btn btn-danger btn-sm" title="Ha sobrepasado la caducidad"><%= sol.fecha_termino%></div></td>
+                <% end %>
+            </tr>
+            <tr>
+                <td><b>Caducidad</b></td>
+                <td colspan="<%= @columnas %>"><%= sol.caducidad %></td>
+            </tr>     
+            <tr>
+                <td><b>Descripción Breve</b></td>
+                <td  colspan="<%= @columnas %>"><%= sol.descripcion_sencilla %></td>
+            </tr>   
+            <tr>
+                <td><b>Estado</b></td>
+                <td>
+                    <% if sol.estado_id == 10%>
+                        <div class="alert alert-dark estado" role="alert" title="<%= sol.sol_edo_descripcion %>">
+                            <%= sol.estado %>
+                        </div>
+                    <% elsif sol.estado_id == 6 %>
+                        <div class="alert alert-success estado" role="alert" title="<%= sol.sol_edo_descripcion %>" >
+                            <%= sol.estado %>
+                        </div>
+                    <% elsif sol.estado_id == 7 %>
+                        <div class="alert alert-primary estado " role="alert"title="<%= sol.sol_edo_descripcion %>" >
+                            <%= sol.estado %>   
+                        </div>
+                    <% elsif sol.estado_id == 8 %>
+                        <div class="alert alert-warning estado" role="alert"  title="<%= sol.sol_edo_descripcion %>"  >
+                            <%= sol.estado %>
+                        </div>
+                    <% elsif sol.estado_id == 15 %>
+                        <div class="alert alert-danger estado" role="alert"  title="<%= sol.sol_edo_descripcion %>"  >
+                            <%= sol.estado %>
+                        </div>
+                    <% end %>
+                </td>                 
+                <td><b>Detalles </b><%= link_to raw("#{image_tag("archive.svg")} Mostrar"),solicituds_path(id:sol.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-secondary btn-sm style-no" }  %></td>                                       
+            </tr>
+            <tr>
+                <td><b>Estado del Reporte</b></td>
+                <td >
+                    <% if sol.reporte_id_edo == 2 %>
+                        <div class="alert alert-primary estado" ><%= link_to sol.reporte_edo , reporte_path(Reporte.find_by(solicitud_id:sol.id).id),class: :"estado style-no ",style: :"color:black" , :title=>sol.reporte_edo_descripcion %></div>
+                    <% elsif sol.reporte_id_edo == 4 %>
+                        <div class="alert alert-success estado" ><%= link_to sol.reporte_edo , reporte_path(Reporte.find_by(solicitud_id:sol.id).id),class: :"estado style-no ",style: :"color:black" , :title=>sol.reporte_edo_descripcion %></div>                                     
+                    <% elsif sol.reporte_id_edo == 14 %>
+                        <div class="alert alert-dark estado style-no" title="<%= sol.reporte_edo_descripcion %>" >
+                            <% if sol.solicitante_id == current_user.id %>
+                                <%= link_to sol.reporte_edo, edit_reporte_path(Reporte.find_by(solicitud_id:sol.id).id,vobo:true,sol:true,sol_id:sol.id),class: :"estado style-no", style: :"color:black",:title=>sol.reporte_edo_descripcion %>
+                            <% else %>
+                                <%= link_to sol.reporte_edo , reporte_path(Reporte.find_by(solicitud_id:sol.id).id),class: :"estado style-no ",style: :"color:black" , :title=>sol.reporte_edo_descripcion %>                   
+                            <% end %>
+                        </div>
+                    <% elsif sol.reporte_id_edo == 5 %>
+                        <div class="alert alert-warning estado " role="alert" title="<%= sol.reporte_edo_descripcion %>">
+                            <%= link_to  sol.reporte_edo , reporte_path(Reporte.find_by(solicitud_id:sol.id).id),style: :"color:black" %>                   
+                        </div>
+                    <% else %>
+                        <div class="alert alert-dark estado " role="alert" title="<%= sol.reporte_edo_descripcion %>">
+                            <%= sol.reporte_edo %>                    
+                        </div>
+                    <% end %>
+                </td>  
+                <td><b>Acción </b> <% @relacion_cont=RelacionSolOpt.where("solicitud_id=?",sol.id).count %>
+                    <% if @relacion_cont > 0 %>
+                        <% if sol.estado_id == 6 || sol.estado_id ==10 %>                                          
+                            <% if sol.tecnico_id.nil? %>                        
+                                <% if @general==true %>                                                            
+                                    <%= link_to raw("#{image_tag("plus-circle.svg")} Tomar"), edit_solicitud_path(sol.id,perfil_id:current_user.perfil_id,general:true),title: :"Agregar para atender",class: :"btn btn-add btn-sm" %> 
+                                <% else %>                            
+                                    <%= link_to raw("#{image_tag("plus-circle.svg")} Tomar"), edit_solicitud_path(sol.id,perfil_id:current_user.perfil_id,general:false),title: :"Agregar para atender",class: :"btn btn-add btn-sm" %> 
+                                <% end %>
+                            <% else %>
+                                <% if sol.tecnico_id != current_user.id %>
+                                    <div class="btn-mod-oc btn btn-sm" title="Atiendendo por otro tecnico"><%= raw("#{image_tag("reception-0.svg")} Tomada") %></div>
+                                <% else %>
+                                    <%= link_to raw("#{image_tag("check-circle.svg")} Atender"),new_reporte_path(solicitud_id:sol.id),title: :"Atender Solicitud",class: :"btn btn-sm btn-mod" %>
+                                <% end %>
+                            <% end %>
+                        <% elsif sol.estado_id == 15 %>
+                            <div ></div>                 
+                        <% else %> 
+                            <% if sol.tecnico_id != current_user.id %>
+                                <div class="btn-mod-oc btn btn-sm" style="block-size: auto;" title="Atiendendo por otro tecnico"><%= raw("#{image_tag("reception-0.svg")} Tomada") %></div>
+                            <% else %>
+                                <div class="btn-mod-pr btn btn-sm" title="Ya estas atendiendo esta solicitud"><%= raw("#{image_tag("reception-0.svg")} Atendiendo") %></div>
+                            <% end %>
+                        <% end %>                    
+                        <% if current_user.rol_id==1%>
+                            <% if sol.tecnico_id.nil? %>
+                                <% if @general==true && sol.estado_id!=15 %>               
+                                    <%= link_to raw("#{image_tag("plus-circle.svg")} Asignar Tecnico"), edit_solicitud_path(sol.id,general:true,modal:true),{remote:true, "data-toggle"=>"modal","data-target"=>"#modal-add",class: :"btn btn-add btn-sm add-admin"} %>
+                                <% elsif sol.estado_id!=15 %>
+                                    <%= link_to raw("#{image_tag("plus-circle.svg")} Asignar Tecnico"), edit_solicitud_path(sol.id,general:false,modal:true),{remote:true, "data-toggle"=>"modal","data-target"=>"#modal-add",class: :"btn btn-add btn-sm add-admin"} %>
+                                <% end %>                
+                            <% end %>                 
+                        <% end %> 
+                    <% else %>
+                        No hay detalles en la solicitud
+                    <% end %>
+                </td>           
+            </tr>      
+            <tr>
+                <td><b>Visto Bueno del Admin</b></td>
+                <% if current_user.rol_id ==1  && sol.estado_id == 7 && sol.reporte_id_edo == 14%>
+                    <td colspan="<%= @columnas %>"><%= link_to "Vo.Bo. Admin", solicituds_vobo_admin_path(solicitud_id:sol.id),class: :"btn btn-success btn-sm", title: :"Si el solicitante no puede dar el visto bueno, un administrador puede terminar la solicitud"%></td>            
+                <% elsif current_user.rol_id==1 && (sol.reporte_id_edo == 14 || sol.reporte_id_edo ==5) && sol.estado_id == 8 %>
+                    <td colspan="<%= @columnas %>"></td>
+                <% elsif current_user.rol_id==1 %>              
+                    <td colspan="<%= @columnas %>"> No finalizado</td>
+                <% end %>        
+            </tr>
+        </tbody>
+    <% end %>         
+    </table>
+</div>
+<footer >
+    <%= will_paginate @lista, class: :footer%>
+</footer>
+<%= render "partials/modal_plantilla" %>
+<%= javascript_pack_tag 'solicituds.js' %>
+  

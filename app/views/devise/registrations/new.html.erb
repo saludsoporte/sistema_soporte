@@ -1,0 +1,67 @@
+<div class="container registro" style="text-align: center;">
+  <h6 class="letra">Registrarse</h6>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+<table class="table table-sm">
+  <thead>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody class="registro letra">
+  <tr><td><%= f.label :username %></td><td style="text-align:left;"><%= f.text_field :username, autofocus: true,style: :"width:100%" %></td></tr>
+  <tr><td><%= f.label :nombre %></td><td style="text-align:left;"><%= f.text_field :nombre ,style: :"width:100%"%></td></tr>
+  <tr><td><%= f.label :apellido_paterno %></td><td style="text-align:left;"><%= f.text_field :apellido_paterno,style: :"width:100%" %></td></tr>
+  <tr><td><%= f.label :apellido_materno %></td><td style="text-align:left;"><%= f.text_field :apellido_materno,style: :"width:100%" %></td></tr>
+  <tr>
+    <td ><%= f.label :"Área" %></td>   
+    <td style="text-align:left;">
+      <%= f.select(:area,"",{promt: "seleccione un área"},{style: :"width:100%",class: :"form-select",id: :area }) do %>
+        <%= options_from_collection_for_select(Area.all.order(id: :asc),:id,:nom,0) %> 
+      <% end %> 
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.label :direccion %></td>
+    <td style="text-align:left;">
+      <%= f.select(:direccion,"",{promt: "seleccione un área"},{style: :"width:100%",class: :"form-select",id: :direccion }) do %>
+        <%= options_from_collection_for_select(Direccion.all.order(id: :asc),:id,:nom,0) %> 
+      <% end %> 
+  </td>
+  </tr>
+  <tr>
+    <td><%= f.label :subdireccion %></td>
+    <td style="text-align:left;">
+      <%= f.select(:subdireccion,"",{promt: "seleccione una subdireccion"},{style: :"width:100%",class: :"form-select",id: :subdireccion }) do %>
+        <%= options_from_collection_for_select(Subdireccion.all.order(id: :asc),:id,:nom,0) %> 
+      <% end %> 
+   </td>
+  </tr>
+  <tr>
+    <td ><%= f.label :departamento %></td>
+    <td style="text-align:left;">
+      <%= f.select(:departamento,"",{promt: "seleccione un departamento"},{style: :"width:100%",class: :"form-select",id: :departamento }) do %>
+        <%= options_from_collection_for_select(Departamento.all.order(id: :asc),:id,:nom,0) %> 
+      <% end %>       
+    </td>
+  </tr> 
+  <tr><td ><%= f.label :email %></td><td style="text-align:left;"><%= f.email_field :email,  autocomplete: "email" %></td></tr>
+  <tr><td ><%= f.label :password %></td>
+ 
+    <td style="text-align:left;"><%= f.password_field :password, autocomplete: "new-password" %>
+      <br>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %> 
+    </td>
+  </tr>
+  <tr><td><%= f.label :password_confirmation %></td><td style="text-align:left;"> <%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td style="text-align:left;"><%= f.submit "Registrarse", class: :"btn btn-sm btn-secondary" %></td>
+  </tr>
+</tbody>
+</table>
+<% end %>
+</div>

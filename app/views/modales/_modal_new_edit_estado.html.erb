@@ -1,0 +1,39 @@
+<%= form_for(@estado) do |f| %>
+<% @estado.errors.full_messages.each do |message| %> 
+            <div class="alert alert-danger">
+                * <%= message %>
+            </div>
+        <% end %>
+<div class="modal-header">  
+    <% if @editar ==true %>
+        <h6 class="letra">Editar Estado</h6>
+    <% else %>
+        <h6 class="letra">Nuevo estado</h6>
+    <% end %>
+    <button type="button" class="form-control btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body">
+    <div class="row">
+        <%= f.label :estado_label, "Estado" %>
+        <%= f.text_field :estado %>
+    </div>
+    <div class="row letra">
+        <%= f.label :descripcion_label, "Descripcion" %>
+        <%= f.text_area :descripcion %>
+    </div>
+    <div class="row">
+        <%= f.label :tipo_label, "Tipo" %>
+        <select id="tipo" name="tipo" class="form-control">
+            <option hidden="true">Selcciona uno</option>
+            <option>Reportes</option>
+            <option>Solicitud</option>            
+        </select>
+    </div>
+ 
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+  <%= f.submit "Guardar" , class: :"btn btn-success btn-sm"%>
+</div>
+<% end %>

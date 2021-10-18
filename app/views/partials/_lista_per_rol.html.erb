@@ -1,0 +1,31 @@
+<table class="container table table-striped">
+    <thead style="text-align: center;">
+        <th>Rol</th>
+        <th>ID</th>
+        <th>Permisos</th>
+        <th></th>
+    </thead>
+    <% if @bandera==false %>
+        <% @permisos_list=RelacionPerRol.where(rol_id:params[:id]) %>
+    <% else %>
+        <% @permisos_list=RelacionPerRol.where(rol_id:@rol.id) %>
+    <% end %>    
+    <% banderaRol=0 %> 
+        <% if @permisos_list.count > 0 %>
+            <% @permisos_list.each do |i| %>
+                <tr>
+                    <% if banderaRol == 0 %>
+                        <td style="text-align: center; vertical-align:middle" rowspan="<%=@permisos_list.count %>" ><%= @rol.nombre %></td>
+                    <% end %>
+                    <td style="text-align: center;"><%= i.permiso_id %></td>
+                    <td style="text-align: center;"><%= i.permiso %></td>
+                    <td style="text-align: right;"><%= link_to "Eliminar" ,relacion_per_rol_path(i.id.to_i), data: { :confirm => '¿Estas seguro de eliminar el registro?'},  method: :delete,class: "btn btn-sm btn-danger" %></td>
+                    <% banderaRol = 1 %>
+                </tr>
+            <% end %>
+        <% else %>
+            <tr>
+                <td colspan="3" style="text-align: center;" >No hay relaciones que mostrar</td>
+            </tr>
+        <% end %>  
+</table>

@@ -1,0 +1,9 @@
+<%= @solicitud_id=params[:id] %>
+<% @tecnicos=Perfil.where("id_rol in (4,1)")%>
+
+$("#modal-window").find(".modal-content").html("<%= j (render 'modales/modal_new_relacion_sol_opt') %>");
+
+$("#modal-tecnicos").find(".modal-content").html("<%= j (render 'modales/modal_select_tecnicos') %>");
+
+$("#modal-tecnicos").modal;
+$("#modal-window").modal;

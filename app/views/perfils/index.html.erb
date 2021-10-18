@@ -1,0 +1,33 @@
+<div class="container borde-reporte">
+<table class="letra table table-striped" style="text-align: left;">
+    <thead  class="table-dark" >
+        <th>Rol</th>
+        <th>Nombre</th>
+        <th>Perfil</th>        
+    </thead>
+    <tbody>       
+        <tr>
+            <td colspan="3" style="text-align:center; color:red">Usuario Actual</td> 
+            <tr></tr>
+        </tr>
+            <td><%= current_user.rol %> </td>
+            <td><%= link_to current_user.nombre_personal, perfil_path(Perfil.find_by(id_usuario:current_user.id)),class: :"links-user style-no "  %></td>
+            <td><%= link_to raw("#{image_tag("briefcase.svg")} Perfil"), perfil_path(Perfil.find_by(id_usuario:current_user.id)), class: :"btn btn-success btn-sm" %></td>           
+        </tr>
+        <% if @perfil.count >0 %>
+            <% @perfil.each do |p| %>
+                <tr>
+                    <% @user_p=User.find(p.id_usuario) %>
+                    <td><%= @user_p.rol %></td>
+                    <td><%= link_to @user_p.nombre_personal ,  perfil_path(Perfil.find_by(id_usuario:@user_p.id))   ,class: :"links-user style-no "  %></td>
+                    <td><%= link_to raw("#{image_tag("briefcase.svg")} Perfil"), perfil_path(Perfil.find_by(id_usuario:@user_p.id)), class: :"btn btn-success btn-sm" %></td>
+                </tr>
+            <% end %>
+        <% else %>
+            <tr style="text-align:left;">
+                <td colspan="3">No hay perfiles que mostrar</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>

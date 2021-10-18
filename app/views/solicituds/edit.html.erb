@@ -1,0 +1,37 @@
+<div class="border-reporte container letra">
+    <h5>Editar Solicitud</h5>
+    <%= form_for @solicitud do |f| %>
+        <table class="table">
+            <thead class="table-dark">
+                <th>Campos</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= f.label :nombre_user, "Solicitante" %></td>
+                    <td>
+                        <%= f.select(:solicitante_id,{},{},{style: :"width:100%",class: :"form-select",id: :usuarios_edit }) do %>
+                            <%= options_from_collection_for_select(@solicitantes,:id,:nombre_con_id,@solicitud.solicitante_id) %> 
+                        <% end %>   
+                    </td>
+                </tr>
+                <tr>
+                    <td><%= f.label :serie, "Número Serie" %></td>
+                    <td><%= f.text_field :serie, style: :"width:100%" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :tecnico_id, "Técnico que atiende" %></td>
+                    <td><%= f.select(:tecnico_id,{},{},{style: :"width:100%",class: :"form-select",id: :tecnicos_edit})do %>
+                            <%= options_from_collection_for_select(@tecnicos,:id_usuario,:nombre_personal,@solicitud.tecnico_id) %>
+                        <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><%= f.label :descripcion_sencilla, "Descripcion breve" %></td>
+                    <td><%= f.text_area  :descripcion_sencilla, class: :"form-control" %></td>
+                </tr>
+                <tr><td colspan="2">  <%= f.submit "Modificar",style: :" text-align: right;margin-top:3px",class: :" btn btn-secondary btn-sm"%> </td></tr>
+            </tbody>
+        </table>
+    <% end %>
+</div>

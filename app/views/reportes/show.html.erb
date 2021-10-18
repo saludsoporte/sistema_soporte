@@ -1,0 +1,65 @@
+<div class="container padding-div"><%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %></div>                
+<%= render "partials/reporte_show_acciones" %>
+<% unless @errores.nil? %>
+  <div class="container padding-div  ">
+    <% @errores.each do |message| %> 
+            <div class="alert alert-danger">
+                * <%= message %>
+            </div>
+    <% end %>
+</div>  
+<% end %>
+<div class="container borde-reporte">
+  <% if Asignacion.find_by("reporte_id = ? and reasignada = false",@r.id).perfil.id_usuario == current_user.id && @r.estado_id!=5 && @r.estado_id!=14%>
+    <%=  link_to "Crear Actividad" , new_actividad_path(id:params[:id]),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-success btn-sm style-no"}%> 
+  <% elsif @r.estado_id!=5 && @r.estado_id!=14 %>
+    <div class="alert alert-danger" > El usuario actual no está asignado a este reporte </div>
+  <% end %>
+  <% if current_user.permisos.include?(9)  %>
+    <% if Asignacion.find_by("reporte_id = ? and reasignada = false",@r.id).perfil.id_usuario == current_user.id %>
+      <% @entra =true %>   
+    <% elsif current_user.permisos.include?(18) %>
+      <% @entra =true %>   
+    <% else %>
+      <% @entra =false %>   
+    <% end %>
+    <% if @entra ==true %>   
+      <% if @r.estado_id != 14 && @r.estado_id != 5 && Actividad.where("reporte_id=?",params[:id]).count >0%>
+        <%= link_to "Terminar para visto bueno", edit_reporte_path(params[:id],vobo:true),class: :"btn btn-primary btn-sm" %>
+      <% elsif @r.estado_id==14 %>
+        <div class="alert alert-light" title="<%= @r.descripcion_edo %>"  ><%= @r.estado %></div>
+      <% elsif @r.estado_id==5 %>
+        <div class="alert alert-warning" title="<%= @r.descripcion_edo %>"  ><%= @r.estado %></div>
+      <% end %>
+
+    <% else %>   
+      <div class="alert alert-danger" > El usuario actual no puede terminar este reporte </div>
+    <% end %>
+  <% end %>
+</div>
+
+  <table class="container table table-striped borde-reporte">
+    <thead>
+      <th>Fecha</th>
+      <th>Hora </th>      
+      <th>Nombre del tecnico</th>
+    </thead>
+    <% @actividades.each do |a| %>
+      <tbody>
+        <tr style="background-color: rgb(83, 79, 79); color:white" class="clickable" data-toggle="collapse" data-target="#group-of-rows-<%=a.id%>">
+          <td><%= a.fecha %></td>
+          <td><%= a.hora_actividad %></td>          
+          <td><%= a.perfil.nombre.titleize%></td>          
+        </tr>   
+      </tbody>
+      <tbody  id="group-of-rows-<%=a.id%>" class="collapse">
+        <tr>
+          <td><b>Descripción:</b></td>
+          <td><%= raw(a.descripcion) %></td>
+          <td><%= link_to "Editar",edit_actividad_path(a.id) ,style: :"float:right",class: :"btn btn-mod btn-sm" %></td>
+        </tr>
+      </tbody>
+    <% end %>
+   
+  </table>  
+<%= render "partials/modal_plantilla" %>

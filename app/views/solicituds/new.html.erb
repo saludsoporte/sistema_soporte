@@ -1,0 +1,71 @@
+<%= form_for(@solicitud) do |f| %>
+<% if !@solicitud.nil? %>
+    <% if @solicitud.errors.any? %>
+        <% @solicitud.errors.full_messages.each do |message| %>
+        <div class="container alert alert-danger">* <%= message %> </div>
+        <% end %>
+    <% end %>
+<% end %>
+<% if @usuarios.nil? %>
+    <% @usuarios=User.all %>
+<% end %>
+<div class="container letra">
+    <h6 style="text-align: center;" >Crear Solicitud</h6>
+    <div><%= f.submit "Crear y Continuar" ,class: :"btn btn-success btn-sm " %> <%= link_to raw("#{image_tag("arrow-return-left.svg")} Cancelar"), perfil_path(Perfil.find_by(id_usuario:current_user.id).id), class: :"btn btn-secondary btn-sm " %></div>
+   
+    <table class="table table-sm letra ">
+        <thead  class="table-dark">
+            <th colspan="2">Campos</th>
+            <th colspan="2"></th>            
+        </thead>
+        <tbody >
+            <%= f.text_field :perfil_id, :value => Perfil.find_by(id_usuario:current_user.id).id , class: :"form-control style-no", hidden:true %></td>
+            <%= f.text_field :usuario_captura, :value => current_user.id, readonly:true, hidden:true %>
+            <tr>
+                <td>Usuario que captura</td>
+                <td><div class="style-no"><%= current_user.nombre_personal %></div></td>    
+                <td></td>         
+            </tr>                 
+            <tr>
+                <td>Solicitante</td>             
+                <td >
+                    <%= link_to "Crear Solicitante", new_user_path(solicitud:true),title: :"Si el usuario que busca no existe, clic aqui para agregarlo a la base de datos",style: :"float:left", class: :" btn btn-success btn-sm"%>          
+                 </td>
+                <td>
+                    <%= f.select(:solicitante_id,"",{promt: "seleccione un usuario"},{class: :"form-select",id: :usuarios }) do %>
+                        <%= options_from_collection_for_select(@usuarios,:id,:nombre_con_id) %> 
+                    <% end %> 
+                
+                </td>
+            </tr>
+            <tr>
+                <td>No. serie del equipo</td>
+                <td colspan="2">                    
+                    <%= f.text_field :serie  ,id: :serie%></td>
+            </tr>           
+            <tr colspan="2">
+                <td>Estado</td>
+                <td colspan="2"><%= f.text_field :estado_id,:value => @estados.id, hidden:true %>
+                    <div readonly = true ><%=@estados.estado%></div>
+                </td>                       
+            </tr>
+            <% if current_user.rol_id==1%>
+                <tr>
+                    <td>Asignar tecnico</td>
+                    <td colspan="2">
+                        <%= f.select(:tecnico_id,"",{promt:"Selecciona uno"},{class: :"form-select",id: :tecnicos}) do %>
+                            <%= options_from_collection_for_select(@tecnicos,:id_usuario,:nombre_personal,0) %>                           
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+            <tr><td>Fecha Inicio</td><td><%= f.date_field :fecha_inicio, :value =>Time.now.strftime("%Y-%m-%d"), :readonly => true   %> </td></tr>
+            <tr>
+                <td>Descripción Breve</td>
+                <td colspan="2"><%= f.text_area :"descripcion_sencilla", class: :"form-control" %></td>                        
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<% end %>

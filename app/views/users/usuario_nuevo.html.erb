@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="container">
+        <h6 class="letra">Crear usuario</h6>
+    <%= form_for(@user,url:users_usuario_add_url) do |f| %>
+        <% if !@user.nil? %>
+            <% if @user.errors.any? %>
+                <% @user.errors.full_messages.each do |message| %>
+                    <div class="container alert alert-danger">* <%= message %> </div>
+                <% end %>
+            <% end %>
+        <% end %>   
+        <table class="table table-sm">
+            <thead>
+                <th></th>
+                <th></th>
+            </thead>
+            <tbody>     
+                <tr>
+                    <td ><%= f.label :nombre %></td>
+                    <td><%= f.text_field :nombre,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_paterno %></td>
+                    <td ><%= f.text_field :apellido_paterno,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_materno %></td>
+                    <td ><%= f.text_field :apellido_materno,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :area %></td>
+                    <td ><%= f.text_field :area,class: :"form-control" %></td>
+                </tr>      
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;" ><%= f.submit "Registrar" ,class: :"btn-registrar btn btn-sm btn-secondary" %></td>
+                </tr>
+            </tbody>
+        </table>
+    <% end %>
+    </div>
+</div>

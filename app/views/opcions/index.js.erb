@@ -1,0 +1,16 @@
+<% @relaciones=RelacionSolOpt.where(solicitud_id:params[:id]) %>
+<% @tecnicos=Perfil.where(id_rol:@rol_id)%>
+<% @ids_catalogo=Opcion.all %>
+<% @solicitud=Solicitud.find(params[:id]) %>
+<% if @perfil_id.to_i>0%>
+<% @general=true %>
+<% else %>
+<% @general = false %>
+<% end %>
+$("#myModal").find(".modal-content").html("<%= j (render 'modales/alerta') %>");
+
+$("#modal-window").find(".modal-content").html("<%= j (render 'modales/modal_detalles_sol') %>");
+
+
+$("#myModal").modal;
+$("#modal-window").modal;

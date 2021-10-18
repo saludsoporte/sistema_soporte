@@ -1,0 +1,22 @@
+<%= form_for(@asignacion) do |f| %>  
+<div class="modal-header">  
+    <div>Reasignar Reporte</div>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close"> 
+</div>
+<div class="modal-body">      
+    
+    <%= f.label :tecnico, value:"Seleccione un tecnico"%>
+    <%= f.text_field :reporte_id, value:@reporte_id, hidden:true %>
+    <%= f.text_field :reasignada , value:false , hidden:true %>
+    <input id="asignacion_id" name ="asignacion_id"  value="<%= @asignacion_id%>" hidden="true">
+    <%= f.select(:perfil_id,"",{promt: "seleccione un tecnico"},{class: :"form-select" }) do %>
+        <%= options_from_collection_for_select(@tecnicos,:id,:nombre) %> 
+    <% end %>    
+</div>
+<div class="modal-footer"> 
+    <%= f.submit "Seleccionar tecnico" , class: :"btn-sm btn btn-success" %>
+    <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+</div>
+<% end %>
+
+       

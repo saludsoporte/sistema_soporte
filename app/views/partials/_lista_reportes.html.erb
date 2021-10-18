@@ -1,0 +1,40 @@
+<div class="container borde-reporte ">
+<table class="table table-sm letra">
+    <thead  class="table-dark">
+        <th># Reporte</th>
+        <th>Fecha de Ingreso</th>
+        <th>Fecha de Egreso</th>
+        <th>Tecnico Asignado</th>
+        <th colspan="2" style="text-align: left;">Estado del reporte</th>
+        
+    </thead>
+    <tbody>
+        <% if !@reportes.nil? %>
+            <% @reportes.each do |r| %>
+                <tr>
+                    <td><%= link_to "ver reporte #{r.id}", reporte_path(r.id), class: :"btn btn-success btn-sm"%></td>
+                    <td><%= r.fecha_ingreso %></td>
+                    <td><%= r.fecha_entrega %></td>
+                    <td><%= r.nombre_tecnico %></td>
+                    <% if r.estado_id == 2 %>
+                        <td><div class="alert alert-primary estado" style="text-align: center;"  title="<%= r.descripcion_edo %>"><%= r.estado %></td></div>
+                    <% elsif r.estado_id==3 %>
+                        <td><div class="alert alert-danger estado " style="text-align: center;"  title="<%= r.descripcion_edo %>"><%= r.estado %></td></div>
+                    <% elsif r.estado_id==4 %>
+                        <td><div class="alert alert-success estado" style="text-align: center;"  title="<%= r.descripcion_edo %>"><%= r.estado %></td></div>
+                    <% elsif r.estado_id==5 %>
+                        <td colspan="2"><div class="alert alert-warning estado" style="text-align: center;"  title="<%= r.descripcion_edo %>"><%= r.estado %></td></div>                    
+                    <% elsif r.estado_id==14 %>
+                        <td ><div class="alert alert-warning estado" style="text-align: center;"  title="<%= r.descripcion_edo %>"><%= r.estado %></td></div>
+                    <% end %>              
+                    <% if !@perfil_id.nil? && r.estado_id != 5 && r.estado_id != 14  %>
+                        <td><%= link_to "Reasignar este reporte", edit_asignacion_path(Asignacion.where("reporte_id = ?",r.id).last.id,perfil_id:@perfil_id), class: :"btn btn-sm btn-secondary" %></td>
+                    <% elsif  r.estado_id != 5 && r.estado_id != 14  %>                
+                        <td><%= link_to "Reasignar este reporte", edit_asignacion_path(Asignacion.where("reporte_id = ?",r.id).last.id), class: :"btn btn-sm btn-secondary" %></td>
+                    <% end %>
+                </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
+</div>

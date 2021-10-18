@@ -1,0 +1,6 @@
+<div class="container borde-reporte"><br>
+    <% @modal=false %>
+    <%= link_to image_tag("arrow-return-left.svg"), root_path,class: :'btn btn-secondary btn-sm', title: :Inicio %> <%= link_to "Crear un nuevo permiso", new_permiso_path ,class: :"btn btn-secondary btn-sm"  %>    
+</div>
+<%= render "partials/lista_permisos" %>
+

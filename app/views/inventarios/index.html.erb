@@ -1,0 +1,155 @@
+<div class="container borde-reporte letra">
+    <h4>Inventario</h4>    
+    <%= form_with url: "inventarios" , method: :get do |f| %>
+        <h5>Criterios de busqueda</h5>
+        <div class="row">  
+            <div class="col-sm">
+            <div>Tipo de componente</div>      
+                <%= f.select :tipocomp_id,:tipo,{},{style: :"width:100%",id: :tipocomp_invt,name: :tipocomp_invt} do  %>
+                    <%= options_from_collection_for_select(Tipocomp.all.order(id: :asc),:id,:nombre) %> 
+                <% end %> 
+            </div>             
+            <div class="col-sm" id="busqueda" style="display:block">                 
+                <div>Marca</div>
+                <select class="form-select" name="marca" style="padding:2px">
+                    <option value="" hidden="true" selected >Selecciona uno</option>
+                    <% @marcas.each do |m| %>
+                        <option>
+                            <%= m.marca %>
+                        </option>
+                    <% end %>                    
+                </select>                                    
+            </div>         
+            <input id="escritorio" value="<%= Tipocomp.find_by("nombre = 'Equipo de Computo'").id %>" hidden />       
+            <div class="col-sm" id="busqueda_2" style="display:block">                
+                    <div>Número de Serie</div>
+                    <%= f.text_field :serie, class: :"form-control form-control-sm" %>                
+            </div>
+            <div class="col-sm" id="busqueda_1" style="display:block">
+                <div>Activo Fijo</div>
+                <%= f.text_field :activo, class: :"form-control form-control-sm" %>
+            </div>
+            <div id="busqueda_3" class="col-sm" style="display:none">                   
+                <div>Usuario</div>
+                <%= f.select :user,:user,{},{style: :"width:100%",id: :user_select,name: :user_select} do %>
+                    <%= options_from_collection_for_select(User.all.order(id: :asc),:id,:nombre_personal)%>
+                <% end %>                               
+            </div>      
+             <div id="busqueda_4" class="col-sm" style="display:none">                   
+                <div> Serie</div>
+                <%= f.text_field :serie_eq, class: :"form-control form-control-sm" %>
+            </div>      
+             <div id="busqueda_5" class="col-sm" style="display:none">                   
+                <div>Activos Fijo</div>
+                <%= f.text_field :activo_eq, class: :"form-control form-control-sm" %>
+            </div>            
+            <div class="col-sm" style="text-align:left">
+                <div>Disponibles</div>
+                <%= f.check_box :disponible %> 
+            </div>
+            <div class="col-sm" style="margin-top:20px">
+                <%= f.submit "Buscar",class: :"btn-sm btn btn-success" %>                
+            </div>
+        </div>
+    <% end %>
+    <div class="row">
+        <div class="col-sm">
+           
+        </div>
+        <div class="col-sm"></div>
+    </div>
+    <table class="table table-sm">
+        <thead class="table-dark">          
+            <th>Tipo componente</th>
+            <th>Cantidad</th>
+            <th>Disponibles</th>            
+        </thead> 
+        <tbody>
+            <% unless @inventario.nil? %>
+                <tr>                    
+                    <td><%= Tipocomp.find(@inventario.tipocomp_id).nombre %></td>
+                    <td><%= @inventario.cantidad %></td>
+                    <td><%= @inventario.disponibles %></td>                                               
+                </tr>             
+            <% end %>
+        </tbody>        
+    </table>
+    <table class="table table-sm">
+    <thead class="table-dark">
+        <% if !@equipo.nil?  %>
+            <th>Articulo</th>
+            <th>Usuario</th>
+            <th>Serie</th>
+            <th>Activo_fijo</th>
+            <th>Piso</th>
+            <th>Folio</th>
+            <th>Fecha de ingreso</th>
+            <th style="text-align:center">Disponibilidad</th>
+        <% end %>
+        <% if !@componentes.nil?  %>
+            <th>Articulo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Serie</th>
+            <th>Activo Fijo</th>
+            <th>Fecha de ingreso</th>            
+            <th style="text-align:center">Disponibilidad</th>
+        <% end %>
+    </thead>
+    <tbody>
+            <% if !@equipo.nil?  %>
+                <% @equipo.each do |e| %>
+                    <tr>
+                        <td><%= e.tipocomp.nombre%></td>
+                        <td>
+                            <% if e.user_id.nil? %>
+                                Sin Asignar
+                            <% else %>
+                                <%= User.find(e.user_id).nombre_personal %></td>
+                            <% end %>
+                        <td><%= e.no_serie%></td>
+                        <td><%= e.activo_fijo%></td>
+                        <td><%= e.piso%></td>
+                        <td><%= e.folio%></td>
+                        <td><%= e.fecha_ingreso%></td>                        
+                        <td style="text-align:center">
+                            <% if e.user_id.nil? %>                       
+                                <%= link_to raw("#{image_tag("check2.svg")} Asignar"),edit_equipo_path(e.id),class: :"btn-sm btn-success" %>                           
+                            <% else %>                                
+                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo"),equipo_path(e.id),class: :"btn-sm btn-danger" %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>                                
+            <% end %>
+            <% if !@componentes.nil?  %>
+                <% @componentes.each do |c| %>
+                    <% @componente=Componente.find(c.componente_id)%>
+                    <tr>
+                        <td><%= c.tipocomp.nombre%></td>
+                        <td><%= @componente.marca%></td>
+                        <td><%= @componente.modelo%></td>
+                        <td><%= c.no_serie%></td>  
+                        <td><%= c.no_activo_fijo %></td>                      
+                        <td><%= @componente.fecha_ingreso%></td>                        
+                        <td style="text-align:center">  
+                            <% if c.disponible == true %>                                                         
+                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),class: :"btn-sm btn-success",title: :disponible %>                   
+                            <% else %>                                
+                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),class: :"btn-sm btn-danger",title: :"no disponible" %>                                         
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+    </tbody>
+    </table>
+</div>
+<footer>
+<% if @componente_band == true %>
+
+    <%= will_paginate @componentes, class: :footer%>
+<% else %>
+    <%= will_paginate @equipo, class: :footer%>
+<% end %>
+</footer>

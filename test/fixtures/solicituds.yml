@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  perfil_id: one
+  nombre_user: MyString
+  estado_id: 1
+  fecha_inicio: 2021-04-28
+  fecha_termino: 2021-04-28
+  opciones_rel: 1
+  hardware: false
+  software: false
+
+two:
+  perfil_id: two
+  nombre_user: MyString
+  estado_id: 1
+  fecha_inicio: 2021-04-28
+  fecha_termino: 2021-04-28
+  opciones_rel: 1
+  hardware: false
+  software: false

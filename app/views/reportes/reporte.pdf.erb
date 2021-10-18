@@ -1,0 +1,64 @@
+<table>
+    <thead>
+        <th></th>
+        <th></th>
+    </thead>
+    <tbody>
+    <tr style="height:80px">
+        <td ><b>Folio :</b></td>
+        <td ><%= @reporte.folio %></td>
+        <td style="text-align:center;">
+            <div style="margin-left:280px" class="cuadro-titulo">Ficha Final de Reporte de Servicio</div>
+            <div  style="margin-left:280px" ><b>FORMATO SS DPEPE SIR DI RF</b></div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="div tabla">
+    <tbody>
+        <tr>
+            <td>
+                <div><b>Nombre:</b></div>                           
+            </td>
+            <td>
+                <div><%= @solicitante.nombre_personal %></div>                      
+            </td>
+            <td>
+                <div><b>No. Serie:</b></div>
+            </td>
+            <td>   
+                <div><%= @reporte.serie %></div>             
+            </td>
+        </tr>
+        <tr>
+            <td><div><b>Dirección:</b></div></td>           
+            <td><div><%= @solicitante.direccion_nombre.titleize %></div>
+            <td><b>Fecha de Ingreso:</b></td>
+            <td><%= @reporte.fecha_ingreso %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @reporte.hora_ing%></td>
+        </tr>
+        <tr>
+            <td><div><b>Subdirección:</b></div> </td>
+            <td><div><%= @solicitante.subdireccion_nombre.titleize %></div></td>
+            <td><b>Fecha de Entrega:</b></td>     
+            <td><%= @reporte.fecha_entrega %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @reporte.hora_egr %></td>                  
+        </tr>
+        <tr>
+            <td><div><b>Departamento:</b></b></div>   </td>
+            <td><div><%= @solicitante.departamento_nombre.titleize %></div></td>
+        </tr>
+    </tbody>
+</table>
+<div class="div" style="font-size:20px">
+    <b>Descripción de Solicitud</b>    
+</div>
+<div class="div" style="font-size:20px">
+    <%= @solicitud.descripcion_sencilla %>
+</div>
+<% @actividades.each do |a| %>
+    <div class="div" style="font-size:20px">
+        <b>Descripción de Mantenimiento</b><div><%= a.fecha%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=a.hora_actividad%></div>
+    </div>
+    <div class="div" style="font-size:20px">
+        <%= a.descripcion%>
+    </div>
+<% end %>

@@ -1,0 +1,39 @@
+<% if @relaciones.count > 0 %>
+<table class="table table-bordered letra">
+    <thead class="table-dark">
+        <th>Catalogo </th>
+        <th>Problemas</th>
+        <th>Descripción breve</th>
+        <% if @solicitud.estado_id !=15 %>
+        <th></th>        
+        <% end %>
+    </thead>
+    <tbody>
+    <% @ids_catalogo.each do |c| %>
+    <% @numero_span=RelacionSolOpt.where("opcion_id=? and solicitud_id=?",c.id,@solicitud.id).count %>
+    <% if @numero_span > 0 %>
+    <tr>
+        <td rowspan="<%= @numero_span +1 %>" style="vertical-align: middle;"><%= c.opcion %>
+           <% if @solicitud.estado_id !=15 %>
+                <%= link_to raw("#{image_tag("trash.svg")} Eliminar"), relacion_sol_opts_eliminar_relacion_path(solicitud_id:@solicitud.id),data: { :confirm => '¿Estas seguro de eliminar el registro?, Esto eliminara la relación completa'},  method: :eliminar_relacion ,style: :"float:right", class: :"btn btn-danger btn-sm" %>
+           <% end %>
+        </td>
+    </tr>    
+    <% @relacion=RelacionSolOpt.where("opcion_id=? and solicitud_id=?",c.id,@solicitud.id) %>
+    <% @relacion.each do |lo| %>
+        <tr>
+            <td style="padding-right: 2px;"><div class="col-sm-6 .col-md-8"><%= OpcionAvanzada.find(lo.opcion_av_id).nombre %></div></td>
+            <td><div class="col-6 .col-md-4"><%= lo.descripcion_sencilla %></div></td>   
+            <% if @solicitud.estado_id !=15 %>
+            <td style="width: 15%;"><%= link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_relacion_sol_opt_path(lo.id,catalogo_id:c.id), class: :"btn btn-mod btn-sm"%>
+                <%= link_to raw("#{image_tag("trash.svg")} Eliminar"), relacion_sol_opt_path(lo.id),data: { :confirm => '¿Estas seguro de eliminar el registro?'},  method: :delete,class: :"btn btn-sm btn-danger", title: :Eliminar%></td>
+            <% end %>
+        </tr>    
+        <% end %>    
+    <% end %>
+    <% end %>
+</tbody>
+</table>
+<% else %>
+    <div class="form-control ">No hay detalles a mostrar</div>
+<% end %>

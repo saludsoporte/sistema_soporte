@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_usuario: 
+  id_perfil: 
+  id_reporte: 1
+
+two:
+  id_usuario: 
+  id_perfil: 
+  id_reporte: 1

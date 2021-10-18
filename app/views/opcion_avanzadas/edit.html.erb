@@ -1,0 +1,10 @@
+<div class="container borde-reporte">
+    <h5>Editar el nombre del problema</h5>
+    <%= form_for @opcion_av do |f| %>
+        <input id="opcion" name="opcion" value="<%=params[:opcion]%>" hidden="true">        
+        <%= f.label :nombre, "Nombre" %>
+        <%= f.text_field :nombre %>
+        <%= f.submit "Modificar",class: :"btn btn-secondary btn-sm" %>
+        <%= link_to "Regresar a catálogos", opcions_path, class: :"btn btn-secondary btn-sm" %>
+    <% end %>      
+</div>

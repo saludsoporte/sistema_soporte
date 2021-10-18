@@ -1,0 +1,36 @@
+<% if params[:error]=="1" %>        
+    <div class="container alert alert-danger">* Falta No. de Serie </div>        
+<% end%>
+<div class="container letra borde-reporte">
+    <div><h3 class="titulos">Asignar componente a un equipo</h3></div>
+    <div class="row" style=" border-bottom: 1px solid gainsboro;">
+        <div class="col-sm"><b>No. Serie</b></div>
+        <div class="col-sm"><b>Activo Fijo</b></div>
+        <div class="col-sm"><b>Modelo</b></div>
+        <div class="col-sm"><b>Marca</b></div>
+        <div class="col-sm"><b>Componente</b></div>
+    </div>
+    <div class="row">
+        <div class="col-sm"><%= @serial.no_serie %></div>
+        <div class="col-sm"><%= @serial.no_activo_fijo %></div>
+        <div class="col-sm"><%= @serial.componente.modelo %></div>
+        <div class="col-sm"><%= @serial.componente.marca %></div>
+        <div class="col-sm"><%= @serial.tipocomp.nombre %></div>
+    </div>
+    <%= form_with url: comp_serials_asignar_equipo_path , method: :get do |f|%>
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm">
+            <%= f.text_field :id,value:@serial.id, hidden:true %>
+            <%= f.text_field :comp_id,name: :comp ,value:@serial.componente.id, hidden:true %>
+            
+                <%= f.select :equipo_id,{},{},{class: :"form-select",id: :equipos,name: :equipos} do  %>
+                    <%= options_from_collection_for_select(Equipo.all,:id,:informacion,0) %> 
+                <% end %>      
+        </div>
+        <div class="col-sm" style="text-align:right">      
+            <%= f.submit "Seleccionar el equipo",class: :"btn btn-sm btn-outline-dark" %>            
+        </div>
+        <div id="info_eq"></div>
+    </div>
+    <% end %>
+</div>

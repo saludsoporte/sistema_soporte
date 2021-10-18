@@ -1,0 +1,23 @@
+<%= form_for(@relacion) do |f| %>
+
+<div class="modal-header">  
+    <div>Catálogos *</div>
+</div>
+<div class="modal-body letra">
+  <%= f.label :solicitud_id,"Seleccione un Catálago" %>
+   <%= f.text_field :solicitud_id, :value => @solicitud_id, hidden: true%>
+   <%= f.select(:opcion_id, Opcion.all.pluck(:opcion,:id),{prompt: "selecciona una opcion"},{class: "form-select"}) %>
+   <br>
+   <label>Selecciona un Problema *</label> <%= link_to "Agregar nuevo", opcions_path,style: :"float:right",class: :" btn btn-success btn-sm" %><br><br>
+   <select id="problema" name="problema" class="form-select"></select><br>
+   
+   <%= f.label :"Descripcion Sencilla", "Descripción general breve del problema (opcional)" %><br>
+   <%= f.text_area :descripcion_sencilla, class: :"form-control" %>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+  <%= f.submit "Guardar" , class: :"btn btn-success btn-sm", disabled:true, id:"guardar"%>
+</div>
+
+<% end %>
+<%= javascript_pack_tag 'ajax_sol.js' %>

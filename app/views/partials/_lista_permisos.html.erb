@@ -1,0 +1,29 @@
+<div class="container borde-reporte">
+    <table class="container" >
+        <thead>
+            <th>Nombre</th>
+            <th class="right-side">
+                <% if !@modal %>
+                    Accion
+                <% end %>
+            </th>
+        </thead>
+        <tbody>
+    <% if !@permisos.nil? %>
+        <h3>Lista de Permisos</h3>
+        <% @permisos.each do |p| %>
+            <tr style="border: 1px solid #ddd; border-collapse: collapse;">
+                <td><%= p.permiso %></td>
+                <td>
+                    <% if !@modal %>
+                        <%= link_to image_tag("trash.svg"), permiso_path(p.id), data: { :confirm => '¿Estas seguro de eliminar el registro?, Se eliminaran todas las relaciones de rol donde exista este permiso'},  method: :delete,class: "right-side btn btn-sm btn-danger", title: :"Eliminar" %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>          
+      <% else %>
+        <h4>No hay permisos para mostrar</h4>
+    <% end %>
+    </tbody>
+</table>
+</div>

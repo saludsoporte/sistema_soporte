@@ -1,0 +1,24 @@
+<div class="container" style="text-align: left;">
+    <%= form_for(@rol) do |f| %>   
+        <% @rol.errors.full_messages.each do |message| %> 
+            <div class="alert alert-danger">
+                * <%= message %>
+            </div>
+        <% end %>
+        <table class="table table-striped">
+            <thead>
+                <th><%= f.label :rol, "Nombre del rol" %></th>
+                <th><%= f.label :descripcion, "Descripcion rol" %> </th>
+            </thead>
+            <tr>
+                <td><%= f.text_field :nombre , class: :"form-control" %></td>
+                <td><%= f.text_area :descripcion , class: :"form-control" %></td>
+            </tr>  
+            <tr>
+                <td colspan="2" style="text-align:right;">
+                    <%= f.submit "Guardar", class: :"btn btn-secondary",:type => :image, :src => image_path("save2.svg"), :title => "Guardar" %>
+                </td>
+            </tr>      
+        </table> 
+      <% end %>
+</div>

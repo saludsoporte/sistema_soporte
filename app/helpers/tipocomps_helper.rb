@@ -1,0 +1,2 @@
+module TipocompsHelper
+end

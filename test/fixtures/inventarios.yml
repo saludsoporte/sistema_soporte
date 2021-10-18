@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  articulo_id: 1
+  tipocomp_id: 1
+  cantidad: 1
+  disponibles: 1
+  fecha_ingreso: 2021-09-20
+
+two:
+  articulo_id: 1
+  tipocomp_id: 1
+  cantidad: 1
+  disponibles: 1
+  fecha_ingreso: 2021-09-20

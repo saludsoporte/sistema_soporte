@@ -1,0 +1,64 @@
+   <%= form_for(@relacion) do |f| %>
+<div class="borde-reporte container letra">
+    <h5>Agregar componentes a el Equipo </h5>
+    <table class="table-striped table">
+    <thead class="table-dark">
+        <th>Usuario</th>
+        <th>Serie</th>
+        <th>Activo Fijo</th>
+        <th>Piso</th>
+        <th>Tipo</th>
+        <th>Folio</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <% unless @equipo.user_id.nil? %>
+                    <%= User.find(@equipo.user_id).nombre_personal %>
+                <% end %>
+            </td>
+            <td><%= @equipo.no_serie%></td>
+            <td><%= @equipo.activo_fijo%></td>
+            <td><%= @equipo.tipo%></td>
+            <td><%= @equipo.piso%></td>
+            <td><%= @equipo.folio%></td>
+        </tr>
+    </tbody>
+    </table>
+ 
+    <table class="table table-dark ">
+    </table>
+    <div class="row">
+        <div class="col-sm">
+            <h5 class="letra">Componente</h5>
+            <%= f.select :componente_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",class: :"form-select",id: :componente_id } do  %>
+                <%= options_from_collection_for_select(@componente,:id,:relacion ,@relacion.componente.id) %> 
+            <% end %> 
+        </div>            
+    </div>
+    <div class="row" style="margin:10px; text-align:center;background-color:black;color:white">
+        <div class="col-sm"  style="background-color:black"><b>Característica</b></div>
+        <div class="col-sm" style="background-color:black"><b>Valor</b></div>     
+    </div>
+    <div id="caracteristicas" style="text-align:center">            
+        <% @rel.each do |r| %>
+        <div class="row">
+            <div class="col-sm"><%= r[:caracteristica] %></div>            
+            <div class="col-sm"><%= r[:valor] %></div>            
+        </div>
+        <% end %>
+    </div>
+    <input name="pagina" value="<%=params[:page] %>" hidden="true" />
+    <input name="equipo" value="<%=params[:equipo_id] %>" hidden="true" />
+         
+    </table>
+
+   
+</div>
+<% end %>
+<% unless @componentes.nil? %>
+<footer >
+    <%= will_paginate @componentes, class: :footer%>
+</footer>
+<% end %>
+<%= javascript_pack_tag 'relacion_componente.js' %>

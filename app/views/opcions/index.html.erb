@@ -1,0 +1,18 @@
+<div class="container borde-reporte">
+    <h5>Catálogos: </h5>
+    <%= link_to "Areas", areas_path,class: :"btn btn-link btn-sm" %>
+    <%= link_to "Unidades", unidads_path,class: :"btn btn-link btn-sm" %>
+    <%= link_to "Direcciones", direccions_path,class: :"btn btn-link btn-sm" %>
+    <%= link_to "Subdirecciones", subdireccions_path,class: :"btn btn-link btn-sm" %>
+    <%= link_to "Departamentos", departamentos_path,class: :"btn btn-link btn-sm" %>
+    <% if current_user.permisos.include?(20) %>
+        <%= link_to raw("#{image_tag("plus-circle.svg")} Nuevo"),new_opcion_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :" btn btn-success btn-sm style-no right-side letra" } %>
+    <% end %>
+    <% if @option.count > 0 %>
+        <%= render "partials/opciones_list" %>
+    <% else %>
+        <div class="form-control"> No hay catálogo para mostrar </div>
+    <% end %>
+</div>
+<%= render "partials/modal_plantilla" %>
+

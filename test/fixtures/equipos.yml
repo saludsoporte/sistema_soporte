@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  no_serie: MyString
+  activo_fijo: MyString
+  tipo: MyString
+  piso: MyString
+  folio: MyString
+  user: one
+
+two:
+  no_serie: MyString
+  activo_fijo: MyString
+  tipo: MyString
+  piso: MyString
+  folio: MyString
+  user: two

@@ -1,0 +1,355 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *
+ *= require select2
+*/
+
+@import "bootstrap";
+.login {
+    width: 25%;
+}
+
+.btnInicio {
+    margin: 5px;
+    width: 100%;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.printer {
+    position: relative;
+    left: 880px;
+}
+
+.detalles {
+    float: right;
+}
+
+.usuario_new {
+    float: right;
+}
+
+.btn-registrar {
+    width: 100%;
+}
+
+.estado {
+    padding: 6px;
+}
+
+.estados_repor {
+    vertical-align: top;
+}
+
+.row-reporte {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.borde-reporte {
+    border-color: gray;
+    border-width: 1px;
+    border-style: inset;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 3px;
+}
+
+footer {
+    /* Like the header, the footer will have a static height - it shouldn't grow or shrink.  */
+    /* 0 flex-grow, 0 flex-shrink, auto flex-basis */
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.links-user {
+    text-decoration: none;
+    color: black;
+}
+
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
+
+a:active {
+    color: gray;
+}
+
+a {
+    color: #f5f9ff;
+}
+
+.footer {
+    background-color: rgba(17, 67, 142, 0.849);
+    text-align: center;
+    list-style: none;
+    text-decoration: none;
+    padding: 20px;
+    color: white;
+}
+
+.footer-pdf-1 {
+    float: left;
+}
+
+.footer-pdf-2 {
+    float: right;
+}
+
+html,
+body {
+    margin: 0px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+div,
+table,
+tr {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.add-admin {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+table {
+    margin-top: 5px;
+    padding: 6px;
+}
+
+.padding-div {
+    padding: 5px;
+}
+
+#notice {
+    background-color: gainsboro;
+}
+
+#modal-tecnicos,
+#modal-window,
+#myModal,
+#modal-solicitantes,
+#modal-add {
+    padding: 0px;
+    background-color: transparent;
+}
+
+.letra {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.letra-t {
+    font-family: 'Arial', sans-serif;
+    font-size: 17px;
+    color: white;
+}
+
+#btn-menu:hover {
+    background-color: rgba(113, 154, 212, 0.849);
+}
+
+.menu-icon:hover {
+    fill: black;
+}
+
+a:hover {
+    list-style: none;
+    text-decoration: none;
+    color: rgb(177, 165, 165);
+}
+
+button:hover {
+    color: rgb(177, 199, 221);
+    text-decoration: none;
+    fill: rgb(214, 49, 49);
+}
+
+#boton_mod:hover {
+    color: white;
+    background-color: rgba(185, 133, 55, 0.87);
+}
+
+.fondo {
+    background-color: rgb(29, 26, 26)
+}
+
+.style-no {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    list-style: none;
+    text-decoration: none;
+}
+
+.right-side {
+    float: right;
+    text-align: right;
+}
+
+.background {
+    background-color: rgba(17, 67, 142, 0.849);
+}
+
+.btn-add {
+    border: rgb(17, 68, 142);
+    color: white
+}
+
+.log {
+    text-align: right;
+    background-color: black;
+    margin-left: 25%;
+    color: white;
+}
+
+.menu-bg {
+    border: rgb(17, 68, 142);
+    margin-left: 10px;
+    color: white
+}
+
+.white {
+    color: white
+}
+
+.black {
+    color: black;
+}
+
+.b-black {
+    background-color: whitesmoke;
+}
+
+.large-padding {
+    margin-left: 5px;
+    padding: 8px 10px 5px 10px;
+}
+
+.padding-edit-user {
+    padding: 8px 70px 5px 100px;
+}
+
+.style-left {
+    text-align: left;
+    width: 25px;
+}
+
+.style-rigth {
+    text-align: right;
+    width: 25px;
+}
+
+.btn-mod {
+    background-color: rgb(243, 188, 105);
+    color: white;
+}
+
+.btn-mod-oc {
+    background-color: rgba(173, 120, 40, 0.932);
+    color: white;
+}
+
+.btn-add {
+    background-color: rgb(81, 163, 230);
+    color: white;
+}
+
+.btn-mod-pr {
+    background-color: rgb(81, 163, 230);
+    color: white;
+}
+
+.menu {
+    margin-top: 500px;
+}
+
+.registro {
+    text-align: right;
+}
+
+.selects-registro {
+    text-align: left;
+}
+
+.titulos {
+    border-bottom-style: solid;
+    border-right-style: solid;
+}
+
+.border-bot {
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-radius: 0%;
+    border-color: gainsboro;
+}
+
+.posicion-derecha {
+    text-align: right;
+}
+
+.botones-margen {
+    margin: 2px;
+}
+
+@media (max-width: 500px) {
+    .login {
+        width: 100%;
+    }
+    .registro {
+        width: 100%;
+        text-align: left;
+        float: left;
+    }
+    .div-folios-reporte {
+        width: 100px;
+    }
+    .vobo-folio {
+        margin: 5px;
+    }
+    .vobo-input-folio {
+        width: 50%;
+    }
+    .tabla-resp {
+        width: 100%;
+    }
+    .menu-perfil {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        background-color: rgb(29, 26, 26);
+    }
+    .borde-renglon-perfil {
+        border-width: 1px;
+        border-style: inset;
+        border-top: white;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        color: white;
+    }
+    .botones-sol {
+        margin: 2px;
+        width: 100%;
+    }
+}

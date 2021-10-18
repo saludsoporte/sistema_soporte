@@ -1,0 +1,33 @@
+<div class="container borde-reporte">
+<div class="titulos padding-div"><h3>Editar la característica del componente</h3></div>
+<%= form_for(@relacion) do |f| %>
+        <div class="row  padding-div">
+            <div class="col-sm">
+                <%= f.label :caractersitica ,"Caracteristica" %>
+            </div>
+            <% if params[:edit] %>      
+            <div class="col-sm">
+                <%= f.select(:caracteristica_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",id: :caracteristica_id_edit }) do %>
+                    <%= options_from_collection_for_select(Caracteristica.all,:id,:nombre,@relacion.caracteristica_id) %> 
+                <% end %> 
+            </div>
+            <% else %>
+            <div class="col-sm">
+                <%= f.select(:caracteristica_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",id: :caracteristica_id }) do %>
+                    <%= options_from_collection_for_select(Caracteristica.all,:id,:nombre,@relacion.caracteristica_id) %> 
+                <% end %> 
+            </div>
+            <% end %>
+        </div>
+        <%= f.text_field :componente_id, value: :"#{params[:comp_id]}",hidden:true %>
+        <div class="row padding-div">
+            <div class="col-sm">
+                <%= f.label :valor_caracteristica,"Valor de Característica" %>       
+            </div>
+            <div class="col-sm">
+                <%= f.text_field :valor_caracteristica, style: :"width:100%" %> <b>(Opcional)</b>
+            </div>
+        </div>
+        <%= f.submit "Guardar",style: :"margin-top:3px",class: :"btn-sm btn btn-secondary"%>    
+<% end %>      
+</div>

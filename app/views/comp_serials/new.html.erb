@@ -1,0 +1,62 @@
+<% if params[:error]=="1" %>        
+    <div class="container alert alert-danger">* Falta No. de Serie </div>        
+<% end%>
+<% if params[:error]=="2" %>        
+    <div class="container alert alert-danger">* Falta No. de Activo fijo </div>
+<% end%>
+<% if params[:error]=="3" %>        
+        <div class="container alert alert-danger">* Falta No. de Serie </div>
+        <div class="container alert alert-danger">* Falta No. de Activo fijo </div>
+<% end%>
+<div class="titulos container borde-reporte"><h3>Agregar Existencias</h3></div>
+<%= render "partials/datos_componente" %>
+
+<%= form_for(@comp_serie) do |f| %>
+<input id="comp_id" value="<%=params[:comp_id] %>" hidden />
+    <div class="container borde-reporte letra" >   
+        <% @comp_serie.errors.full_messages.each do |message| %> 
+            <div class="alert alert-danger container">
+                * <%= message %>          
+            </div>
+        <% end %>        
+        <div class="row">
+            <div class="col-sm"> <%= f.label :no_serie,raw("N&uacutemero de Serie")%></div>
+            <div class="col-sm"> <%= f.text_field :no_serie ,class: :"form-control" %>  </div>                  
+        </div>
+        <div class="row" style="margin-top:10px" >
+            <div class="col-sm"><%= f.label :no_activo_fijo, "Activo fijo"%></div>
+            <div class="col-sm"><%= f.text_field :no_activo_fijo , class: :"form-control" %></div>
+        </div>     
+        <div class="row" style="margin-top:10px;">
+            <div class="col-sm">Seleccionar las Características del Componente</div>
+            <div class="col-sm">
+                <%= select :relacion,:conjunto,{},{},{class: :"form-select",id: :relacion,name: :conjunto} do  %>
+                    <%= options_from_collection_for_select(RelacionCaracteristica.where("componente_id=?",params[:comp_id]).select(:conjunto).order(conjunto: :asc).distinct,:conjunto,:conjuntos) %> 
+                <% end %>   
+            </div>
+        </div>        
+        <div>            
+            <div id="caracteristicas" ></div>
+        </div>  
+    </div>           
+    <div class="container borde-reporte">
+        <div class="row">
+            <input name="comp_id" type="text" value="<%= params[:comp_id]%>" hidden="true" />
+            <div class="col-sm"><%= f.submit "Agregar existencia", class: :"btn-sm btn btn-success" %></div>                        
+        </div>
+    </div>
+<% end %>
+<div class="container borde-reporte letra">    
+    <div class="row titulos">
+        <div class="col-sm"><b>Componente</b></div>
+        <div class="col-sm"><b>Número de serie</b></div>
+        <div class="col-sm"><b>Activo fijo</b></div>
+    </div>
+    <% @seriales.each do |s| %>
+    <div class="row"  style="border-bottom: 1px solid gainsboro;">
+        <div class="col-sm"><%= s.tipocomp.nombre %></div>
+        <div class="col-sm"><%= s.no_serie %></div>
+        <div class="col-sm"><%= s.no_activo_fijo %></div>
+    </div>
+    <% end %>
+</div>
