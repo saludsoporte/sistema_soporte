@@ -1,0 +1,42 @@
+ <input id="id_p" value="<%= params[:id] %>" hidden/>
+ <% if current_user.rol_id==1 %>
+    <div class="container  padding-div" style="text-align: left;"> 
+        <%= link_to raw("#{image_tag('arrow-return-left.svg')} Perfiles"), perfils_path, class: :" btn btn-sm btn-secondary" %>
+    </div> 
+<% end %>
+<% unless @ancho.nil? %>
+    <%= @ancho %>
+<% end %>
+
+<div id="tabla-respond" class="container borde-reporte">
+</div>
+<% unless @user.nil? %>
+<div class="borde-reporte container letra padding-div" >
+    <% if @perfil.id == params[:id].to_i %>
+        <%= link_to "Crear Solicitud" ,new_solicitud_path, class: :"form-control style-no",style: :"background-color: white;" %>
+    <% end %>
+    <% if current_user.rol_id.to_i == 1 %>
+        <%= link_to "Reasignaciones" , asignacions_path ,class: :"form-control style-no",style: :"background-color: white;" %>
+    <% end %>
+    <% if !@equipo.nil? %>
+    <%= link_to "Equipo asignado", equipo_path(@equipo.id), class: :"form-control style-no",style: :"background-color: white;"%>   
+    <% end %>
+    <%= link_to "Solicitudes creadas y seleccionadas", solicituds_path(id_perfil:Perfil.find_by(id_usuario:@user.id).id), class: :"form-control style-no",style: :"background-color: white;"%>
+    <% if @user.permisos.include?(17) %>
+        <%= link_to "Solicitudes disponibles", solicituds_path , class: :"form-control style-no",style: :"background-color: white;"%>
+    <% end %>
+    <% if @perfil.id == params[:id].to_i %>
+        <%= link_to "Editar datos personales", edit_user_path(current_user.id),class: :"form-control style-no",style: :"background-color: white;" %>
+    <% end %>
+    <% if current_user.rol_id.to_i == 1 %>
+        <%= link_to "Lista de Reportes", reportes_path ,class: :"form-control style-no",style: :"background-color: white;" %>
+    <% end %>
+    <% if current_user.rol_id.to_i == 4 || current_user.rol_id.to_i == 1%>
+        <%= link_to "Mis Reportes", reportes_path(perfil_id:params[:id]) ,class: :"form-control style-no",style: :"background-color: white;"%> 
+    <% end %>
+    
+    <%= link_to 'Mostrar Permisos', "",  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"form-control style-no",style: :"background-color: white;" }  %>    
+</div>
+<% end %>
+<%= javascript_pack_tag 'perfils.js' %>
+<%= render "partials/modal_plantilla" %>

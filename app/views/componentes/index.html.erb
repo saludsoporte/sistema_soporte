@@ -1,0 +1,44 @@
+<div id="tabla-normal" class="container borde-reporte letra">
+
+    <div class="titulos row">
+        <div class="col-sm" ><h3>Componentes</h3> </div>
+        <div class="col-sm" style="text-align:right">        
+        <%= link_to "Crear nuevo componente" , new_componente_path,class: :"btn btn-success btn-sm" %> </div>
+    </div>
+    <table class="table table-sm letra">
+        <thead class="table-dark">
+            <th>Tipo de Componente</th>
+            <th>Modelo</th>
+            <th>Marca</th>            
+            <th colspan="2">Acciones</th>
+        </thead>
+        <tbody>   
+        <% if !@componentes.nil? %>
+            <% @componentes.each do |c| %>
+                <tr>
+                    <td><%= c.tipocomp.nombre%></td>   
+                    <td><%= c.modelo %></td>         
+                    <td><%= c.marca %></td>                
+                    <td >
+                        <%= link_to raw("#{image_tag("binoculars.svg")} Ver componente"),componente_path(c.id,page:params[:page]), class: :"btn btn-sm btn-primary" %>
+                        <%= link_to raw("#{image_tag("plus-circle.svg")} Características"), new_relacion_caracteristica_path(comp_id:c.id,page:params[:page]), class: :"btn-sm btn btn-success" %>
+                        <%= link_to "Nueva existencia",new_comp_serial_path(comp_id:c.id,existencia:true,page:params[:page]),class: :"btn btn-sm btn-mod" %>
+                    </td>            
+                </tr>         
+                  
+            <% end %>
+        <% else %>
+            <tr>
+                <td colspan="4" style="text-align:center">No hay componentes registrados</td>
+            </tr>            
+        <% end %>
+        </tbody>  
+    </table>    
+</div>
+<% unless @componentes.nil? %>
+<footer >
+    <%= will_paginate @componentes, class: :footer%>
+</footer>
+<% end %>
+<%= javascript_pack_tag 'componentes.js' %>
+<%= render "partials/modal_plantilla" %>

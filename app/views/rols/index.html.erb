@@ -1,0 +1,8 @@
+<div class="container borde-reporte"><br>    
+    <% if current_user.permisos.include?(12) %>
+        <%= link_to image_tag("arrow-return-left.svg"), root_path,class: :'btn btn-secondary btn-sm', title: :Inicio %> <%= link_to "Crear un nuevo rol", new_rol_path ,class: :"btn btn-sm btn-secondary"  %>    
+    <% else %>
+        <div class="col"><%= link_to image_tag("arrow-return-left.svg"), root_path,class: :'btn-secondary btn-sm', title: :Inicio %></div>
+    <% end %>
+</div>
+<%= render "partials/lista_rol" %>

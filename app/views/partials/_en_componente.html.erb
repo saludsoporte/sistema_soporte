@@ -1,0 +1,25 @@
+    <%= form_for(@componente) do |f| %>
+    <div class="row">
+        <div class="col-sm"><%= f.label :tipocomp_id,"Tipo de componente"%></div>
+        <div class="col-sm">
+            <%= f.select(:tipocomp_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",class: :"form-select",id: :tipocomp_id }) do %>
+                <%= options_from_collection_for_select(Tipocomp.all.order(id: :asc),:id,:nombre,0) %> 
+            <% end %> 
+        </div>
+    </div>
+    <div style="margin-top:5px" class="row">
+        <div class="col-sm"><%= f.label :modelo,"Modelo" %></div>
+        <div class="col-sm" ><%= f.text_field :modelo ,style: :"width:100%"%></div>        
+    </div>
+     <div style="margin-top:5px" class="row">
+        <div class="col-sm"><%= f.label :marca,"Marca" %></div>
+        <div class="col-sm" ><%= f.text_field :marca ,style: :"width:100%"%></div>        
+    </div>
+    <!-- >
+      <div style="margin-top:5px" class="row">
+        <div class="col-sm"><%= f.label :cantidad,"Cantidad" %></div>
+        <div class="col-sm" ><%= f.number_field  :cantidad ,min:0,value:0 ,style: :"width:100%"%></div>        
+    </div>
+    < -->
+    <%= f.submit "Continuar" , class: :"btn btn-sm btn-secondary" %>
+    <% end %>

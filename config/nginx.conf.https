@@ -1,0 +1,32 @@
+upstream unicorn{
+    server unix:/tmp/unicorn.sistema_soporte.sock fail_timeout=0;
+}
+server{
+    server_name debian-pc.slpsalud.gob.mx;
+    root /home/debian-pc/Sistema_SMPC/sistema_soporte/public;
+    try_files  $uri/index.html $uri @unicorn;
+    location @unicorn{
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_pass http://unicorn;
+    }
+    #error_page 500 502 503 504 /500.html;
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/debian-pc.slpsalud.gob.mx/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/debian-pc.slpsalud.gob.mx/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server{
+    if ($host = debian-pc.slpsalud.gob.mx) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80 default deferred;
+    server_name debian-pc.slpsalud.gob.mx;
+    return 404; # managed by Certbot
+}

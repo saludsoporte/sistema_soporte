@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  componente: one
+  no_serie: MyString
+  no_activo_fijo: MyString
+  tipocomp: one
+
+two:
+  componente: two
+  no_serie: MyString
+  no_activo_fijo: MyString
+  tipocomp: two

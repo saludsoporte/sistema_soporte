@@ -1,0 +1,27 @@
+<div class="modal-header">  
+    <h4 class="letra">Eliminar Componente</h4>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body letra">
+    <div class="row" style="background:black; color:white">
+        <div class="col-sm" style="background:black; color:white"><b>Tipo de Componente </b>: <%= @componente.tipocomp.nombre %></div>
+        <div class="col-sm" style="background:black; color:white"><b>Modelo</b>: <%= @componente.modelo %></div>
+        <div class="col-sm" style="background:black; color:white" ><b>Marca</b>: <%= @componente.marca %></div>
+        <div class="col-sm" style="background:black; color:white" ><b>Total</b>: <%= @componente.cantidad %></div>
+        <div class="col-sm"  style="background:white; color:black"><b>Disponibles</b>: <%= @componente.disponibles%></div>        
+    </div>     
+
+    <div class="row form-control letra">
+        <%= form_for(@componente) do |f| %>
+            <input type="text" value="true" name="del" hidden="true"/>
+            <%= f.label "Eliminar varios" %>            
+            <%= f.number_field :cantidad, value:0, min:0, max: :"#{@componente.disponibles}" %>
+            <%= f.submit "Borrar", class: :"btn btn-sm btn-outline-secondary" %>
+        <% end %>  
+  </div>    
+  <div class="letra" style="margin-top:5px"><%= link_to "Borrar Componente", componente_path(@componente.id), data: { :confirm => "¿Estas seguro de eliminar el registro? \r Esto borrará el componente de todos los equipos registrados"}, method: :delete, class: :"btn btn-danger btn-sm" %></div>                     
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+</div>

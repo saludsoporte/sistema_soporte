@@ -1,0 +1,57 @@
+<div class="container borde-reporte">
+    <div style="text-align: center;"><h3 > Datos de Usuario</h3></div>    
+    <table class="table ">
+        <thead>
+            <th colspan="3"></th>
+        </thead>
+        <tbody>
+            <tr>
+                <td >Nombre: </td>
+                <td colspan="2"><%= @user.nombre.titleize %></td>
+            </tr>
+            <tr>
+                <td >Apellido paterno: </td>
+                <td colspan="2"><%= @user.apellido_paterno.titleize %></td>
+            </tr>
+            <tr>
+                <td >Apellido materno: </td>
+                <td colspan="2"> <%= @user.apellido_materno.titleize %></td>
+            </tr>
+            <tr>
+                <td >Correo: </td>
+                <td colspan="2"><%= @user.email %></td>
+            </tr>
+            <tr>
+                <td>Unidad: </td>
+                <td colspan="2"><%= @user.unidad_nombre %></td>
+            </tr>
+            <tr>
+                <td >Area: </td>
+                <td colspan="2"><%= @user.area_nombre.titleize %></td>
+            </tr>
+            <tr>
+                <td >Dirección: </td>
+                <td colspan="2"><%= @user.direccion_nombre.titleize %></td>
+            </tr>
+            <tr>
+                <td >Subdireción: </td>
+                <td colspan="2"><%= @user.subdireccion_nombre.titleize %></td>
+            </tr>
+            <tr>
+                <td >Departamento: </td>
+                <td colspan="2"> <%= @user.departamento_nombre.titleize %></td>
+            </tr>
+            <tr>
+                <td>   
+                    <%= link_to "Regresar a editar Perfil", edit_user_path(@user.id), class: :"btn btn-secondary btn-sm form-control" %>
+                </td>
+                <td>  
+                    <%= link_to "Regresar a Usuarios ", users_path,class: :"btn btn-secondary  btn-sm form-control" %>                     
+                </td>
+                <td><%=link_to "Continuar al inicio ", root_path,class: :"btn btn-secondary  btn-sm form-control" %></td>
+            </tr>
+        </tbody>
+    </table>    
+    
+</div>
+

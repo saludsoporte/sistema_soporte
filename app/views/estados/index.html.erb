@@ -1,0 +1,32 @@
+
+<div class="container borde-reporte">
+<div><%= link_to raw("#{image_tag("plus-circle.svg")} Nuevo estado"),new_estado_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :" btn btn-success btn-sm style-no right-side letra" } %></div>
+<% if !@estado.nil? %>
+    <% if @estado.errors.any? %>
+        <% @estado.errors.full_messages.each do |message| %>
+        <li class="alert alert-danger">* <%= message %></li>
+        <% end %>
+    <% end %>
+<% end %>
+<table class="table">
+    <thead>
+        <th>Nombre del estado</th>
+        <th>Descripcion</th>
+        <th>Tipo</th>
+        <th colspan="2">Acciones</th>
+    </thead>
+    <tbody>
+        <% @estados.each do |edo| %>
+        <tr class="style-no letra" >
+            <td><%= edo.estado %></td>
+            <td><%= edo.descripcion%></td>
+            <td><%= edo.tipo %></td>
+            <td style="text-align: right;">
+                <%= link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_estado_path(edo.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-mod btn-sm style-no letra" } %>
+                <%= link_to raw("#{image_tag("trash.svg")}"), estado_path(edo.id),data: { :confirm => '¿Estas seguro de eliminar el registro?, Puede causar errores en objetos que contengan este estado'},  method: :delete,class: :"btn btn-sm btn-danger", title: :Eliminar%></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>
+<%= render "partials/modal_plantilla" %>

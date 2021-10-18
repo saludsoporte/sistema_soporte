@@ -1,0 +1,7 @@
+<% @relaciones=RelacionSolOpt.where(solicitud_id:params[:solicitud_id]) %>
+<% @ids_catalogo=Opcion.all %>
+<% @solicitud=Solicitud.find(params[:solicitud_id]) %>
+
+$("#modal-window").find(".modal-content").html("<%= j (render 'modales/modal_detalles_sol') %>");
+
+$("#modal-window").modal;

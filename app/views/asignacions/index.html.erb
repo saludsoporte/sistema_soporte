@@ -1,0 +1,29 @@
+<div class="container padding-div"><%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %></div>                
+
+<table class="container letra table table-striped ">
+    <thead  class="table-dark">
+        <th>Id asignacion</th>
+        <th>Id del reporte</th>
+        <th>Tecnico Asignado</th>
+        <th>Motivo de reasignacion</th>
+        <th colspan="2"></th>
+    </thead>
+    <tbody>        
+    <% if @asignaciones.count > 0 %>
+    
+        <% @asignaciones.each do |a| %>
+        <tr>
+        <td><%= a.id %></td>
+        <td><%= a.reporte_id %></td>
+        <td><%= a.nombre_user %></td>  
+        <td><%= a.motivo %></td>
+        <td><%= link_to "Rechazar", edit_asignacion_path(a.id,rechazo:true) %></td>
+        <td><%= link_to "Reasignar", new_asignacion_path(asignacion_id:a.id,reporte_id:a.reporte_id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-secondary btn-sm style-no" }  %></td>     
+        </tr>
+        <% end %>  
+    <% else %>
+        <tr style="text-align: center;" ><td colspan="5">No hay reasignaciones que atender</td></tr>
+    <% end %>
+</tbody>
+</table>
+<%= render "partials/modal_plantilla" %>

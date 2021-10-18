@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="container" >
+        <h6 class="letra">Crear usuario</h6>
+    <%= form_for @user, url:users_usuario_add_path do |f| %>
+        <% if @solicitud_page %>
+            <input type="text" id="bandera_sol" name="bandera_sol" value="<%= @solicitud_page %>" hidden="true" >                
+        <% end %>
+        <% if !@user.nil? %>
+            <% if @user.errors.any? %>
+                <% @user.errors.full_messages.each do |message| %>
+                    <div class="container alert alert-danger">* <%= message %> </div>
+                <% end %>
+            <% end %>
+        <% end %>          
+        <% if @error == true %>
+            <div class="container alert alert-danger">* Falta nombre, apellido_paterno o apellido_materno </div>
+        <% end %>
+        <table class="table table-sm letra">
+            <thead>
+                <th></th>
+                <th colspan="3"></th>
+            </thead>
+            <tbody>     
+                <tr>
+                    <td ><%= f.label :nombre, "Nombre *"%></td>
+                    <td colspan="3"><%= f.text_field :nombre,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_paterno, "Apellido Paterno *" %></td>
+                    <td colspan="3" ><%= f.text_field :apellido_paterno,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_materno, "Apellido Materno *" %></td>
+                    <td colspan="3"><%= f.text_field :apellido_materno,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :unidad, "Unidad"%></td>
+                    <td >
+                        <%= f.select(:unidad,"",{promt: "seleccione una unidad"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"unidad" }) do %>
+                            <%= options_from_collection_for_select(@unidad,:id,:nom,0) %>
+                        <% end %>                        
+                    </td> 
+                    <td colspan="2" style="float: right;"><%= link_to "Nueva" , new_unidad_path(user_id:params[:id]), class: :"btn btn-success btn-sm" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :area, "Area"%></td>
+                    <td>
+                        <%= f.select(:area,"",{promt: "seleccione un área"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"area" }) do %>
+                            <%= options_from_collection_for_select(@area,:id,:nom,0) %>
+                        <% end %>
+                    <td colspan="2" style="float: right;"><%= link_to "Nueva" , new_area_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :direccion %></td>
+                    <td>
+                        <%= f.select(:direccion,"",{promt: "seleccione un dirección"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"direccion" }) do %>
+                            <%= options_from_collection_for_select(@direccion,:id,:nom,0) %>
+                        <% end %>                        
+                    </td>
+                    <td colspan="2" style="float: right;"><%= link_to "Nueva" , new_direccion_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :subdireccion %></td>
+                    <td >
+                        <%= f.select(:subdireccion,"",{promt: "seleccione un subdirección"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"subdireccion" }) do %>
+                            <%= options_from_collection_for_select(@subdireccion,:id,:nom,0) %>
+                        <% end %>
+                    </td>
+                    <td colspan="2" style="float: right;"><%= link_to "Nueva" , new_subdireccion_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :departamento %></td>
+                    <td>
+                        <%= f.select(:departamento,"",{promt: "seleccione un departamento"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"departamento" }) do %>
+                            <%= options_from_collection_for_select(@departamento,:id,:nom,0) %>
+                        <% end %>
+                    </td>
+                    <td colspan="2" style="float: right;"><%= link_to "Nuevo" , new_departamento_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr> 
+                <tr>
+                    <td ><%= f.label :email %></td>
+                    <td colspan="2" ><%= f.text_field :email,class: :"form-control" %></td>
+                </tr>    
+                <tr>
+                    <td></td>
+                    <td colspan="2" style="text-align: right;" ><%= f.submit "Registrar" ,class: :"btn-registrar btn btn-sm btn-secondary" %></td>
+                </tr>
+            </tbody>
+        </table>
+    <% end %>
+    </div>
+</div>

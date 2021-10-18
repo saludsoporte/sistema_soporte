@@ -1,0 +1,10 @@
+<br>
+<div class="container" style="text-align: left;">
+    <%= form_for(@permiso) do |f| %>
+        <%= f.label :permiso, "Nombre del permiso" %><br>
+        <%= f.text_field :permiso %>
+        <%= f.submit "Agregar Permiso", class: :"btn btn-secondary" %>
+    <% end %>
+</div>
+
+<%= render "partials/lista_permisos" %>

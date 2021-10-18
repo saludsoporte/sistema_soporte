@@ -1,0 +1,4 @@
+<%= @asignacion_id=params[:asignacion_id] %>
+<%= @reporte_id=params[:reporte_id] %>
+$("#modal-window").find(".modal-content").html("<%= j (render 'modales/modal_reasignar') %>");
+$("#modal-window").modal;

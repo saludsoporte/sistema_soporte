@@ -1,0 +1,33 @@
+
+<div  style="text-align: center;"><h4>Nuevo Perfil</h4>
+Seleccione el Rol que tendra el Usuario: <%= current_user.username %>
+</div>
+<%= form_for(@perfil) do |f| %>
+  <% @perfil.errors.full_messages.each do |message| %> 
+    <div class="container alert alert-danger">
+        * <%= message %>
+    </div>
+  <% end %>
+  <%= f.text_field :id_usuario, value: current_user.id, hidden: :true %>
+  <table class="container table table-striped">
+    <thead>
+      <tr>     
+        <th scope="col">Nombre de Rol</th>     
+        <th scope="col"></th>     
+      </tr> 
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.select(:id_rol, Rol.all.pluck(:nombre,:id),{prompt: "selecciona una opcion"},{class: "form-select"})%></td>
+        <td style="text-align: right;"><%= f.submit "", class: :"btn btn-success", :type => :image, :src => image_path("save2.svg") , title: :"Guardar"%></td>                
+      </tr>      
+      <tr><th scope="col">Permisos</th></tr>
+      <tr>       
+        <td id="list_permisos"></td>
+        <td></td>
+      </tr>      
+    </tbody>   
+  </table>
+<% end %>  
+
+<%= javascript_pack_tag 'perfils.js' %>

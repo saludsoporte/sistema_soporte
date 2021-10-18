@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_usuario: 1
+  id_reporte: 1
+  id_rol: 1
+  id_permiso_rel: 1
+
+two:
+  id_usuario: 1
+  id_reporte: 1
+  id_rol: 1
+  id_permiso_rel: 1

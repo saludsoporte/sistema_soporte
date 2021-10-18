@@ -1,0 +1,2 @@
+class RelacionPerfRol < ApplicationRecord
+end

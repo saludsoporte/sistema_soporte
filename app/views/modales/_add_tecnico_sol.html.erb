@@ -1,0 +1,34 @@
+<% @relaciones=RelacionSolOpt.where(solicitud_id:params[:id]) %>
+        <% if @relaciones.count == 0 %>
+        <div class="modal-header">  
+            <div>Esta solicitud no tiene detalles</div>
+            <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+            </div>
+            <!-- dialog buttons -->
+            <div class="modal-footer">    <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button></div>
+        <% else %>
+
+<%= form_for(@solicitud) do |f| %>
+<div class="modal-header">  
+    <h6 class="letra">Selecciona tecnico</h6>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body">
+  <input id="modal" name="modal" value="true" hidden="true">
+  <%= f.text_field :perfil_id , value:@perfil_id, hidden:true %>
+  <% if @general %>
+    <%= f.text_field :general , value:true, hidden:true %>
+  <% else %>
+    <%= f.text_field :general , value:false, hidden:true %>
+  <% end %>
+    <%= f.select(:tecnico_id,"",{promt: "seleccione un tecnico"},{class: :"form-select" }) do %>
+    <%= options_from_collection_for_select(@tecnicos,:id_usuario,:nombre) %>
+  <% end %>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+  <%= f.submit "Guardar" , class: :"btn btn-success btn-sm"%>
+</div>
+<% end %>
+<% end %>

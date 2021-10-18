@@ -1,0 +1,14 @@
+<div class="container padding-div ">
+    <%= form_for(@asignacion) do |f| %> 
+        <% @asignacion.errors.full_messages.each do |message| %> 
+            <div class="alert alert-danger">
+                * <%= message %>
+            </div>
+        <% end %>      
+        <%= f.text_field :reasignada , value:true ,hidden:true%>
+        <input id="bandera" name="bandera" value="true", hidden="true" />
+        <%= f.label :motivo, "Motivo" %><br>
+        <%= f.text_area :motivo ,class: :"form-control" %> <br><br>
+        <%= f.submit "Solicitar reasignacion",class: :"btn btn-secondary btn-sm" %>          
+    <% end %>
+</div>

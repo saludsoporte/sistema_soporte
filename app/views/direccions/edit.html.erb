@@ -1,0 +1,14 @@
+<div class="container padding-div">
+    <h4>Editar departamento</h4>
+    <%= form_for(@direccion) do |u|%>        
+        <% @direccion.errors.full_messages.each do |message| %> 
+        <div class="alert alert-danger container">
+            * <%= message %>          
+        </div>
+        <% end %>
+        <%= u.text_field :user_id,value:params[:user_id],hidden:true%>
+        <%= u.label :nombre, "nombre" %>
+        <%= u.text_field :nombre%>
+        <%= u.submit "Guardar"%>
+    <% end %>
+</div>

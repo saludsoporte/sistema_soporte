@@ -1,0 +1,2 @@
+module RelacionComponentesHelper
+end

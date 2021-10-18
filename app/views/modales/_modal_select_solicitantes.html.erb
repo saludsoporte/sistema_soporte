@@ -1,0 +1,17 @@
+<%= form_for @solicitud, url:solicituds_sol_path do |f| %>  
+<div class="modal-header">  
+    <div>Reasignar Solicitante</div>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close"> 
+</div>
+<div class="modal-body">   
+    <%= f.text_field :id,vallue:@solicitud_id, hidden:true %>       
+    <%= f.label :solicitante_id, value:"Seleccione un tecnico"%>       
+    <%= f.select(:solicitante_id,"",{promt: "seleccione un tecnico"},{class: :"form-select",id: :usuarios }) do %>
+        <%= options_from_collection_for_select(@solicitantes,:id,:nombre_personal) %> 
+    <% end %>    
+</div>
+<div class="modal-footer"> 
+    <%= f.submit "Seleccionar tecnico" , class: :"btn-sm btn btn-success" %>
+    <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+</div>
+<% end %>

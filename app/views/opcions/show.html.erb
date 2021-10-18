@@ -1,0 +1,32 @@
+<div class="container borde-reporte">
+    <div>Catalogo:<b> <%= @options.opcion%></b>&nbsp;&nbsp;&nbsp;</div>
+    <%= form_for(@opcion_av) do |f| %>
+        <%= f.text_field :opcion_id, value:params[:id] ,hidden:true%>
+        <%= f.text_field :nombre %>
+        <% if current_user.permisos.include?(20) %>
+            <%= f.submit " Agregar",class: :"btn btn-success btn-sm",type: :image,:src=>image_path("plus-circle.svg"),title:"Agregar" %>
+        <% end %>
+        <%= link_to "Regresar a catálogos", opcions_path, class: :"btn btn-secondary btn-sm" %>
+    <% end %>            
+    <table class="container table letra">
+        <thead class="table-dark">
+            <th>Problemas Comunes :</th>
+            <th colspan="2"></th>         
+        </thead>
+        <tbody>
+            <% @opciones_av.each do |op| %>
+                <tr>
+                    <td><%= op.nombre %></td>
+                    <td style="text-align: right;"> 
+                        <%= link_to "Editar", edit_opcion_avanzada_path(op.id,opcion:params[:id]),style: :"float:right",class: :"btn btn-mod btn-sm " %>
+                    </td>
+                    <td>
+                        <%= link_to image_tag("trash.svg"), opcion_avanzada_path(op.id), data: { :confirm => '¿Estas seguro de eliminar el registro?'},  method: :delete,style: :"float:left", class: :"btn btn-danger btn-sm right-side",title: :Eliminar %>
+                     </td>  
+                     
+                </tr>
+            <% end %>            
+        </tbody>
+    
+    </table>
+</div>

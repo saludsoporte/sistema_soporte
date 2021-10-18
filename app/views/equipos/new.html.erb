@@ -1,0 +1,87 @@
+<div class="container borde-reporte letra">
+    <% if params[:completo].nil?%>
+        <div class="titulos"><h3>Nuevo Equipo</h3> </div>
+        <%= render "partials/equipo_ne" %>
+    <% else%>
+        <div class="titulos"><h3>Equipo Completo</h3> </div>
+        <%= form_with url:equipos_cargar_equipo_completo_path, method: :get do |f| %>        
+        <table class="table table-sm ">
+            <tbody>
+                <tr > 
+                    <td><b>Número de Serie :</b></td>
+                    <td colspan="4" ><%= f.text_field :no_serie,style: :"width:100%" %></td>
+                </tr>
+                <tr>
+                    <td><b>Número de Activo fijo :</b></td>
+                    <td colspan="4"><%= f.text_field :no_activo_fijo ,style: :"width:100%"%></td>
+                </tr>
+                <tr>
+                    <td><b>Tipo :</b></td>
+                    <td colspan="4"><%= select_tag(:tipo,options_for_select([['Laptop',"laptop"],['Escritorio','escritorio'],["Servidor","servidor"]]),{class: :"form-select" })%> 
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Piso :</b></td>
+                    <td colspan="4"><%= f.text_field :piso ,style: :"width:100%"%></td>
+                </tr>
+                <tr>
+                    <td><b>Folio :</b></td>
+                    <td colspan="4"><%= f.text_field :folio,style: :"width:100%" %>
+                    </td>
+                </tr>                
+                <tr>
+                    <td><b>Usuario asignado</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:user_id,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :usuarios_edit_n }) do %>
+                            <%= options_from_collection_for_select(@usuarios,:id,:nombre_personal,0) %> 
+                        <% end %>
+                    </td>
+                </tr>                  
+                <tr>
+                    <td><b>Ram</b></td>                    
+                    <td>Tipo de memoria de ram:<%= f.text_field :tipo_mem,style: :"width:100%" %></td>                    
+                    <td>Capacidad: <%= f.number_field :ram_cp,value:1,min:1,style: :"width:100%" %></td> 
+                    <td><div>Tamaño:</div>
+                        <div>
+                            <%= f.select(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),{style: :"width:100%",class: :"form-s" })%> 
+                        </div>
+                    </td>
+                    <td>No. modulos de ram: <%= f.number_field :no_ram,value:1,min:1,style: :"width:100%" %></td>
+                </tr>
+                <tr>
+                    <td><b>Procesador</b></td>
+                    <td>Marca:<%= f.text_field :proc_marca ,style: :"width:100%" %></td>
+                    <td >Modelo:<%= f.text_field :proc_model ,style: :"width:100%" %></td>
+                    <td  >
+                        <div>
+                            Frecuencia : 
+                        </div>
+                         <div><%= f.text_field :frecuencia %></div>
+                    </td>
+                    <td>                       
+                        <div>
+                            <%= select_tag(:frenc_tipo,options_for_select([['Ghz','Ghz'],['Mhz',"Mhz"]]),{style: :"width:100%;margin-top:13px",class: :"form-select" })%>
+                        </div>
+                    </td>
+                </tr>
+                 <tr>
+                    <td><b>Disco Duro</b></td>
+                    <td >Capacidad: <%= f.number_field :hdd_cap ,value:0,min:0,style: :"width:100%" %></td>
+                    <td colspan="2">
+                        <div>Tamaño:</div>
+                        <div>
+                            <%= select_tag(:hdd_mem_size,options_for_select([['Tb','Tb'],['Gb',"Gb"],['Mb','Mb']]),{style: :"width:100%",class: :"form-select" })%>
+                        </div>        
+                    </td>
+                    <td><div>Tipo de Disco duro:</div>
+                        <div>
+                            <%= select_tag(:tipoHDD,options_for_select([['SSD',"SSD"],['Mecánico','Mecánico']]),{class: :"form-select" })%>
+                        </div>    
+                    </td>
+                </tr>                             
+                <tr><td colspan="2"><%= f.submit "Guardar" , class: :"btn btn-sm btn-outline-dark" %></td></tr>
+            </tbody>
+        </table>        
+        <% end %>
+    <% end %>
+</div>

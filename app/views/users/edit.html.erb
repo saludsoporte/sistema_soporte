@@ -1,0 +1,83 @@
+<div class="container">
+<%= form_for(@user) do |f| %> 
+<% if !@user.nil? %>
+            <% if @user.errors.any? %>
+                <% @user.errors.full_messages.each do |message| %>
+                    <div class="container alert alert-danger">* <%= message %> </div>
+                <% end %>
+            <% end %>
+        <% end %>   
+        <table class="table table-sm letra">
+            <thead>
+                <th></th>
+                <th colspan="2"></th>
+            </thead>
+            <tbody>     
+                <tr>
+                    <td ><%= f.label :nombre %></td>
+                    <td colspan="2"><%= f.text_field :nombre,value:@user.nombre.titleize,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_paterno %></td>
+                    <td colspan="2"><%= f.text_field :apellido_paterno,value:@user.apellido_paterno.titleize,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :apellido_materno %></td>
+                    <td colspan="2"><%= f.text_field :apellido_materno,value:@user.apellido_materno.titleize,class: :"form-control" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :unidad, "Unidad"%></td>
+                    <td>
+                        <%= f.select(:unidad,"",{promt: "seleccione una unidad"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"unidad" }) do %>
+                            <%= options_from_collection_for_select(@unidad,:id,:nom,@user.unidad) %>
+                        <% end %>                        
+                    </td> 
+                    <td><%= link_to "Nueva" , new_unidad_path(user_id:params[:id]), class: :"btn btn-success btn-sm" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :area, "Area"%></td>
+                    <td>
+                        <%= f.select(:area,"",{promt: "seleccione un área"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"area" }) do %>
+                            <%= options_from_collection_for_select(@area,:id,:nom,@user.area) %>
+                        <% end %>
+                    <td><%= link_to "Nueva" , new_area_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :direccion %></td>
+                    <td>
+                        <%= f.select(:direccion,"",{promt: "seleccione un dirección"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"direccion" }) do %>
+                            <%= options_from_collection_for_select(@direccion,:id,:nom,@user.direccion) %>
+                        <% end %>                        
+                    </td>
+                    <td><%= link_to "Nueva" , new_direccion_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td ><%= f.label :subdireccion %></td>
+                    <td >
+                        <%= f.select(:subdireccion,"",{promt: "seleccione un subdirección"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"subdireccion" }) do %>
+                            <%= options_from_collection_for_select(@subdireccion,:id,:nom,@user.subdireccion) %>
+                        <% end %>
+                    </td>
+                    <td><%= link_to "Nueva" , new_subdireccion_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr>
+                <tr>
+                    <td><%= f.label :departamento %></td>
+                    <td>
+                        <%= f.select(:departamento,"",{promt: "seleccione un departamento"},{style: :"width:100%",class: :"form-select usuario_new",:id=>"departamento" }) do %>
+                            <%= options_from_collection_for_select(@departamento,:id,:nom,@user.departamento) %>
+                        <% end %>
+                    </td>
+                    <td><%= link_to "Nuevo" , new_departamento_path(user_id:params[:id]), class: :"btn btn-success btn-sm"%></td>
+                </tr> 
+                <tr>
+                    <td ><%= f.label :email %></td>
+                    <td colspan="2" ><%= f.text_field :email,class: :"form-control" %></td>
+                </tr>    
+                <tr>
+                    <td><%session[:return_to] ||= request.referer %>  <%= link_to image_tag("arrow-return-left.svg"),root_path ,class: :'btn btn-secondary btn-sm',:type => :image, :src => image_path("arrow-return-left.svg"), title: :Regresar %></td>
+                    <td colspan="2" style="text-align: right;" ><%= f.submit "Guardar" ,class: :"btn-registrar btn btn-sm btn-secondary" %></td>
+                </tr>
+            </tbody>
+        </table>
+<% end %>
+</diV>

@@ -1,0 +1,49 @@
+<div class="row" style="text-aign:center">    
+    <div style="text-align:center"  class="col-sm">
+        <img src="<%= asset_path 'LOGO SERVICIOS DE SALUD-1 fondo claro.png' %>">  
+    </div>    
+</div>
+<div class=" dropdown navbar navbar-expand-lg navbar-light fondo">    
+    <% if user_signed_in? %>   
+    <button id="btn-menu" class="btn dropdown-toggle menu-bg background-color" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="<%= asset_path 'menu-button-wide-fill.svg'%>" >
+    </button>     
+    <div class="dropdown-menu b-black menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to raw("#{image_tag("house-door.svg")}<b> Inicio</b>"), root_path,class: :"dropdown-item style-no black",style: :"text-align:left"  %>    
+        <%# link_to "Equipo", equipos_path,class: :"dropdown-item style-no black",style: :"font-size:13px"  %>     
+        <%= link_to raw("#{image_tag("person-bounding-box.svg")}<b>Usuarios</b>"), users_path, class: :"dropdown-item style-no black" %>
+            <%# link_to "Índice", users_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>        
+            <% if !Perfil.find_by(id_usuario:current_user.id).nil? %>
+                <% if Perfil.find_by(id_usuario:current_user.id).id_rol == 1 %>
+                    <%= link_to "Perfil", perfil_path(Perfil.find_by(id_usuario:current_user.id).id),class: :"dropdown-item style-no black",style: :"font-size:13px"  %>            
+                <% else %>
+                    <%= link_to "Perfil", perfil_path(Perfil.find_by(id_usuario:current_user.id)),class: :"dropdown-item style-no black",style: :"font-size:13px"%>  
+                <% end %>
+            <% else %>
+                    <%= link_to "Perfil", new_perfil_path,class: :"dropdown-item style-no black" ,style: :"font-size:13px"%>
+            <% end %>
+        <%= link_to raw("#{image_tag ("receipt")} <b>Inventario</b>"),inventarios_path,class: :"dropdown-item style-no black" %> 
+        <%= link_to "Catálogo de Equipo" , equipos_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Catálogo de Componente" , componentes_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Catálogo de Características" , caracteristicas_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Catálogo de Tipo de Componentes" , tipocomps_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to raw("#{image_tag("gear.svg")} <b>Configuraciones</b>") , "", class: :"dropdown-item style-no black"%>                        
+        <%= link_to "Estados" , estados_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Roles" , rols_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Permisos", permisos_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to "Catalogos de opciones", opcions_path, class: :"dropdown-item style-no black",style: :"font-size:13px" %>
+        <%= link_to raw("#{image_tag("door-closed-fill.svg")} Cerrar sesi&oacuten"), destroy_user_session_path, method: :delete,class: :"dropdown-item style-no black" %>
+    </div>
+    <% end %>
+    <h6 class="letra-t large-padding"><b>Solicitudes de Programacion de Mantenimientos </b> |</h6>
+    <% if user_signed_in? %> 
+        <%= link_to 'Solicitudes |', solicituds_path %>
+        <%= link_to 'Reportes |', reportes_path %>
+        <%= link_to 'Inventario |', inventarios_path %>        
+        <div class="log  ">
+            <%= link_to  raw("#{image_tag("house-door-fill.svg")} Inicio |"), root_path,class: :"fondo" %>
+            <%= link_to raw("#{image_tag("door-closed-fill_white.svg")} Cerrar sesi&oacuten"), destroy_user_session_path,class: :"fondo", method: :delete%>
+        </div>   
+    <% end %>
+</div>
+  

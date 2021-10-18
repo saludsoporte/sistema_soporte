@@ -1,0 +1,22 @@
+
+<table class="table letra table-striped ">
+    <thead class="table-dark" >        
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th colspan="2"></th>
+    </thead>
+    <% @option.each do |op| %>
+        <tr>            
+            <td><%= link_to op.opcion , opcion_path(op.id), class: :"style-no letra links-user" %></td>
+            <td><%= op.tipo %></td>
+            <% if current_user.permisos.include?(20) %>
+            <td style="text-align:right;">                 
+                <%= link_to raw("#{image_tag("plus-circle.svg")} Agregar problemas"), opcion_path(op.id),class: :"btn btn-success btn-sm style-no"%>             
+                    &nbsp;<%= link_to "Editar" , edit_opcion_path(op.id) ,class: :"btn btn-mod btn-sm" %>               
+                    &nbsp;<%= link_to image_tag("trash.svg"), opcion_path(op.id), data: { :confirm => '¿Estas seguro de eliminar el registro?'},  method: :delete, class: :"btn btn-danger btn-sm right-side",title: :Eliminar %>                           
+            </td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>
+

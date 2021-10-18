@@ -1,0 +1,48 @@
+<div class="container borde-reporte">
+    <div class="titulos row">
+        <div class="col-sm" ><h4>Equipos</h4></div>
+         <div class="col-sm" style="text-align:right"> 
+            <%= link_to "Registrar equipo completo" , new_equipo_path(completo:true),style: :"margin:2px", class: :"padding-div btn-sm btn btn-success" %> 
+            <%= link_to "Crear un equipo por partes" , new_equipo_path,style: :"margin:2px", class: :"padding-div btn-sm btn btn-success" %> 
+        </div>
+    </div>
+    <table class=" table table-striped letra table-sm">
+        <thead class="table-dark ">
+            <th>No. Serie</th>
+            <th>Usuario</th>        
+            <th>Activo Fijo</th>
+            <th>Tipo</th>
+            <th>Piso</th>            
+            <th>Folio</th>
+        </thead>
+        <tbody>
+            <% if !@equipos.nil? %>
+                <% @equipos.each do |eq|%>
+                    <tr>
+                        <td><%= link_to eq.no_serie , equipo_path(eq.id),style: :"color:black",title: :"Ver equipo"%></td>
+                        <% if eq.user_id.nil? %>
+                            <td> 
+                                <%= link_to "Equipo sin asignar", edit_equipo_path(eq.id),class: :"btn btn-sm btn-success",title: :"Asignar usuario" %>  
+                            </td>                        
+                        <% else %>
+                            <td><%= User.find(eq.user_id).nombre_personal%></td>
+                        <% end %>                                        
+                        <td><%= eq.activo_fijo %></td>
+                        <td><%= eq.tipo %></td>
+                        <td><%= eq.piso %></td>
+                        <td><%= eq.folio %></td>
+                    </tr>
+                <% end %>
+                <tr></tr>
+            <% else %>
+                <tr><td colspan="6" style="text-align:center" > No hay equipos registrados</td></tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+<% unless @equipos.nil? %>
+<footer >
+    <%= will_paginate @equipos, class: :footer%>
+</footer>
+<% end %>
+<%= render "partials/modal_plantilla" %>

@@ -1,0 +1,34 @@
+  <script>
+  
+$(document).ready(function() {
+
+     $("#usuarios").select2({
+        placeholder: "Selecciona uno",
+        allowClear: true,
+        clear: true,
+        remove: true
+
+    });
+
+    $('#usuarios').on(
+        'change',
+        function() {
+            alert("Adasdasddas");
+        }
+    );
+})
+  </script>
+<div class="modal-header">  
+    <h5>Eliminar Componente</h5>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body letra">    
+    <%= select :user_id,:user,{},{},{class: :"form-select",id: :usuarios,name: :usuarios} do  %>
+        <%= options_from_collection_for_select(User.all.order(id: :asc),:id,:nombre_personal,0) %> 
+    <% end %> 
+</div>
+<div class="modal-footer">
+
+ <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+</div>    

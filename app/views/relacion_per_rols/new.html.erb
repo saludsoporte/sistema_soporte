@@ -1,0 +1,36 @@
+<div class="container">
+<h4 style="text-align: center;">Agregar Permisos</h4>
+<%= form_for(@relacion) do |f| %>
+<% @relacion.errors.full_messages.each do |message| %> 
+<div class="alert alert-danger container">
+    * <%= message %>  
+    <% @bandera=true %>    
+</div>
+<% end %>
+
+<% if @bandera==false %>
+    <%= f.text_field :rol_id, value: params[:id], :disabled => false , :hidden => true %>
+<% else %>
+    <%= f.text_field :rol_id, value: @rol.id, :disabled => false , :hidden => true %>
+<% end %>
+<% if params[:error] %>
+    <div class="container btn btn-danger btn-sm" style="text-align: center;">El permiso ya esta agregado</div>
+<% end %>
+
+    <table class="table table-striped">
+        <thead style="text-align: center;">
+            <th>Rol</th>
+            <th>Permisos disponibles</th>
+            <th></th>
+        </thead>
+        <tr style="text-align: center;">            
+            <td style="text-align: center;"><%= @rol.nombre %></td>
+            <td style="width:400px">  <%= f.select :permiso_id, Permiso.all.pluck(:permiso,:id),{ prompt:'Selecciona una opción'}, {class: "form-select"} %></td>
+            <td style="text-align: right;"><%= f.submit "Agregar" ,class: "btn btn-sm btn-success" %></td>
+        </tr>
+    </table>
+
+<% end %>
+<%= render "partials/lista_per_rol" %>
+<%= link_to "Regresar", rols_path, class: :"container btn btn-sm btn-light" %>
+</div>

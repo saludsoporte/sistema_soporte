@@ -1,0 +1,11 @@
+<div class="borde-reporte padding-div container">
+    <h5>Editar relación</h5>
+    <%= form_for(@relacion) do |f| %>
+    <%= f.select(:opcion_av_id,"",{promt:"Selecciona uno"},{class: :"form-select",id: :catalogo}) do %>
+        <%= options_from_collection_for_select(@Opciones,:id,:nombre,@num) %>                           
+    <% end %>
+    <%=f.label :descripcion_sencilla, "Descripción" %>    
+    <%= f.text_area :descripcion_sencilla ,class: :"form-control" %>
+    <%= f.submit "Modificar" ,style: :"margin-top:3px"%>
+    <% end %>
+</div>

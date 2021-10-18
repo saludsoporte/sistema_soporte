@@ -1,0 +1,12 @@
+<% @tecnicos=Perfil.where(id_rol:@rol_id)%>
+<% if @perfil_id.to_i>0%>
+<% @general=true %>
+<% else %>
+<% @general = false %>
+<% end %>
+
+$("#myModal").find(".modal-content").html("<%= j (render 'modales/alerta') %>");
+$("#modal-add").find(".modal-content").html("<%= j (render 'modales/add_tecnico_sol') %>");
+$("#myModal").modal;
+$("#modal-add").modal;
+

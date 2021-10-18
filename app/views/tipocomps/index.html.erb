@@ -1,0 +1,21 @@
+
+<div class="container letra borde-reporte">
+    <div class=" row titulos">
+        <div class="col-sm"><h4>Tipos de Componentes del Equipo</h4></div>
+        <div class="col-sm posicion-derecha"><%= link_to "Nuevo tipo", new_tipocomp_path, class: :"btn btn-sm btn-success" %></div>
+    </div>
+    <% @tipos.each do |t| %>
+        <div class="row border-bot ">
+            <div class="col-sm "> <%= t.nombre %></div>
+            <% if !['Disco Duro','Monitor','Teclado','Procesador','Ram','Tarjeta Madre',
+                    'Equipo de Computo','Servidor','Salida de Video','Sistema Operativo'].include?(t.nombre)%>
+                <div class="col-sm posicion-derecha"> <%= link_to "Editar", edit_tipocomp_path(t.id),class: :" botones-margen btn btn-sm btn-mod"%></div>         
+            <% end %>
+        </div>
+    <% end %>
+</div>
+<% unless @tipos.nil? %>
+<footer >
+    <%= will_paginate @tipos, class: :footer%>
+</footer>
+<% end %>

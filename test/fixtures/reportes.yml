@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  solicitud_id: one
+  estado_id: one
+  fecha_ingreso: 2021-05-18
+  fecha_entrega: 2021-05-18
+  descripcion_sencilla: MyText
+  asignacion_id: one
+  unidad: MyString
+  direccion: MyString
+  subdireccion: MyString
+  departamento: MyString
+
+two:
+  solicitud_id: two
+  estado_id: two
+  fecha_ingreso: 2021-05-18
+  fecha_entrega: 2021-05-18
+  descripcion_sencilla: MyText
+  asignacion_id: two
+  unidad: MyString
+  direccion: MyString
+  subdireccion: MyString
+  departamento: MyString

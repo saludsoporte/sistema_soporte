@@ -1,0 +1,54 @@
+ <%= form_for(@equipo) do |f| %>
+    <% @equipo.errors.full_messages.each do |message| %> 
+        <div class="alert alert-danger container">
+            * <%= message %>          
+        </div>
+    <% end %>
+    <table class="table ">
+    <thead>        
+    </thead>
+    <tbody>
+    <tr>
+        <td><%= f.label :no_serie, "Número de Serie" %></td>
+        <td><%= f.text_field :no_serie ,class: :"form-control" %></td>
+    </tr> 
+    <tr>
+        <td><%= f.label :activo_fijo, "Activo Fijo" %></td>    
+       <td><%= f.text_field :activo_fijo,class: :"form-control" %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :user_id, "Usuario al que le pertence" %></td>
+        <td><% if @edit %>
+                <% if @equipo.user_id == 0 %>
+                    <%= f.select(:user_id,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :usuarios_edit_n }) do %>
+                        <%= options_from_collection_for_select(@usuarios,:id,:nombre_personal,0) %> 
+                    <% end %>      
+                <% else %>
+                    <%= f.select(:user_id,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :usuarios_edit }) do %>
+                        <%= options_from_collection_for_select(@usuarios,:id,:nombre_personal,@equipo.user_id) %> 
+                    <% end %>  
+                <% end %>
+            <% else %>
+                <%= f.select(:user_id,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :usuarios }) do %>
+                 <%= options_from_collection_for_select(@usuarios,:id,:nombre_personal,@equipo.user_id) %> 
+                <% end %>  
+            <% end %>
+        </td>
+    </tr>
+    <tr>
+        <td ><%= f.label :tipo %></td>
+        <td><%= select_tag(:tipo,options_for_select([['Laptop',"laptop"],['Escritorio','escritorio'],["Servidor","servidor"]]),{class: :"form-select" })%> </td>
+    </tr>
+    <tr>
+        <td><%= f.label :piso %></td>
+        <td><%= f.text_field :piso,class: :"form-control"%></td>
+    </tr>
+    <tr>
+        <td><%= f.label :folio %></td>
+        <td><%= f.text_field :folio ,class: :"form-control"%></td>
+    </tr>
+    </tbody>
+    </table>    
+    <%= f.submit " Guardar cambios", class: :"btn btn-sm btn-secondary"%>
+    <% end %>
+    

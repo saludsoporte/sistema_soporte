@@ -1,0 +1,72 @@
+<div class="container style-no" style="padding: 5px;">
+    <%= link_to "Regresar al perfil", root_path,class: :"botones-sol letra btn btn-secondary btn-sm" %>    
+    <% if @solicitud.estado_id!=15 %>
+        <%= link_to raw("#{image_tag("plus-circle.svg")} Agregar los problemas de su Equipo"), solicitud_path(@solicitud.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window',  class: :"botones-sol letra btn btn-success btn-sm"} %>
+        <% if @solicitud.estado_id == 10 || @solicitud.estado_id == 6 || @solicitud.estado_id == 7 || @solicitud.estado_id == 15%>
+            <%= link_to "Editar", edit_solicitud_path(params[:id]),class: :"botones-sol btn btn-mod btn-sm" %>
+        <% end %>            
+        <% if current_user.rol_id ==1 %>        
+                <%= link_to "Cancelar Solicitud", solicituds_cancel_sol_path(id:params[:id]),class: :"botones-sol letra btn btn-danger btn-sm" %>
+        <% end %>
+    <% else %>
+        <div style="text-align: center;" class="alert alert-danger estados">Cancelada</div>
+    <% end %>
+
+</div>
+<% if @solicitud.estado_id == 10 || @solicitud.estado_id == 6 || @solicitud.estado_id == 7 %>
+    <% @col = 3 %>
+<% else %>
+    <% @col=2 %>
+<% end %>
+<table class="container table table-sm letra ">
+    <thead class="table-dark">
+        <th>Campos</th>
+        <th colspan="<%= @col %>"></th>
+        
+    </thead>
+    <tbody>
+        <tr>
+            <td>Solicitante</td>
+            <td colspan="<%= @col %>">
+                <%= @solicitud.nombre_user.titleize %>
+            </td>
+        </tr>
+        <tr>
+            <td>Fecha de Inicio</td>
+            <td colspan="<%= @col %>">
+                <%= @solicitud.fecha_inicio %>
+            </td>
+        </tr>
+        <tr>
+            <td>No. de serie</td>
+            <td colspan="<%= @col %>">
+                <%= @solicitud.serie %>
+            </td>
+        </tr>
+        <tr>
+            <td>Estado</td>
+            <td colspan="<%= @col %>">
+                <%= @solicitud.estado %>
+            </td>
+        </tr>
+        <tr>
+            <td>Solicitante</td>
+            <td><%= @solicitud.nombre_user.titleize %></td>        
+        </tr>
+        <tr>            
+            <td>Técnico que atiende</td>
+            <td colspan="<%= @col %>"><%= @solicitud.tecnico.titleize %></td>
+        </tr>
+        <tr>
+            <td>Descripcion breve</td>
+            <td colspan="<%= @col %>">
+                <%= @solicitud.descripcion_sencilla %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="container letra padding-div ">
+    <%= render "partials/lista_opciones_sol" %>
+</div>
+
+<%= render "partials/modal_plantilla" %>

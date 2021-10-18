@@ -1,0 +1,23 @@
+<div class="container borde-reporte letra">
+    <div class="titulos row" style="margin-bottom:3px">
+        <div class="col-sm" ><h4>Componente</h4></div>
+        <div class="col-sm"  style="text-align:right;margin:2px">
+            <%= link_to "Regresar" , componentes_path(page:params[:page]),class: :"btn btn-sm btn-secondary",style: :"margin:2px" %>
+            <%= link_to "Agregar características a el componente" , new_relacion_caracteristica_path(comp_id:@componente.id),class: :"btn btn-sm btn-primary",style: :"margin:2px" %>
+        </div>    
+    </div>
+    <table class="table table-sm"> 
+        <thead class="table-dark">
+            <th>Componente</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+        </thead>
+        <tbody>
+            <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-1">
+                <td><%= @componente.tipocomp.nombre %></td>
+                <td><%= @componente.modelo %></td>
+                <td><%= @componente.marca %></td>
+            </tr>   
+        </tbody>
+    </table>  
+</div>

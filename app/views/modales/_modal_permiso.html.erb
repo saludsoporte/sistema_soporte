@@ -1,0 +1,13 @@
+<div class="modal-header">  
+    <button type="button" style="margin-left: 90%;" class="form-control btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body">
+  <% @rol=Perfil.find_by(id_usuario:@user.id).id_rol %> 
+  <% @permisos=RelacionPerRol.where(rol_id:@rol) %>
+  <% @modal=true %>
+  <%= render "partials/lista_permisos" %>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+</div>

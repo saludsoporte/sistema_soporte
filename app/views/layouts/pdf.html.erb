@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <%= stylesheet_link_tag wicked_pdf_asset_base64 'pdf'%>    
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>    
+    <body >     
+        <table>
+            <tr>
+                <td><%= image_tag wicked_pdf_asset_base64  ("LOGO SERVICIOS DE SALUD-1 fondo claro.png")%></td>
+                <td>
+                    <div style="font-size: 30px; text-align:center; width:800px"> <b>Servicios de Salud de San Luis Potosí</b></div>
+                    <div style="font-size: 30px; text-align:center; width:800px"> <b>Departamento de Informática</b></div>
+                </td>  
+                <td><%= image_tag wicked_pdf_asset_base64  ("LOGO SERVICIOS DE SALUD-1 transparente.png")%></td>                         
+            </tr>
+        </table>   
+        <%= yield %>
+    </body>
+    <footer class="footer">
+        <div>___________________________________</div>
+        <% @asignacion=Asignacion.find_by("reporte_id=?",@reporte.id) %>
+        <div style="text-align: center"><%= @asignacion.perfil.nombre_personal.titleize %></div>
+    </footer>
+    <footer class="footer-2">
+        <div style="margin-left:100px;">___________________________________</div>
+        <% @user=User.find(@reporte.user_id) %>
+        <div style="margin-left:110px;text-align: center;"><%= @user.nombre_completo.titleize %></div>
+    </footer>
+</html>

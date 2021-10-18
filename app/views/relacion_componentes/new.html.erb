@@ -1,0 +1,105 @@
+   <%= form_for(@relaciones) do |f| %>
+<div class="borde-reporte container letra">
+    <h5>Agregar componentes a el Equipo </h5>
+    <%= link_to "Regresar", equipo_path(params[:equipo_id]),class: :"btn btn-sm btn-secondary" %>
+    <%= link_to "Nuevo componente", new_componente_path,style: :"text-align:right", class: :"btn btn-sm btn-outline-dark" %>
+    
+    <table class="table-striped table">
+    <thead class="table-dark">
+        <th>Usuario</th>
+        <th>Serie</th>
+        <th>Activo Fijo</th>
+        <th>Piso</th>
+        <th>Tipo</th>
+        <th>Folio</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <% if  @equipo.user_id.nil?  %>
+                    <%= link_to "Equipo sin asignar", edit_equipo_path(@equipo.id),class: :"btn btn-sm btn-success",title: :"Asignar usuario" %>                                      
+                <% else %>
+                    <%= User.find(@equipo.user_id).nombre_personal %>
+                <% end %>                         
+            </td>
+            <td><%= @equipo.no_serie%></td>
+            <td><%= @equipo.activo_fijo%></td>
+            <td><%= @equipo.tipo%></td>
+            <td><%= @equipo.piso%></td>
+            <td><%= @equipo.folio%></td>
+        </tr>
+    </tbody>
+    </table>
+ 
+    <table class="table table-dark ">
+    </table>
+    <div class="row">
+        <div class="col-sm">
+            <h5 class="letra">Tipo de Componente</h5>
+            <%= select :tipocomp_id,:tipo,{},{},{id: :tipocomp_id,name: :tipocomp_id} do  %>
+                <%= options_from_collection_for_select(Tipocomp.all.order(id: :asc),:id,:nombre,0) %> 
+            <% end %> 
+        </div>
+        <div class="col-sm">
+            <h5 class="letra">Componente</h5>
+            <select id="componente_id" name="componente_id" class="form-select" disabled="true"></select>   
+        </div>    
+        <div class="col-sm">
+            <h5 class="letra">Existencias</h5>            
+            <select id="serial_id" name="serial_id" class="form-select" disabled="true"></select>               
+        </div>  
+        <div class="col-sm">
+            <h5 class="letra"> Añadir </h5>
+            <div id="submit"  ><%= f.submit "Añadir componente" ,class: :"btn-sm btn-success" %>  </div>
+        </div>
+        
+    </div>
+    <div class="row" style="margin:10px; text-align:center;background-color:black;color:white">
+        <div class="col-sm"  style="background-color:black"><b>Característica</b></div>
+        <div class="col-sm" style="background-color:black"><b>Valor</b></div>     
+    </div>
+    <div id="caracteristicas" style="text-align:center">            
+    </div>        
+    <input name="pagina" value="<%=params[:page] %>" hidden="true" />
+    <input name="equipo" value="<%=params[:equipo_id] %>" hidden="true" />
+         
+    
+</div>
+<div class="container borde-reporte">    
+    <% unless @relacionesCom.nil? %>
+        <table class="table table-sm">
+        <thead class="table-dark">
+            <th>Tipo</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+        </thead>
+        <% @relacionesCom.each do |r| %>
+            <tbody>
+                <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-<%=r.id%>" >
+                    <td><%= r.componente.tipocomp.nombre %></td>
+                    <td><%= r.componente.marca %></td>                
+                    <td><%= r.componente.modelo %></td>  
+                </tr>
+            </tbody>
+            <% @relacionesCarac=RelacionCaracteristica.where(componente_id:r.componente_id,conjunto:r.comp_serial.conjunto) %>
+            <tbody id="group-of-rows-<%=r.id%>" class="collapse">      
+                 <tr><td colspan="5"><b>Características</b></td><tr>            
+                <% @relacionesCarac.each do |rc| %>                        
+                    <tr>                        
+                        <td><%= rc.caracteristica.nombre %></td>                        
+                        <td colspan="4">: <%= rc.valor_caracteristica %></td>                    
+                    </tr>                    
+                <% end %> 
+            </tbody>            
+        <% end %>
+        </table>
+    <% end %>
+
+</div>
+<% end %>
+<% unless @componentes.nil? %>
+<footer >
+    <%= will_paginate @componentes, class: :footer%>
+</footer>
+<% end %>
+<%= javascript_pack_tag 'relacion_componente.js' %>

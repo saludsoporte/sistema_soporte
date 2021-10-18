@@ -1,0 +1,91 @@
+<% if @error == true %>
+  <div class=" container alert alert-danger" role="alert">
+    Ya existe un reporte con este id: <%= @solicitud.id %> de solicitud
+  </div>
+<%end%>
+<%= form_for(@reporte) do |f| %>
+<div class="container borde-reporte">
+  <div class="row">
+    <% if Reporte.all.count > 0 %>
+      <% @folio=@solicitud.id.to_s+(Reporte.last.id+1).to_s %>
+    <% else %>
+      <% @folio=@solicitud.id.to_s+1.to_s %>
+    <% end %>
+    <div class="col">Folio</div><div class="col"><%= f.text_field :folio,value:@folio,readonly:true %></div> 
+    <div class="col" ><b>Ficha Final de Reporte de Servicio</b></div>
+  </div>
+</div>
+<%= f.text_field :solicitud_id , value:params[:solicitud_id], hidden:true %>
+<%= f.text_field :estado_id , value:Estado.find_by(estado:"Pendiente").id,hidden:true%>
+<table class="table table-striped container letra borde-reporte">
+  <thead>
+    <th>Campos</th>
+    <th>Datos <%= link_to "Ver detalles de Solicitud", "",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window',class: :"btn btn-primary btn-sm detalles"}%></th>    
+  </thead>
+  <tr class="row-reporte">
+    <td><b>Nombre del Solicitante:</b></td>
+    <td>       
+      <%= f.text_field :user_id , value:@solicitud.solicitante_id, hidden:true %>
+      <%= @solicitante.nombre_completo %>
+    </td>
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Descripcion:</b></td>
+    <td>
+      <%= f.text_area :"descripcion_sencilla",{value:@solicitud.descripcion_sencilla,readonly:true,placeholder: :"Descripcion Breve",class: :"form-control form-control-sm"} %>    
+    </td>
+  </tr> 
+  <tr class="row-reporte">
+    <td><b>No de serie del equipo</b></td>
+    <td><%= f.text_field :serie , {value:@solicitud.serie,readonly:true,placeholder: :"Numero de serie del equipo",class: :"form-control form-control-sm"}%></td>
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Area:</b></td>
+    <td>
+        <%= f.text_field :area ,{value:@solicitante.area_nombre,class: :"form-control form-control-sm",readonly:true} %>                  
+    </td>
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Dirección:</b></td>
+    <td>
+      <%= f.text_field :direccion,{value:@solicitante.direccion_nombre,readonly:true,placeholder: :"Dirección",class: :"form-control form-control-sm"} %>
+    </td>
+  </tr>  
+  <tr class="row-reporte">
+    <td><b>Subdirección:</b></td>
+    <td>
+      <%= f.text_field :subdireccion,{value:@solicitante.subdireccion_nombre, readonly:true,placeholder: :Subdireccion ,class: :"form-control form-control-sm"} %>
+    </td>
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Departamento</b></td>
+    <td>
+      <%= f.text_field :departamento,{value:@solicitante.departamento_nombre,readonly:true,placeholder: :Departamento ,class: :"form-control form-control-sm"} %>    
+    </td>    
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Fecha de Ingreso</b></td>
+    <td>
+      <%= f.date_field :fecha_ingreso,{:value=>Time.now.strftime("%Y-%m-%d"),readonly:true,class: :"form-control form-control-sm"} %>       
+    </td>
+  </tr>
+  <tr class="row-reporte">
+    <td><b>Fecha de Egreso</b></td>
+    <td>
+      <% f.date_field :fecha_entrega,{class: :"form-control form-control-sm"} %> 
+    </td>
+  </tr>
+</table>
+    
+<div class="container letra borde-reporte" >
+  <div class="col">
+    <% if @error == true %>
+      <%= link_to "Regresar al perfil", perfil_path(current_user.perfil_id),class: :"btn btn-sm btn-secondary" %>
+    <%else%>
+      <%= f.submit "Guardar", class: :"btn btn-secondary btn-sm"%>
+    <% end %>
+  </div>
+</div>    
+
+<% end %>
+<%= render "partials/modal_plantilla" %>

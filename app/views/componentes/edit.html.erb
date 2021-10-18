@@ -1,0 +1,26 @@
+<div class="container letra borde-reporte">
+    <div class="titulos"><h4>Editar Componente</h4></div>
+    <%= form_for(@componente) do |f| %>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Tipo de componente</td>
+                <td><%= f.select(:tipocomp_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",class: :"form-select",id: :tipocomp_id_edit }) do %>
+                        <%= options_from_collection_for_select(@tipos,:id,:nombre,@componente.tipocomp_id) %> 
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <td>Modelo</td>
+                <td><%= f.text_field :modelo,style: :"width:100%" %></td>
+            </tr>
+            <tr>
+                <td>Marca</td>
+                <td><%= f.text_field :marca ,style: :"width:100%"%></td>
+            </tr>          
+        </tbody>        
+    </table>
+    <%= f.submit "Guardar", class: :"btn btn-sm btn-secondary" %>
+    <%= link_to "Regresar", componente_path(params[:id]), class: :"btn btn-sm btn-secondary" %>
+    <% end %>
+</div>

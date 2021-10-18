@@ -1,0 +1,13 @@
+<div class="container borde-reporte letra">
+    <div class="titulos" > <h3>Nueva caracteristica</h3></div>
+    <%= form_for(@caracteristica) do |f| %>
+        <div class="row" style="margin-top:2px">           
+            <div class="col-sm padding-div">
+                <%= f.label :nombre , "Nombre" %>
+                <%= f.text_field :nombre ,class: :"form-control-sm" %>
+                <%= f.submit "Guardar" , class: :"btn btn-sm btn-secondary" %>
+            </div>
+        </div>        
+        
+    <% end %>    
+</div>

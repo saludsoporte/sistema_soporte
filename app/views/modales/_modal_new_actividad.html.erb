@@ -1,0 +1,26 @@
+<%= form_for(@actividad) do |f| %>
+
+<div class="modal-header">  
+    <h6>Nueva Actividad</h6>
+    <button type="button" class="btn-close " data-dismiss="modal" aria-label="Close">      
+    </button>  
+</div>
+<div class="modal-body">
+  <table>
+    <tr>
+      <td><%= f.label :reporte_id, "# Reporte" %>
+        <%= f.text_field :reporte_id , value:@reporte_id ,class: :"form-control",readonly:true %></td>
+      <td> <%= f.label :fecha, "Fecha de la actividad" %>
+        <%= f.date_field :fecha, value:Time.now.strftime("%Y-%m-%d"),class: :"form-control",readonly:true%> </td>
+    </tr>
+    <tr>
+      <td colspan="2"> <%= f.label :descripciopn, "Descripcion de la actividad o avance" %>  
+        <%= f.text_area :descripcion, {class: :"form-control"} %></td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-sm" data-dismiss="modal">Cerrar</button>
+  <%= f.submit "Guardar" , class: :"btn btn-success btn-sm"%>
+</div>
+<% end %>

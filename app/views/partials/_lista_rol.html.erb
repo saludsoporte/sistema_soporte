@@ -1,0 +1,42 @@
+<div class="container borde-reporte">
+    <% if !@rols.nil? %>
+    <br>
+    <h3>Lista de Roles</h3>   
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre de Rol</th>
+            <th scope="col">Descripcion</th>  
+            <th scope="col" style="text-align: right;">Acciones</th>          
+          </tr>
+        </thead>
+        <tbody>
+        <% @rols.each do |p| %>    
+          <tr>
+            <td><%= p.id %></td>
+            <td>  
+              <%= link_to p.nombre, relacion_per_rol_path(p.id) , class: :"style-no black"%>
+            </td>
+            <td style="width: 500px;">
+              <%= p.descripcion %>              
+            </td>
+            <td style="text-align: right;">
+              <% if current_user.permisos.include?(16) %>
+                <%= link_to raw("#{image_tag('pencil-square.svg')} Editar"), edit_rol_path(p.id),id: :"boton_mod",class: :" letra btn btn-mod btn-sm",title: :Editar %>              
+              <% end %>
+              <% if current_user.permisos.include?(15) %>
+                <%= link_to raw("#{image_tag('plus-circle.svg',id: :add)} Agregar"), new_relacion_per_rol_path(:id =>p.id),class: :"letra btn btn-success btn-sm", title: :"Agregar permisos"%>
+              <% end %>
+              <% if current_user.permisos.include?(14) && current_user.permisos.include?(13)%>
+                <%= link_to raw("#{image_tag('trash.svg',id: :add)} Eliminar"), rol_path(:id =>p.id),class: :"btn btn-danger btn-sm", title: :"Eliminar Rol",  data: { :confirm => '¿Estas seguro de eliminar el registro? Se borraran todas las relaciones de este rol'},  method: :delete %>
+              <% end %>
+            </td>
+          </tr>                           
+        <% end %> 
+       </tbody>  
+     </table>   
+    <% else %>
+      <h4>No hay roles para mostrar</h4>
+    <% end %>
+</div>

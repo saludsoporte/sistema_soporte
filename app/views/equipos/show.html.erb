@@ -1,0 +1,70 @@
+<div class="container borde-reporte letra">   
+    <h5 style="text-align:center">Informaci&oacuten del Equipo</h5>
+    <%= form_with url: equipos_quitar_asignacion_path, method: :get do |f| %>       
+        <%= link_to "Regresar a equipos", equipos_path,class: :"btn  btn-secondary btn-sm"%> 
+        <%= link_to "Agregar componentes al equipo", new_relacion_componente_path(equipo_id:params[:id]),class: :"btn btn-sm btn-warning" %>
+        <%= link_to raw("#{image_tag("trash.svg")} Eliminar equipo"),equipo_path(params[:id]), data: { confirm:"Eliminará el equipo \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                                                      
+        <%= f.text_field :id, value: params[:id], hidden: :true%>
+        <% unless Equipo.find(params[:id]).user_id.nil? %>
+            <%= f.submit "Quitar Asignación del Usuario",style: :"margin:3px",class: :"btn btn-sm btn-outline-dark"%>
+        <% end %>
+        <% @qr="https://sesalud.slpsalud.gob.mx:4000/equipos/"+params[:id]%>
+        <%= link_to "Imprimir Qr", qr_code_generator_path(qr:@qr), class: :"btn btn-sm btn-outline-dark" %>
+    <% end %>
+    <table class="table table-stripered letra">
+    <thead class="table-dark">
+        <th>Id</th>
+        <th >Usuario</th>
+        <th>Serie</th>
+        <th>Activo Fijo</th>
+        <th>Tipo</th>
+        <th>Piso</th>
+        <th>Folio</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td><%= link_to raw("Editar información \n general del equipo"), edit_equipo_path(@equipo.id),style: :"font-size:12px",class: :"btn  btn-success btn-sm"%> </td>
+            <% if @equipo.user_id.nil? %>
+                <td>Equipo sin asignar</td>                        
+            <% else %>
+                <td><%= link_to User.find(@equipo.user_id).nombre_personal, solicituds_path(user_id:@equipo.user_id), class: :"btn btn-sm btn-success", title: :"Ver solicitudes" %></td>
+            <% end %>                   
+            <td><%= @equipo.no_serie %></td>
+            <td><%= @equipo.activo_fijo %></td>
+             <td><%= @equipo.tipo %></td>
+            <td><%= @equipo.piso %></td>
+            <td><%= @equipo.folio%></td>
+        </tr>
+    </tbody>
+    </table>    
+    <table class="table table-sm">
+        <thead class="table-dark">
+            <th colspan="4">Características</th>            
+        </thead>
+        <tbody>        
+        <% @componentes.each do |c|%>        
+        <% @caracteristicas=RelacionCaracteristica.where("componente_id=? and conjunto=?",c.comp_serial.componente_id,c.comp_serial.conjunto)%>
+            <tr>
+                <td><div style="font-size:18px"><b><%= c.componente.tipocomp.nombre %></b></div></td>
+                <td><%= c.componente.modelo %></td>   
+                <td><%= c.componente.marca %></td>   
+                <td style="text-align:center">
+                    <%#link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_relacion_componente_path(id:c.id),class: :"btn-mod btn btn-sm"%>
+                    <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),relacion_componente_path(c.id), data: { confirm:"Eliminará el componente del equipo \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                            
+                </td>
+            </tr>
+            <% @caracteristicas.each do |ca| %>
+            <tr>
+                <td><%= ca.caracteristica.nombre %></td>
+                <td colspan="3"><%= ca.valor_caracteristica %></td>
+                
+            </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+    </table>
+</div>
+<footer >
+    <%= will_paginate @componentes, class: :footer%>
+</footer>
+
