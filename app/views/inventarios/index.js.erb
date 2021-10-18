@@ -1,0 +1,7 @@
+var pantalla = screen.width;
+if (pantalla < 500){
+    $("#tabla").html("<%= j (render 'partials/carga_tabla_inv_cel') %>");
+}
+else{
+   $("#tabla").html("<%= j (render 'partials/carga_tabla_inv') %>");
+}

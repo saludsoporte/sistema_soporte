@@ -1,3 +1,4 @@
+<%= link_to "", inventarios_cargar_tabla_path,{:remote => true, class: :"btn btn-secondary btn-sm style-no",id: :"carga_tabla" }  %>
 <div class="container borde-reporte letra">
     <h4>Inventario</h4>    
     <%= form_with url: "inventarios" , method: :get do |f| %>
@@ -58,93 +59,26 @@
         </div>
         <div class="col-sm"></div>
     </div>
-    <table class="table table-sm">
-        <thead class="table-dark">          
-            <th>Tipo componente</th>
-            <th>Cantidad</th>
-            <th>Disponibles</th>            
-        </thead> 
-        <tbody>
-            <% unless @inventario.nil? %>
-                <tr>                    
-                    <td><%= Tipocomp.find(@inventario.tipocomp_id).nombre %></td>
-                    <td><%= @inventario.cantidad %></td>
-                    <td><%= @inventario.disponibles %></td>                                               
-                </tr>             
-            <% end %>
-        </tbody>        
-    </table>
-    <table class="table table-sm">
-    <thead class="table-dark">
-        <% if !@equipo.nil?  %>
-            <th>Articulo</th>
-            <th>Usuario</th>
-            <th>Serie</th>
-            <th>Activo_fijo</th>
-            <th>Piso</th>
-            <th>Folio</th>
-            <th>Fecha de ingreso</th>
-            <th style="text-align:center">Disponibilidad</th>
-        <% end %>
-        <% if !@componentes.nil?  %>
-            <th>Articulo</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Serie</th>
-            <th>Activo Fijo</th>
-            <th>Fecha de ingreso</th>            
-            <th style="text-align:center">Disponibilidad</th>
-        <% end %>
-    </thead>
+    <table class="container table table-sm">
+    <thead class="table-dark">          
+        <th>Tipo componente</th>
+        <th>Cantidad</th>
+        <th>Disponibles</th>            
+    </thead> 
     <tbody>
-            <% if !@equipo.nil?  %>
-                <% @equipo.each do |e| %>
-                    <tr>
-                        <td><%= e.tipocomp.nombre%></td>
-                        <td>
-                            <% if e.user_id.nil? %>
-                                Sin Asignar
-                            <% else %>
-                                <%= User.find(e.user_id).nombre_personal %></td>
-                            <% end %>
-                        <td><%= e.no_serie%></td>
-                        <td><%= e.activo_fijo%></td>
-                        <td><%= e.piso%></td>
-                        <td><%= e.folio%></td>
-                        <td><%= e.fecha_ingreso%></td>                        
-                        <td style="text-align:center">
-                            <% if e.user_id.nil? %>                       
-                                <%= link_to raw("#{image_tag("check2.svg")} Asignar"),edit_equipo_path(e.id),class: :"btn-sm btn-success" %>                           
-                            <% else %>                                
-                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo"),equipo_path(e.id),class: :"btn-sm btn-danger" %>
-                            <% end %>
-                        </td>
-                    </tr>
-                <% end %>                                
-            <% end %>
-            <% if !@componentes.nil?  %>
-                <% @componentes.each do |c| %>
-                    <% @componente=Componente.find(c.componente_id)%>
-                    <tr>
-                        <td><%= c.tipocomp.nombre%></td>
-                        <td><%= @componente.marca%></td>
-                        <td><%= @componente.modelo%></td>
-                        <td><%= c.no_serie%></td>  
-                        <td><%= c.no_activo_fijo %></td>                      
-                        <td><%= @componente.fecha_ingreso%></td>                        
-                        <td style="text-align:center">  
-                            <% if c.disponible == true %>                                                         
-                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),class: :"btn-sm btn-success",title: :disponible %>                   
-                            <% else %>                                
-                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),class: :"btn-sm btn-danger",title: :"no disponible" %>                                         
-                            <% end %>
-                        </td>
-                    </tr>
-                <% end %>
-            <% end %>
-    </tbody>
+        <% unless @inventario.nil? %>
+            <tr>                    
+                <td><%= Tipocomp.find(@inventario.tipocomp_id).nombre %></td>
+                <td><%= @inventario.cantidad %></td>
+                <td><%= @inventario.disponibles %></td>                                               
+            </tr>             
+        <% end %>
+    </tbody>        
     </table>
+    <div id="tabla" >  
+    </div>
 </div>
+
 <footer>
 <% if @componente_band == true %>
 
@@ -153,3 +87,5 @@
     <%= will_paginate @equipo, class: :footer%>
 <% end %>
 </footer>
+
+<%= javascript_pack_tag 'inventarios.js' %>

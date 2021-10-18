@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get "perfils/cargar_tabla", to: "perfils#cargar_tabla"
 
+  get "inventarios/cargar_tabla", to: "inventarios#cargar_tabla"
+
   get "solicituds/cargar_solicitudes_por_user", to: "solicituds#cargar_solicitudes_por_user"
 
   get "relacion_caracteristicas/cargar_conjuntos", to: "relacion_caracteristicas#cargar_conjuntos"

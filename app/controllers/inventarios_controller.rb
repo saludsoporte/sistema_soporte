@@ -1,4 +1,10 @@
 class InventariosController < ApplicationController
+  def cargar_tabla
+    @pantalla=params[:pantalla]
+    logger.debug "**********************"+@pantalla.to_s
+    index
+    render :index
+  end
   def index
     @id_Equipo=Tipocomp.find_by("nombre = 'Equipo de Computo'")
     @id_server=Tipocomp.find_by("nombre = 'Servidor'")
@@ -33,11 +39,11 @@ class InventariosController < ApplicationController
       end      
       @equipo=Equipo.paginate(page:params[:page]).where("#{@consulta}")
     else           
-      consulta+=filtra_consulta_int('tipocomp_id',@tipocomp_invt)
-      consulta+=filtra_consulta_str('no_activo_fijo',@activo)
-      consulta+=filtra_consulta_str('no_serie',@serie)
+      @consulta+=filtra_consulta_int('tipocomp_id',@tipocomp_invt).to_s
+      @consulta+=filtra_consulta_str('no_activo_fijo',@activo).to_s
+      @consulta+=filtra_consulta_str('no_serie',@serie).to_s
             
-      if @marca!="" and !@marca.nil?
+      if @marca!="" && !@marca.nil?
         @consutla_m=""
         @comp_marcas=Componente.where("marca =?",@marca)
         @comp_marcas.each.with_index do |co,index|
@@ -65,6 +71,7 @@ class InventariosController < ApplicationController
         end
       end
       @componente_band=true
+      logger.debug "********************************************"+@consulta.to_s
       if @consulta==""                
         @componentes=CompSerial.paginate(page:params[:page]).all     
       else       
@@ -75,20 +82,22 @@ class InventariosController < ApplicationController
   end
 
   def filtra_consulta_str(atributo,parametro)
-    if @parametro!="" && !@parametro.nil?       
+    if parametro!="" && !parametro.nil?       
       if @consulta!=""          
-        @consulta+=" and #{atributo}='"+@parametro.to_s+"'"
+        @consulta+=" and #{atributo}='"+parametro.to_s+"'"
       else            
-        @consulta="#{no_activo_fijo}='"+@parametro.to_s+"'"
+        @consulta="#{atributo}='"+parametro.to_s+"'"
       end 
+    else
+      @consulta=""
     end
   end
   def filtra_consulta_int(atributo,parametro)
-    if @parametro!="" && !@parametro.nil?       
+    if parametro!="" && !parametro.nil?       
       if @consulta!=""          
-        @consulta+=" and #{atributo}='"+@parametro.to_s+"'"
+        @consulta+=" and #{atributo}="+parametro.to_s
       else            
-        @consulta="#{atributo}='"+@parametro.to_s+"'"
+        @consulta="#{atributo}="+parametro.to_s
       end 
     end
   end

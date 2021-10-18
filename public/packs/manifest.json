@@ -40,6 +40,14 @@
         "/packs/js/componentes-7ceeb9e72055b9a962ce.js.map"
       ]
     },
+    "inventarios": {
+      "js": [
+        "/packs/js/inventarios-1ccd876499735aede6b9.js"
+      ],
+      "js.map": [
+        "/packs/js/inventarios-1ccd876499735aede6b9.js.map"
+      ]
+    },
     "jquery": {
       "js": [
         "/packs/js/jquery-80a70f68afa402c9a4a6.js"
@@ -89,6 +97,8 @@
       ]
     }
   },
+  "inventarios.js": "/packs/js/inventarios-1ccd876499735aede6b9.js",
+  "inventarios.js.map": "/packs/js/inventarios-1ccd876499735aede6b9.js.map",
   "jquery.js": "/packs/js/jquery-80a70f68afa402c9a4a6.js",
   "jquery.js.map": "/packs/js/jquery-80a70f68afa402c9a4a6.js.map",
   "opcions.js": "/packs/js/opcions-80de33d7b0f3006f480e.js",
