@@ -1211,3 +1211,1137 @@ Entrypoint solicituds = js/solicituds-1d96a698e977842634e7.js js/solicituds-1d96
 Completed 200 OK in 9429ms (Views: 9427.1ms | ActiveRecord: 0.0ms | Allocations: 10743)
 
 
+DEPRECATION WARNING: set the 'will_paginate.previous_label' key in your i18n locale instead of editing pagination_options (called from /home/debian-pc/Proyectos/sistema_soporte/config/initializers/will_paginate.rb:1:in `<main>')
+DEPRECATION WARNING: set the 'will_paginate.next_label' key in your i18n locale instead of editing pagination_options (called from /home/debian-pc/Proyectos/sistema_soporte/config/initializers/will_paginate.rb:3:in `<main>')
+Started GET "/" for ::1 at 2021-10-18 13:22:09 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PerfilsController#index as HTML
+Completed 401 Unauthorized in 11ms (ActiveRecord: 0.0ms | Allocations: 2664)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-10-18 13:22:09 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.2ms | Allocations: 617)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 5.0ms | Allocations: 2676)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_navigation.html.erb (Duration: 1.9ms | Allocations: 1589)
+  Rendered layout layouts/application.html.erb (Duration: 53.4ms | Allocations: 37040)
+Completed 200 OK in 75ms (Views: 57.9ms | ActiveRecord: 3.2ms | Allocations: 49687)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-10-18 13:22:13 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"login"=>"", "password"=>"[FILTERED]"}, "commit"=>"Iniciar Sesión"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 477)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"login"=>"", "password"=>"[FILTERED]"}, "commit"=>"Iniciar Sesión"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 129)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 685)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_navigation.html.erb (Duration: 1.0ms | Allocations: 755)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 8788)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.0ms | Allocations: 9431)
+
+
+Started GET "/users/sign_up" for ::1 at 2021-10-18 13:22:14 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.3ms | Allocations: 186)
+  [1m[36mArea Load (2.5ms)[0m  [1m[34mSELECT "areas".* FROM "areas" ORDER BY "areas"."id" ASC[0m
+  ↳ app/views/devise/registrations/new.html.erb:19
+  [1m[36mDireccion Load (0.3ms)[0m  [1m[34mSELECT "direccions".* FROM "direccions" ORDER BY "direccions"."id" ASC[0m
+  ↳ app/views/devise/registrations/new.html.erb:27
+  [1m[36mSubdireccion Load (0.3ms)[0m  [1m[34mSELECT "subdireccions".* FROM "subdireccions" ORDER BY "subdireccions"."id" ASC[0m
+  ↳ app/views/devise/registrations/new.html.erb:35
+  [1m[36mDepartamento Load (0.8ms)[0m  [1m[34mSELECT "departamentos".* FROM "departamentos" ORDER BY "departamentos"."id" ASC[0m
+  ↳ app/views/devise/registrations/new.html.erb:43
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 46.0ms | Allocations: 23266)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_navigation.html.erb (Duration: 0.9ms | Allocations: 777)
+  Rendered layout layouts/application.html.erb (Duration: 54.6ms | Allocations: 31403)
+Completed 200 OK in 57ms (Views: 41.5ms | ActiveRecord: 14.6ms | Allocations: 32890)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-10-18 13:22:17 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"login"=>"zeunix", "password"=>"[FILTERED]"}, "commit"=>"Iniciar Sesión"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) = 'zeunix' OR lower(email) = 'zeunix') ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_for_database_authentication'
+Redirected to http://localhost:3000/
+Completed 302 Found in 267ms (ActiveRecord: 1.1ms | Allocations: 4751)
+
+
+Started GET "/" for ::1 at 2021-10-18 13:22:18 -0500
+Processing by PerfilsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering perfils/index.html.erb within layouts/application
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.2ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:14
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:15
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "perfils" WHERE (id_usuario != 1 )[0m
+  ↳ app/views/perfils/index.html.erb:17
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE (id_usuario != 1 )[0m
+  ↳ app/views/perfils/index.html.erb:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.9ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.2ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.2ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.4ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.4ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  Rendered perfils/index.html.erb within layouts/application (Duration: 95.7ms | Allocations: 51714)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:16
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:17
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:18
+  Rendered partials/_navigation.html.erb (Duration: 7.1ms | Allocations: 6441)
+  Rendered layout layouts/application.html.erb (Duration: 110.3ms | Allocations: 65468)
+Completed 200 OK in 129ms (Views: 97.6ms | ActiveRecord: 17.4ms | Allocations: 74589)
+
+
+Started GET "/perfils/3" for ::1 at 2021-10-18 13:22:20 -0500
+Processing by PerfilsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:49:in `show'
+  [1m[36mEquipo Load (0.3ms)[0m  [1m[34mSELECT "equipos".* FROM "equipos" WHERE "equipos"."user_id" = $1 LIMIT $2[0m  [["user_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:50:in `show'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:51:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering perfils/show.html.erb within layouts/application
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/perfils/show.html.erb:24
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:48:in `permisos'
+  [1m[36mRol Load (0.4ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:49:in `permisos'
+  [1m[36mRelacionPerRol Load (0.3ms)[0m  [1m[34mSELECT "relacion_per_rols"."permiso_id" FROM "relacion_per_rols" WHERE "relacion_per_rols"."rol_id" = $1[0m  [["rol_id", 1]]
+  ↳ app/models/user.rb:53:in `permisos'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_modal_plantilla.html.erb (Duration: 0.3ms | Allocations: 153)
+  Rendered perfils/show.html.erb within layouts/application (Duration: 30.4ms | Allocations: 11205)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:16
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:17
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:18
+  Rendered partials/_navigation.html.erb (Duration: 8.0ms | Allocations: 6258)
+  Rendered layout layouts/application.html.erb (Duration: 46.9ms | Allocations: 24619)
+Completed 200 OK in 64ms (Views: 42.1ms | ActiveRecord: 7.6ms | Allocations: 30030)
+
+
+Started GET "/perfils/cargar_tabla?screen=1600&id_p=3&_=1634581340389" for ::1 at 2021-10-18 13:22:20 -0500
+Processing by PerfilsController#cargar_tabla as JSON
+  Parameters: {"screen"=>"1600", "id_p"=>"3", "_"=>"1634581340389"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+**********************
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:59:in `cargar_tabla'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:60:in `cargar_tabla'
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.2ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 4259)
+
+
+Started GET "/solicituds" for ::1 at 2021-10-18 13:22:21 -0500
+Processing by SolicitudsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+******************
+  Rendering layout layouts/application.html.erb
+  Rendering solicituds/index.html.erb within layouts/application
+  [1m[36mPerfil Load (0.3ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:35:in `perfil_id'
+  [1m[36mSolicitud Load (0.7ms)[0m  [1m[34mSELECT "solicituds".* FROM "solicituds" ORDER BY id DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/views/solicituds/index.html.erb:16
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mEstado Load (0.2ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.1ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (17.6ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mEstado Load (0.4ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.3ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 269], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:84
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=269)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=269) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.8ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mEstado Load (0.5ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 268], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:86
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=268)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=268) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.5ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 267], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:84
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=267)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=267) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mEstado Load (1.9ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mEstado Load (0.3ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.3ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 266], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:97
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=266)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=266) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mEstado Load (0.3ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mEstado Load (0.2ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:57:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:46:in `reporte_edo'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=265)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=265) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.5ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 264], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:97
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=264)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=264) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mEstado Load (0.2ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 263], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:92
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=263)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=263) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.4ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.2ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 262], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:92
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=262)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=262) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.3ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.2ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 261], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:97
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=261)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=261) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:31:in `tecnico'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:31
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:52:in `sol_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:24:in `estado'
+  [1m[36mReporte Load (0.5ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:44:in `reporte_edo'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:48:in `reporte_edo'
+  [1m[36mReporte Load (0.3ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE "reportes"."solicitud_id" = $1 LIMIT $2[0m  [["solicitud_id", 260], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.html.erb:92
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:55:in `reporte_edo_descripcion'
+  [1m[36mCACHE Estado Load (0.0ms)[0m  [1m[34mSELECT "estados".* FROM "estados" WHERE "estados"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:59:in `reporte_edo_descripcion'
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (solicitud_id=260)[0m
+  ↳ app/views/solicituds/index.html.erb:105
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:45:in `rol_id'
+  [1m[36mCACHE Reporte Load (0.0ms)[0m  [1m[34mSELECT "reportes".* FROM "reportes" WHERE (solicitud_id=260) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/solicitud.rb:36:in `reporte_id_edo'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "solicituds"[0m
+  ↳ app/views/solicituds/index.html.erb:159
+  Rendered partials/_modal_plantilla.html.erb (Duration: 0.1ms | Allocations: 7)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered solicituds/index.html.erb within layouts/application (Duration: 284.8ms | Allocations: 142149)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:16
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:17
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:18
+  Rendered partials/_navigation.html.erb (Duration: 6.8ms | Allocations: 6307)
+  Rendered layout layouts/application.html.erb (Duration: 299.6ms | Allocations: 155635)
+Completed 200 OK in 311ms (Views: 253.5ms | ActiveRecord: 48.7ms | Allocations: 159311)
+
+
+Started GET "/solicituds?id=269" for ::1 at 2021-10-18 13:22:24 -0500
+Processing by SolicitudsController#index as JS
+  Parameters: {"id"=>"269"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+******************
+  Rendering solicituds/index.js.erb
+  [1m[36mSolicitud Load (0.2ms)[0m  [1m[34mSELECT "solicituds".* FROM "solicituds" WHERE "solicituds"."id" = $1 LIMIT $2[0m  [["id", 269], ["LIMIT", 1]]
+  ↳ app/views/solicituds/index.js.erb:4
+  Rendered modales/_alerta.html.erb (Duration: 0.2ms | Allocations: 79)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE "relacion_sol_opts"."solicitud_id" = $1[0m  [["solicitud_id", 269]]
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:1
+  [1m[36mOpcion Load (21.8ms)[0m  [1m[34mSELECT "opcions".* FROM "opcions"[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:12
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=46 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=49 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=50 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=51 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=52 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=53 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=54 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=55 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=56 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=57 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=58 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=47 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  [1m[36mRelacionSolOpt Load (0.3ms)[0m  [1m[34mSELECT "relacion_sol_opts".* FROM "relacion_sol_opts" WHERE (opcion_id=47 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:23
+  [1m[36mOpcionAvanzada Load (6.7ms)[0m  [1m[34mSELECT "opcion_avanzadas".* FROM "opcion_avanzadas" WHERE "opcion_avanzadas"."id" = $1 LIMIT $2[0m  [["id", 186], ["LIMIT", 1]]
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:25
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "relacion_sol_opts" WHERE (opcion_id=48 and solicitud_id=269)[0m
+  ↳ app/views/partials/_lista_opciones_sol.html.erb:13
+  Rendered partials/_lista_opciones_sol.html.erb (Duration: 83.6ms | Allocations: 20134)
+  Rendered modales/_modal_detalles_sol.html.erb (Duration: 84.2ms | Allocations: 20464)
+  Rendered solicituds/index.js.erb (Duration: 88.6ms | Allocations: 22371)
+Completed 200 OK in 94ms (Views: 49.2ms | ActiveRecord: 41.3ms | Allocations: 25377)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-10-18 13:22:27 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 0.3ms | Allocations: 2775)
+
+
+Started GET "/" for ::1 at 2021-10-18 13:22:27 -0500
+Processing by PerfilsController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 295)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-10-18 13:22:27 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 129)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 708)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_navigation.html.erb (Duration: 0.9ms | Allocations: 772)
+  Rendered layout layouts/application.html.erb (Duration: 10.4ms | Allocations: 8917)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.0ms | Allocations: 9671)
+
+
+Started GET "/inventarios?marca=&serie=&activo=888888888&disponible=0&commit=Buscar" for ::1 at 2021-10-18 13:22:59 -0500
+Processing by InventariosController#index as HTML
+  Parameters: {"marca"=>"", "serie"=>"", "activo"=>"888888888", "disponible"=>"0", "commit"=>"Buscar"}
+  [1m[36mTipocomp Load (0.4ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Equipo de Computo') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:3:in `index'
+  [1m[36mTipocomp Load (0.3ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Servidor') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:4:in `index'
+  [1m[36mInventario Load (0.5ms)[0m  [1m[34mSELECT "inventarios".* FROM "inventarios" WHERE (tipocomp_id=NULL) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 3.6ms | Allocations: 7151)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/inventarios_controller.rb:36:in `index'
+Started GET "/inventarios?activo=&commit=Buscar&disponible=0&marca=&page=1&serie=&tipocomp_invt=6" for ::1 at 2021-10-18 13:23:00 -0500
+Processing by InventariosController#index as HTML
+  Parameters: {"activo"=>"", "commit"=>"Buscar", "disponible"=>"0", "marca"=>"", "page"=>"1", "serie"=>"", "tipocomp_invt"=>"6"}
+  [1m[36mTipocomp Load (0.3ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Equipo de Computo') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:3:in `index'
+  [1m[36mTipocomp Load (0.2ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Servidor') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:4:in `index'
+  [1m[36mInventario Load (0.2ms)[0m  [1m[34mSELECT "inventarios".* FROM "inventarios" WHERE (tipocomp_id='6') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 3.3ms | Allocations: 5436)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/inventarios_controller.rb:36:in `index'
+Started GET "/users/sign_in" for ::1 at 2021-10-18 13:23:02 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 129)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 701)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered partials/_navigation.html.erb (Duration: 0.8ms | Allocations: 773)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 8910)
+Completed 200 OK in 12ms (Views: 11.2ms | ActiveRecord: 0.0ms | Allocations: 9662)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-10-18 13:23:05 -0500
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"login"=>"zeunix", "password"=>"[FILTERED]"}, "commit"=>"Iniciar Sesión"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) = 'zeunix' OR lower(email) = 'zeunix') ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:24:in `find_for_database_authentication'
+Redirected to http://localhost:3000/
+Completed 302 Found in 248ms (ActiveRecord: 0.3ms | Allocations: 1944)
+
+
+Started GET "/" for ::1 at 2021-10-18 13:23:06 -0500
+Processing by PerfilsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/controllers/perfils_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering perfils/index.html.erb within layouts/application
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.3ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:14
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:15
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "perfils" WHERE (id_usuario != 1 )[0m
+  ↳ app/views/perfils/index.html.erb:17
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE (id_usuario != 1 )[0m
+  ↳ app/views/perfils/index.html.erb:18
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 449], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 449], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 450], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 450], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 455], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 455], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.1ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 459], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 459], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mRol Load (0.1ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 460], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 460], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 451], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 451], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 453], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 453], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 458], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 458], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 454], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 454], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 456], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 456], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.2ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 457], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 457], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:20
+  [1m[36mPerfil Load (0.1ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:38:in `rol'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:40:in `rol'
+  [1m[36mCACHE Rol Load (0.0ms)[0m  [1m[34mSELECT "rols".* FROM "rols" WHERE "rols"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/user.rb:41:in `rol'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 452], ["LIMIT", 1]]
+  ↳ app/models/user.rb:30:in `nombre_personal'
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:22
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 452], ["LIMIT", 1]]
+  ↳ app/views/perfils/index.html.erb:23
+  Rendered perfils/index.html.erb within layouts/application (Duration: 77.0ms | Allocations: 47243)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:16
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:17
+  [1m[36mCACHE Perfil Load (0.0ms)[0m  [1m[34mSELECT "perfils".* FROM "perfils" WHERE "perfils"."id_usuario" = $1 LIMIT $2[0m  [["id_usuario", 1], ["LIMIT", 1]]
+  ↳ app/views/partials/_navigation.html.erb:18
+  Rendered partials/_navigation.html.erb (Duration: 7.0ms | Allocations: 6259)
+  Rendered layout layouts/application.html.erb (Duration: 92.2ms | Allocations: 60768)
+Completed 200 OK in 97ms (Views: 85.7ms | ActiveRecord: 7.4ms | Allocations: 62795)
+
+
+Started GET "/inventarios" for ::1 at 2021-10-18 13:23:07 -0500
+Processing by InventariosController#index as HTML
+  [1m[36mTipocomp Load (0.3ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Equipo de Computo') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:3:in `index'
+  [1m[36mTipocomp Load (0.3ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Servidor') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:4:in `index'
+  [1m[36mInventario Load (0.9ms)[0m  [1m[34mSELECT "inventarios".* FROM "inventarios" WHERE (tipocomp_id=NULL) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.4ms | Allocations: 2699)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/inventarios_controller.rb:36:in `index'
+Started GET "/inventarios" for ::1 at 2021-10-18 13:23:10 -0500
+Processing by InventariosController#index as HTML
+  [1m[36mTipocomp Load (0.3ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Equipo de Computo') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:3:in `index'
+  [1m[36mTipocomp Load (0.2ms)[0m  [1m[34mSELECT "tipocomps".* FROM "tipocomps" WHERE (nombre = 'Servidor') LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:4:in `index'
+  [1m[36mInventario Load (0.3ms)[0m  [1m[34mSELECT "inventarios".* FROM "inventarios" WHERE (tipocomp_id=NULL) LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/inventarios_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.8ms | Allocations: 2698)
+
+
+  
+NoMethodError (undefined method `+' for nil:NilClass):
+  
+app/controllers/inventarios_controller.rb:36:in `index'
