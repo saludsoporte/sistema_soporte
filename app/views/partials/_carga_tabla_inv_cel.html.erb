@@ -46,9 +46,9 @@
                 <% @componentes.each do |c| %>
                     <% @componente=Componente.find(c.componente_id)%>
                     <tr>        
-                        <td><%= c.tipocomp.nombre%>
-                        <b>Marca: </b><%= @componente.marca%>
-                        <b>Modelo: </b><%= @componente.modelo%>
+                        <td><%= c.tipocomp.nombre%><br>
+                        <b>Marca: </b><%= @componente.marca%><br>
+                        <b>Modelo: </b><%= @componente.modelo%><br>
                         <b>Serie: </b><%= c.no_serie%><br>
                         <b>Activo Fijo: </b><%= c.no_activo_fijo %></td>                      
                         <td><%= @componente.fecha_ingreso%></td>                        
