@@ -34,9 +34,9 @@
                         <td><%= e.fecha_ingreso%></td>                        
                         <td style="text-align:center">
                             <% if e.user_id.nil? %>                       
-                                <%= link_to raw("#{image_tag("check2.svg")} Asignar"),edit_equipo_path(e.id),class: :"btn-sm btn-success" %>                           
+                                <%= link_to raw("#{image_tag("check2.svg")} Asignar"),edit_equipo_path(e.id),style: :"width:100%;font-size:10px",class: :"btn-sm btn-success" %>                           
                             <% else %>                                
-                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo"),equipo_path(e.id),class: :"btn-sm btn-danger" %>
+                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo"),equipo_path(e.id),style: :"width:100%;font-size:10px",class: :"btn-sm btn-danger" %>
                             <% end %>
                         </td>
                     </tr>
@@ -54,9 +54,9 @@
                         <td><%= @componente.fecha_ingreso%></td>                        
                         <td style="text-align:center">  
                             <% if c.disponible == true %>                                                         
-                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),class: :"btn-sm btn-success",title: :disponible %>                   
+                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),style: :"width:100%;font-size:10px",class: :"btn-sm btn-success",title: :disponible %>                   
                             <% else %>                                
-                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),class: :"btn-sm btn-danger",title: :"no disponible" %>                                         
+                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),style: :"width:100%;font-size:10px",class: :"btn-sm btn-danger",title: :"no disponible" %>                                         
                             <% end %>
                         </td>
                     </tr>

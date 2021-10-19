@@ -11,7 +11,7 @@
                 <% end %> 
             </div>             
             <div class="col-sm" id="busqueda" style="display:block">                 
-                <div>Marca</div>
+                Marca
                 <select class="form-select" name="marca" style="padding:2px">
                     <option value="" hidden="true" selected >Selecciona uno</option>
                     <% @marcas.each do |m| %>
@@ -23,29 +23,29 @@
             </div>         
             <input id="escritorio" value="<%= Tipocomp.find_by("nombre = 'Equipo de Computo'").id %>" hidden />       
             <div class="col-sm" id="busqueda_2" style="display:block">                
-                    <div>Número de Serie</div>
-                    <%= f.text_field :serie, class: :"form-control form-control-sm" %>                
-            </div>
+                Número de Serie
+                <%= f.text_field :serie, class: :"form-control form-control-sm" %>                
+            </div>            
             <div class="col-sm" id="busqueda_1" style="display:block">
-                <div>Activo Fijo</div>
+                Activo Fijo
                 <%= f.text_field :activo, class: :"form-control form-control-sm" %>
             </div>
             <div id="busqueda_3" class="col-sm" style="display:none">                   
-                <div>Usuario</div>
+                Usuario
                 <%= f.select :user,:user,{},{style: :"width:100%",id: :user_select,name: :user_select} do %>
                     <%= options_from_collection_for_select(User.all.order(id: :asc),:id,:nombre_personal)%>
                 <% end %>                               
             </div>      
              <div id="busqueda_4" class="col-sm" style="display:none">                   
-                <div> Serie</div>
+                Serie
                 <%= f.text_field :serie_eq, class: :"form-control form-control-sm" %>
             </div>      
              <div id="busqueda_5" class="col-sm" style="display:none">                   
-                <div>Activos Fijo</div>
+                Activo Fijo
                 <%= f.text_field :activo_eq, class: :"form-control form-control-sm" %>
             </div>            
             <div class="col-sm" style="text-align:left">
-                <div>Disponibles</div>
+                Disponibles
                 <%= f.check_box :disponible %> 
             </div>
             <div class="col-sm" style="margin-top:20px">

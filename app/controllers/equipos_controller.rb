@@ -39,6 +39,11 @@ class EquiposController < ApplicationController
 
   def new
     @usuarios=User.all.order(id: :asc)
+    @area=Area.all.order(id: :asc)
+    @subdireccion=Subdireccion.all.order(id: :asc)
+    @direccion=Direccion.all.order(id: :asc)
+    @departamento=Departamento.all.order(id: :asc)
+    @unidad=Unidad.all.order(id: :asc)    
     @equipo=Equipo.new
     @edit=false
   end
@@ -108,7 +113,13 @@ class EquiposController < ApplicationController
         piso:params[:piso],
         folio:params[:folio],
         user_id:@user_id,
-        tipocomp_id:@tipocomp)
+        tipocomp_id:@tipocomp,
+        area:params[:area],
+        subdireccion:params[:subdireccion],
+        direccion:params[:direccion],
+        departamento:params[:departamento],
+        unidad:params[:unidad]
+      )
         
 
       @inventario_f=Inventario.find_by("tipocomp_id=?",@tipocomp) 
@@ -165,7 +176,7 @@ class EquiposController < ApplicationController
       logger.debug "***************  *///////////////////"
       params[:equipo][:tipocomp_id]=Tipocomp.find_by("nombre='Servidor'").id
     end
-    params.require(:equipo).permit(:user_id,:tipo,:piso,:folio,:tipocomp_id,:activo_fijo,:no_serie)
+    params.require(:equipo).permit(:user_id,:tipo,:piso,:folio,:tipocomp_id,:activo_fijo,:no_serie,:area,:subdireccion,:direccion,:departamento,:unidad)
   end
 
   private

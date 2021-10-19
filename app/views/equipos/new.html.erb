@@ -36,7 +36,47 @@
                             <%= options_from_collection_for_select(@usuarios,:id,:nombre_personal,0) %> 
                         <% end %>
                     </td>
-                </tr>                  
+                </tr>   
+                 <tr>
+                    <td><b>Área</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:area,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :area }) do %>
+                            <%= options_from_collection_for_select(@area,:id,:nom,0) %> 
+                        <% end %>
+                    </td>
+                </tr>   
+                 <tr>
+                    <td><b>Subdirección</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:subdireccion,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :subdireccion }) do %>
+                            <%= options_from_collection_for_select(@subdireccion,:id,:nom,0) %> 
+                        <% end %>
+                    </td>
+                </tr>  
+                 <tr>
+                    <td><b>Dirección</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:direccion,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :direccion }) do %>
+                            <%= options_from_collection_for_select(@direccion,:id,:nom,0) %> 
+                        <% end %>
+                    </td>
+                </tr>  
+                 <tr>
+                    <td><b>Departamento</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:departamento,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :departamento }) do %>
+                            <%= options_from_collection_for_select(@departamento,:id,:nom,0) %> 
+                        <% end %>
+                    </td>
+                </tr>  
+                 <tr>
+                    <td><b>Unidad</b></td>
+                    <td colspan="4"> 
+                        <%= f.select(:unidad,"",{promt: "seleccione un usuario"},{style: :"width:100%",class: :"form-select",id: :unidad }) do %>
+                            <%= options_from_collection_for_select(@unidad,:id,:nom,0) %> 
+                        <% end %>
+                    </td>
+                </tr>  
                 <tr>
                     <td><b>Ram</b></td>                    
                     <td>Tipo de memoria de ram:<%= f.text_field :tipo_mem,style: :"width:100%" %></td>                    
