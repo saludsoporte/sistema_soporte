@@ -42,10 +42,10 @@
     },
     "inventarios": {
       "js": [
-        "/packs/js/inventarios-1ccd876499735aede6b9.js"
+        "/packs/js/inventarios-d7002158f11a8d65055d.js"
       ],
       "js.map": [
-        "/packs/js/inventarios-1ccd876499735aede6b9.js.map"
+        "/packs/js/inventarios-d7002158f11a8d65055d.js.map"
       ]
     },
     "jquery": {
@@ -97,8 +97,8 @@
       ]
     }
   },
-  "inventarios.js": "/packs/js/inventarios-1ccd876499735aede6b9.js",
-  "inventarios.js.map": "/packs/js/inventarios-1ccd876499735aede6b9.js.map",
+  "inventarios.js": "/packs/js/inventarios-d7002158f11a8d65055d.js",
+  "inventarios.js.map": "/packs/js/inventarios-d7002158f11a8d65055d.js.map",
   "jquery.js": "/packs/js/jquery-80a70f68afa402c9a4a6.js",
   "jquery.js.map": "/packs/js/jquery-80a70f68afa402c9a4a6.js.map",
   "opcions.js": "/packs/js/opcions-80de33d7b0f3006f480e.js",

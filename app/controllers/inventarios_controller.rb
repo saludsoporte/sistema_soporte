@@ -13,6 +13,8 @@ class InventariosController < ApplicationController
     @serie=params[:serie]
     @marca=params[:marca]  
     @activo=params[:activo]
+    @activo_eq=params[:activo_eq]
+    @serie_eq=params[:serie_eq]
     @tipocomp_invt=params[:tipocomp_invt]      
     @disponible=params[:disponible]
     @consulta=""
@@ -36,13 +38,22 @@ class InventariosController < ApplicationController
             @consulta="user_id is null "          
           end        
         end
-      end      
+      end     
+      
+      @consulta+=filtra_consulta_str('activo_fijo',@activo_eq).to_s
+      logger.debug "*********222222  "+@consulta.to_s
+      @consulta+=filtra_consulta_str('serie',@serie_eq).to_s
+      logger.debug "*******33333333  "+@consulta.to_s
+      
       @equipo=Equipo.paginate(page:params[:page]).where("#{@consulta}")
     else           
       @consulta+=filtra_consulta_int('tipocomp_id',@tipocomp_invt).to_s
+      logger.debug "*1111111111111  "+@consulta.to_s
       @consulta+=filtra_consulta_str('no_activo_fijo',@activo).to_s
+      logger.debug "*********222222  "+@consulta.to_s
       @consulta+=filtra_consulta_str('no_serie',@serie).to_s
-            
+        
+      logger.debug "*******33333333  "+@consulta.to_s
       if @marca!="" && !@marca.nil?
         @consutla_m=""
         @comp_marcas=Componente.where("marca =?",@marca)
@@ -82,22 +93,24 @@ class InventariosController < ApplicationController
   end
 
   def filtra_consulta_str(atributo,parametro)
+      consulta=""
     if parametro!="" && !parametro.nil?       
       if @consulta!=""          
-        @consulta+=" and #{atributo}='"+parametro.to_s+"'"
+        consulta+=" and #{atributo}='"+parametro.to_s+"'"
       else            
-        @consulta="#{atributo}='"+parametro.to_s+"'"
+        consulta="#{atributo}='"+parametro.to_s+"'"
       end 
     else
-      @consulta=""
+      consulta=""
     end
   end
   def filtra_consulta_int(atributo,parametro)
+    consulta=""
     if parametro!="" && !parametro.nil?       
       if @consulta!=""          
-        @consulta+=" and #{atributo}="+parametro.to_s
+        consulta+=" and #{atributo}="+parametro.to_s
       else            
-        @consulta="#{atributo}="+parametro.to_s
+        consulta="#{atributo}="+parametro.to_s
       end 
     end
   end
