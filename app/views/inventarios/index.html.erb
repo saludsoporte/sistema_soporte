@@ -12,7 +12,7 @@
             </div>             
             <div class="col-sm" id="busqueda" style="display:block">                 
                 Marca
-                <select class="form-select" name="marca" style="padding:2px">
+                <select id="marca" class="form-select" name="marca" style="padding:2px;margin:100%">
                     <option value="" hidden="true" selected >Selecciona uno</option>
                     <% @marcas.each do |m| %>
                         <option>
@@ -45,7 +45,7 @@
                 <%= f.text_field :activo_eq, class: :"form-control form-control-sm" %>
             </div>            
             <div class="col-sm" style="text-align:left">
-                Disponibles
+                Disponibles<br>
                 <%= f.check_box :disponible %> 
             </div>
             <div class="col-sm" style="margin-top:20px">

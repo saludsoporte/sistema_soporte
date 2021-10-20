@@ -11,11 +11,17 @@ class CaracteristicasController < ApplicationController
   end
 
   def create
-    @caracteristica=Caracteristica.new(params_carac)
-    if @caracteristica.save
-      redirect_to caracteristicas_path
+
+    @carac=Caracteristica.where("nombre ilike ('%#{params_carac[:nombre]}%')")
+    if @carac.count == 0
+      @caracteristica=Caracteristica.new(params_carac)
+      if @caracteristica.save
+        redirect_to caracteristicas_path
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to new_caracteristica_path(error:true,nombre:params_carac[:nombre])
     end
   end
 

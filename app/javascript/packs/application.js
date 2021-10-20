@@ -137,6 +137,13 @@ $(document).on('turbolinks:load', function() {
         remove: true
     })
 
+    $("#marca").select2({
+        placeholder: "Selecciona uno",
+        allowClear: true,
+        clear: true,
+        remove: true
+    })
+
     $("#user_select").val(null).trigger("change");
     $("#equipos").val(null).trigger("change");
     $("#caracteristica_id").val(null).trigger("change");

@@ -4,7 +4,7 @@ class CompSerial < ApplicationRecord
   
   validates :no_serie, presence: { message: "no puede estar vacio"}
   validates :no_activo_fijo, presence:  { message: "no puede estar vacio"}
- 
+  validates :conjunto , presence: { message: "no selecciono un conjunto"}
   self.per_page =10
 
   def equipo_asignado

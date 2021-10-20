@@ -1,4 +1,9 @@
 <div class="container borde-reporte letra">
+    <% if params[:error] %>
+        <div class="alert alert-danger container">
+            * Ya existe la caracteristica: <%= params[:nombre]%>
+        </div>
+    <% end %>
     <div class="titulos" > <h3>Nueva caracteristica</h3></div>
     <%= form_for(@caracteristica) do |f| %>
         <div class="row" style="margin-top:2px">           

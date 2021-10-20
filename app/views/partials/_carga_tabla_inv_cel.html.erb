@@ -8,12 +8,12 @@
             <th>Piso</th>
             <th>Folio</th>
             <th>Fecha de ingreso</th>
-            <th style="text-align:center">Disponibilidad</th>
+            <th style="text-align:center" >Disponibilidad</th>
         <% end %>
         <% if !@componentes.nil?  %>
             <th>Articulo</th>           
             <th>Fecha de ingreso</th>            
-            <th style="text-align:center">Disponibilidad</th>
+            <th style="text-align:center" colspan="2">Disponibilidad</th>
         <% end %>
     </thead>
     <tbody>
@@ -52,13 +52,14 @@
                         <b>Serie: </b><%= c.no_serie%><br>
                         <b>Activo Fijo: </b><%= c.no_activo_fijo %></td>                      
                         <td><%= @componente.fecha_ingreso%></td>                        
-                        <td style="text-align:center">  
+                        <td style="text-align:center" >   
                             <% if c.disponible == true %>                                                         
-                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),style: :"width:100%;font-size:10px",class: :"btn-sm btn-success",title: :disponible %>                   
+                                <%= link_to  raw("#{image_tag("check2.svg")} Asignar"),comp_serial_path(c.id),style: :"width:100%;font-size:10px",class: :"btn btn-sm btn-success",title: :disponible %>                   
                             <% else %>                                
-                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),style: :"width:100%;font-size:10px",class: :"btn-sm btn-danger",title: :"no disponible" %>                                         
+                                <%= link_to raw("#{image_tag("x-lg.svg")} Ver equipo") ,equipo_path(c.equipo_asignado),style: :"width:100%;font-size:10px",class: :"btn btn-sm btn-mod",title: :"no disponible" %>                                         
                             <% end %>
                         </td>
+                        <td style="text-align:center"><%= link_to raw("#{image_tag("trash.svg")} Eliminar existencia"), comp_serial_path(c.id),style: :"width:100%;font-size:10px", class: :"btn btn-sm btn-danger", data: { confirm: "¿Seguro de eliminar la existencia?" }, method: :delete %></td>
                     </tr>
                 <% end %>
             <% end %>

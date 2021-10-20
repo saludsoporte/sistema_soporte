@@ -1,0 +1,22 @@
+<div class="container borde-reporte letra">
+    <table class="container table table-sm">
+    <thead class="table-dark">
+        <th>id</th>
+        <th>Componente</th>
+        <th>Número de Serie</th>
+        <th>Número de Activo Fijo</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <% @comp_seriales.each do |c| %>
+            <tr >
+                <td><%= c.id %></td>
+                <td><%= c.componente.tipocomp.nombre %></td>
+                <td><%= c.no_serie %></td>
+                <td><%= c.no_activo_fijo %></td>
+                <td><%= link_to raw("#{image_tag("trash.svg")} Eliminar existencia"), comp_serial_path(c.id),style: :"margin:5px", class: :"btn btn-sm btn-danger" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

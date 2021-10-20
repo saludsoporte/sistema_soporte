@@ -6,10 +6,13 @@
     <% @caracteristicas.each do |c| %>
         <div class="row padding-div ">    
             <div class="col-sm"><%= c.nombre %></div>
-            <div class="col-sm" style="text-align:right">
-                <%=link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_caracteristica_path(id:c.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-sm btn-mod"} %>
-                <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),caracteristica_path(c.id), data: { confirm:"Esta acción borrará todos los registros que contengan a esta caractrística en los componentes \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                
-            </div>            
+            <% if !['Frecuencia','Tipo de Memoria','Velocidad de Lectura','Voltaje','Socket','Resolución',
+                    'Pulgadas','Lenguaje','Nucleos','Cache','Puerto','Capacidad de Memoria','Tipo de Disco Duro n'].include?(c.nombre)%>
+                <div class="col-sm" style="text-align:right">
+                    <%=link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_caracteristica_path(id:c.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: :"btn btn-sm btn-mod"} %>
+                    <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),caracteristica_path(c.id), data: { confirm:"Esta acción borrará todos los registros que contengan a esta caractrística en los componentes \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                
+                </div>            
+            <% end %>
         </div>
     <% end %>
 </div>

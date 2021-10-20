@@ -1,14 +1,21 @@
 <% if params[:error]=="1" %>        
-    <div class="container alert alert-danger">* Falta No. de Serie </div>        
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta No. de Serie </div>        
 <% end%>
 <% if params[:error]=="2" %>        
-    <div class="container alert alert-danger">* Falta No. de Activo fijo </div>
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta No. de Activo fijo </div>
 <% end%>
 <% if params[:error]=="3" %>        
-        <div class="container alert alert-danger">* Falta No. de Serie </div>
-        <div class="container alert alert-danger">* Falta No. de Activo fijo </div>
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta No. de Serie </div>
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta No. de Activo fijo </div>
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta escoger un conjunto de caracteristicas </div>
 <% end%>
-<div class="titulos container borde-reporte"><h3>Agregar Existencias</h3></div>
+<% if params[:error]=="4" %>        
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Falta escoger un conjunto de caracteristicas </div>        
+<% end%>
+<% if params[:error]=="5" %>        
+    <div class="container alert alert-danger letra" style="margin-top:5px">* Ya existe un elemento con los mismos atributos </div>        
+<% end%>
+<div class="titulos container borde-reporte letra"><h3>Agregar Existencias</h3></div>
 <%= render "partials/datos_componente" %>
 
 <%= form_for(@comp_serie) do |f| %>
@@ -48,15 +55,15 @@
 <% end %>
 <div class="container borde-reporte letra">    
     <div class="row titulos">
-        <div class="col-sm"><b>Componente</b></div>
-        <div class="col-sm"><b>Número de serie</b></div>
-        <div class="col-sm"><b>Activo fijo</b></div>
+        <div class="col"><b>Componente</b></div>
+        <div class="col"><b>Número de serie</b></div>
+        <div class="col"><b>Activo fijo</b></div>
     </div>
     <% @seriales.each do |s| %>
     <div class="row"  style="border-bottom: 1px solid gainsboro;">
-        <div class="col-sm"><%= s.tipocomp.nombre %></div>
-        <div class="col-sm"><%= s.no_serie %></div>
-        <div class="col-sm"><%= s.no_activo_fijo %></div>
+        <div class="col"><%= s.tipocomp.nombre %></div>
+        <div class="col"><%= s.no_serie %></div>
+        <div class="col"><%= s.no_activo_fijo %></div>
     </div>
     <% end %>
 </div>

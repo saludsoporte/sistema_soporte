@@ -1,5 +1,6 @@
 class CompSerialsController < ApplicationController
   def index
+    @comp_seriales=CompSerial.where(tipocomp_id:params[:comp_id])
   end
   def new
     logger.debug "33#####################333"
@@ -10,10 +11,8 @@ class CompSerialsController < ApplicationController
   end
 
   def show 
-
     @serial=CompSerial.find(params[:id])    
     @componente=Componente.find(@serial.componente_id)
-
   end
 
   def asignar_equipo
@@ -60,40 +59,63 @@ class CompSerialsController < ApplicationController
 
   def create
     @componente=Componente.find(params[:comp_id])
-    @comp_serie=@componente.comp_serials.create(params_serie)     
-    if @comp_serie.save
-      @inventario_f=Inventario.find_by("tipocomp_id=?",@componente.tipocomp_id)
-      if @inventario_f.nil?  
-        @inventario=Inventario.new(          
-          tipocomp_id:@componente.tipocomp_id,
-          cantidad:1,
-          disponibles:1          
-        )
-        @inventario.save
+    
+    @seriales=CompSerial.where("no_serie = ? and no_activo_fijo=?",params_serie[:no_serie],params_serie[:no_activo_fijo])     
+    if @seriales.count==0
+      @comp_serie=@componente.comp_serials.create(params_serie)
+      if @comp_serie.save
+        @inventario_f=Inventario.find_by("tipocomp_id=?",@componente.tipocomp_id)
+        if @inventario_f.nil?  
+          @inventario=Inventario.new(          
+            tipocomp_id:@componente.tipocomp_id,
+            cantidad:1,
+            disponibles:1          
+          )
+          @inventario.save
+        else
+          logger.debug "****************** con inventario"
+          @cantidad=@inventario_f.cantidad
+          @inventario_f.update(cantidad:@cantidad+1,disponibles:@inventario_f.disponibles+1)
+        end       
+        redirect_to new_comp_serial_path(comp_id:params[:comp_id])       
       else
-        logger.debug "****************** con inventario"
-        @cantidad=@inventario_f.cantidad
-        @inventario_f.update(cantidad:@cantidad+1,disponibles:@inventario_f.disponibles+1)
-      end       
-      redirect_to new_comp_serial_path(comp_id:params[:comp_id])       
+        @error=""             
+        if params_serie[:no_serie]==""
+          @error=1
+        end
+          
+        if params_serie[:no_activo_fijo]==""
+          @error=2
+        end
+        
+        if params_serie[:conjunto]=="" || params_serie[:conjunto].nil?
+          @error=4
+        end
+
+        if params_serie[:no_serie]=="" && params_serie[:no_activo_fijo]=="" && (params_serie[:conjunto]=="" || params_serie[:conjunto].nil?)
+          @error=3
+        end
+
+
+        logger.debug "/*/*/*/*/* "+@error.to_s
+        redirect_to new_comp_serial_path(comp_id:params[:comp_id],error:@error)       
+      end     
     else
-      @error=""     
-      if params_serie[:no_serie]==""
-        @error=1
-      end
-        
-      if params_serie[:no_activo_fijo]==""
-        @error=2
-      end
-        
-      if params_serie[:no_serie]=="" && params_serie[:no_activo_fijo]==""
-        @error=3
-      end
-      logger.debug "/*/*/*/*/* "+@error.to_s
+      logger.debug "///////////////////// ya existe"
+      @error=5
       redirect_to new_comp_serial_path(comp_id:params[:comp_id],error:@error)       
-    end     
+    end
   end
 
+  def destroy
+    @comp_serial=CompSerial.find(params[:id])    
+    @inventario_f=Inventario.find_by("tipocomp_id=?",@comp_serial.tipocomp_id)
+    @cantidad=@inventario_f.cantidad
+    @disponibles=@inventario_f.disponibles
+    @inventario_f.update(cantidad:@cantidad-1,disponibles:@disponibles-1)
+    @comp_serial.destroy
+    redirect_to inventarios_path(tipocomp_invt:@inventario_f.tipocomp_id)
+  end
   private 
   
   def params_serie

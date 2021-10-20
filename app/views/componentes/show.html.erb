@@ -1,7 +1,7 @@
 <div class="container borde-reporte letra">
 
     <%= link_to "Regresar", componentes_path(page:params[:page]), class: :"btn btn-sm btn-secondary" %>
-    <%= link_to raw("#{image_tag("trash.svg")} Eliminar"), componentes_path(id:@componente.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window',class: :"btn btn-danger btn-sm"} %>               
+    <%= link_to raw("#{image_tag("trash.svg")} Eliminar"), componente_path(id:@componente.id),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window',class: :"btn btn-danger btn-sm"} %>               
           
     <table class="table table-sm table-borderless">
         <thead class="table-dark" > 
