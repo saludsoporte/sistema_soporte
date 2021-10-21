@@ -1,8 +1,15 @@
+<% if params[:error].to_i == 1 %>
+    <div style="font-size:15spx;margin-top:5px" class=" container alert alert-danger"> Este número de Activo Fijo ya existe</div>
+<% end %>
+<% if params[:error].to_i==2 %>
+    <div class="alert alert-danger container" style="margin-top:5px;font-size:15px">Falta el número de serie</div>
+    <div class="alert alert-danger container" style="margin-top:5px;font-size:15px">Falta el número de activo fijo</div>
+<% end %>
 <div class="container borde-reporte letra">
     <% if params[:completo].nil?%>
         <div class="titulos"><h3>Nuevo Equipo</h3> </div>
         <%= render "partials/equipo_ne" %>
-    <% else%>
+    <% else%>        
         <div class="titulos"><h3>Equipo Completo</h3> </div>
         <%= form_with url:equipos_cargar_equipo_completo_path, method: :get do |f| %>        
         <table class="table table-sm ">
@@ -23,12 +30,7 @@
                 <tr>
                     <td><b>Piso :</b></td>
                     <td colspan="4"><%= f.text_field :piso ,style: :"width:100%"%></td>
-                </tr>
-                <tr>
-                    <td><b>Folio :</b></td>
-                    <td colspan="4"><%= f.text_field :folio,style: :"width:100%" %>
-                    </td>
-                </tr>                
+                </tr>                      
                 <tr>
                     <td><b>Usuario asignado</b></td>
                     <td colspan="4"> 

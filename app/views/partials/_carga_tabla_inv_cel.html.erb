@@ -1,12 +1,8 @@
 <table class="table table-sm">
     <thead class="table-dark">
         <% if !@equipo.nil?  %>
-            <th>Articulo</th>
-            <th>Usuario</th>
-            <th>Serie</th>
-            <th>Activo_fijo</th>
+            <th>Articulo</th>           
             <th>Piso</th>
-            <th>Folio</th>
             <th>Fecha de ingreso</th>
             <th style="text-align:center" >Disponibilidad</th>
         <% end %>
@@ -20,17 +16,17 @@
             <% if !@equipo.nil?  %>
                 <% @equipo.each do |e| %>
                     <tr>
-                        <td><%= e.tipocomp.nombre%></td>
                         <td>
+                            <%= e.tipocomp.nombre%><br>                        
                             <% if e.user_id.nil? %>
-                                Sin Asignar
+                                <b>Usuario: </b><%= link_to "Asignar Equipo", edit_equipo_path(e.id),style: :"width:25%;font-size:10px",class: :"btn btn-sm btn-success" %><br>
                             <% else %>
-                                <%= User.find(e.user_id).nombre_personal %></td>
+                                <b>Usuario: </b><%= User.find(e.user_id).nombre_personal %><br>
                             <% end %>
-                        <td><%= e.no_serie%></td>
-                        <td><%= e.activo_fijo%></td>
-                        <td><%= e.piso%></td>
-                        <td><%= e.folio%></td>
+                            <b>Número de Serie: </b> <%= e.no_serie%><br>
+                            <b>Número de Activo Fijo: </b><%= e.activo_fijo%><br>
+                        </td>
+                        <td><%= e.piso%></td>                        
                         <td><%= e.fecha_ingreso%></td>                        
                         <td style="text-align:center">
                             <% if e.user_id.nil? %>                       

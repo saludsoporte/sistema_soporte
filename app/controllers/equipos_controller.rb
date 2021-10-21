@@ -12,6 +12,11 @@ class EquiposController < ApplicationController
   def edit
     @equipo=Equipo.find(params[:id])
     @usuarios=User.all
+    @area=Area.all
+    @subdireccion=Subdireccion.all
+    @direccion=Direccion.all
+    @departamento=Departamento.all
+    @unidad=Unidad.all
 
     if !@equipo.user_id.nil?
       @user=User.find(@equipo.user_id)      
@@ -48,8 +53,10 @@ class EquiposController < ApplicationController
     @edit=false
   end
   def create
-    
-    @equipo=Equipo.new(equipo_params)
+    @equipo_q=Equipo.find_by("activo_fijo = ?",params[:equipo][:activo_fijo])
+    logger.debug "#33###################3 "+@equipo_q.nil?.to_s
+    if @equipo_q.nil? == true 
+    @equipo=Equipo.new(equipo_params)    
     if @equipo.save
       @inventario_f=Inventario.find_by("tipocomp_id=?",@equipo.tipocomp_id)
       if @inventario_f.nil?        
@@ -77,8 +84,18 @@ class EquiposController < ApplicationController
       redirect_to new_relacion_componente_path(equipo_id:@equipo.id)      
     else
       @usuarios=User.all.order(id: :asc)
+      @area=Area.all.order(id: :asc)
+      @subdireccion=Subdireccion.all.order(id: :asc)
+      @direccion=Direccion.all.order(id: :asc)
+      @departamento=Departamento.all.order(id: :asc)
+      @unidad=Unidad.all.order(id: :asc)    
       render :new
-    end     
+    end 
+  else
+    logger.debug "888888888888888888888888888888888888888888888888888888888"
+    redirect_to new_equipo_path(error:1)      
+    
+  end    
   end
 
   def quitar_asignacion
@@ -94,53 +111,53 @@ class EquiposController < ApplicationController
   end
 
   def cargar_equipo_completo    
-    if params[:no_serie]!="" && params[:no_activo_fijo]!=""
-      if params[:tipo]=='escritorio' or params[:tipo]=='laptop'        
-        @tipocomp=Tipocomp.find_by("nombre='Equipo de Computo'").id
-        else        
-        @tipocomp=Tipocomp.find_by("nombre='Servidor'").id
+    if params[:no_serie]!="" && params[:no_activo_fijo]!=""    
+      @equipo_q=Equipo.find_by("activo_fijo = ?",params[:no_activo_fijo])
+      logger.debug "#33###################3 "+@equipo_q.nil?.to_s
+      if @equipo_q.nil? == true 
+        if params[:tipo]=='escritorio' or params[:tipo]=='laptop'        
+          @tipocomp=Tipocomp.find_by("nombre='Equipo de Computo'").id
+          else        
+          @tipocomp=Tipocomp.find_by("nombre='Servidor'").id
+        end
+        if params[:user_id].nil?
+          @user_id=nil
+          else
+          @user_id=params[:user_id]
+        end
+        @equipo=Equipo.new(no_serie:params[:no_serie],
+          activo_fijo:params[:no_activo_fijo],
+          tipo:params[:tipo],
+          piso:params[:piso],        
+          user_id:@user_id,
+          tipocomp_id:@tipocomp,
+          area:params[:area],
+          subdireccion:params[:subdireccion],
+          direccion:params[:direccion],
+          departamento:params[:departamento],
+          unidad:params[:unidad]
+        )
+        @inventario_f=Inventario.find_by("tipocomp_id=?",@tipocomp) 
+        @cantidad=@inventario_f.cantidad+1
+        @disponible=@inventario_f.disponibles
+        if @user_id.nil?
+          @disponible+=1
+        end            
+        if @equipo.save
+          @inventario_f.update(cantidad:@cantidad,disponibles:@disponible)
+          logger.debug "//////////////////////////////////"
+          crearRam(@equipo.id)
+          crearHDD(@equipo.id)
+          crearProc(@equipo.id)
+          logger.debug "*****************"
+          redirect_to equipos_path
+        end 
+      else
+        redirect_to new_equipo_path(completo:true,error:1)
       end
-
-      if params[:user_id].nil?
-        @user_id=nil
-        else
-        @user_id=params[:user_id]
-      end
-
-      @equipo=Equipo.new(no_serie:params[:no_serie],
-        activo_fijo:params[:no_activo_fijo],
-        tipo:params[:tipo],
-        piso:params[:piso],
-        folio:params[:folio],
-        user_id:@user_id,
-        tipocomp_id:@tipocomp,
-        area:params[:area],
-        subdireccion:params[:subdireccion],
-        direccion:params[:direccion],
-        departamento:params[:departamento],
-        unidad:params[:unidad]
-      )
-        
-
-      @inventario_f=Inventario.find_by("tipocomp_id=?",@tipocomp) 
-      @cantidad=@inventario_f.cantidad+1
-      @disponible=@inventario_f.disponibles
-
-      if @user_id.nil?
-        @disponible+=1
-      end
-      
-      @inventario_f.update(cantidad:@cantidad,disponibles:@disponible)
-
-      if @equipo.save
-        logger.debug "//////////////////////////////////"
-        crearRam(@equipo.id)
-        crearHDD(@equipo.id)
-        crearProc(@equipo.id)
-        logger.debug "*****************"
-      end 
-    end
-    redirect_to equipos_path
+    else
+      redirect_to new_equipo_path(completo:true,error:2)
+    end    
   end
 
   def destroy
@@ -176,7 +193,7 @@ class EquiposController < ApplicationController
       logger.debug "***************  *///////////////////"
       params[:equipo][:tipocomp_id]=Tipocomp.find_by("nombre='Servidor'").id
     end
-    params.require(:equipo).permit(:user_id,:tipo,:piso,:folio,:tipocomp_id,:activo_fijo,:no_serie,:area,:subdireccion,:direccion,:departamento,:unidad)
+    params.require(:equipo).permit(:user_id,:tipo,:piso,:tipocomp_id,:activo_fijo,:no_serie,:area,:subdireccion,:direccion,:departamento,:unidad)
   end
 
   private
