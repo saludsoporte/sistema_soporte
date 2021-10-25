@@ -1,10 +1,9 @@
 <div class="container borde-reporte letra">
-    <table class="container table table-sm">
+    <table class="container table table-sm">       
     <thead class="table-dark">
         <th>id</th>
         <th>Componente</th>
-        <th>Número de Serie</th>
-        <th>Número de Activo Fijo</th>
+        <th>Número de Serie</th>        
         <th></th>
     </thead>
     <tbody>
@@ -12,11 +11,14 @@
             <tr >
                 <td><%= c.id %></td>
                 <td><%= c.componente.tipocomp.nombre %></td>
-                <td><%= c.no_serie %></td>
-                <td><%= c.no_activo_fijo %></td>
-                <td><%= link_to raw("#{image_tag("trash.svg")} Eliminar existencia"), comp_serial_path(c.id),style: :"margin:5px", class: :"btn btn-sm btn-danger" %></td>
+                <td><%= c.no_serie %></td>                
+                <td><%= link_to raw("#{image_tag("trash.svg")} Eliminar existencia"), comp_serial_path(c.id),data: { :confirm => '¿Estas seguro de eliminar la existencia?'},  method: :delete,style: :"margin:5px", class: :"btn btn-sm btn-danger" %></td>
             </tr>
         <% end %>
     </tbody>
     </table>
 </div>
+<footer>
+    <%= will_paginate @comp_seriales, class: :footer  %>
+</footer>
+<%= javascript_pack_tag 'componentes.js' %>

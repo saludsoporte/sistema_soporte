@@ -81,11 +81,13 @@
                 </tr>  
                 <tr>
                     <td><b>Ram</b></td>                    
-                    <td>Tipo de memoria de ram:<%= f.text_field :tipo_mem,style: :"width:100%" %></td>                    
+                    <td>Tipo de memoria de ram:
+                        <%= select_tag(:tipo_mem,options_for_select([['DDR',"DDR"],['DDR2',"DDR2"],['DDR3',"DDR3"],['DDR4',"DDR4"],['DDR5',"DDR5"]]),{style: :"width:100%",class: :"form-select" })%>                        
+                    </td>                    
                     <td>Capacidad: <%= f.number_field :ram_cp,value:1,min:1,style: :"width:100%" %></td> 
                     <td><div>Tamaño:</div>
                         <div>
-                            <%= f.select(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),{style: :"width:100%",class: :"form-s" })%> 
+                            <%= select_tag(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),{style: :"width:100%",class: :"form-select" })%> 
                         </div>
                     </td>
                     <td>No. modulos de ram: <%= f.number_field :no_ram,value:1,min:1,style: :"width:100%" %></td>

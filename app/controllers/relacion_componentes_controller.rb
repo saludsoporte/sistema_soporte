@@ -1,5 +1,6 @@
 class RelacionComponentesController < ApplicationController
   def index
+
   end
 
   def show

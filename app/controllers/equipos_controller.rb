@@ -201,16 +201,40 @@ class EquiposController < ApplicationController
       if params[:tipo_mem]!="" && params[:ram_cp]!="" && params[:no_ram]!=""
         @tipo=Tipocomp.find_by("nombre = 'Ram'")
         @ram=Componente.find_by("marca='All in one' and modelo='All in one' and tipocomp_id=?",@tipo.id) 
-        @inventario_f=Inventario.find_by("tipocomp_id=?",@ram.tipocomp_id)     
+        @inventario_f=Inventario.find_by("tipocomp_id=?",@tipo.id)     
         @numero=params[:no_ram]
         i=0
         @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
         @tipocamp=Caracteristica.find_by("nombre = 'Tipo de Memoria'")
-        @conjuntos=RelacionCaracteristica.where("componente_id=? ",@ram.id).order(conjunto: :asc).distinct
+        #@conjuntos=RelacionCaracteristica.where("componente_id=? ",@ram.id).order(conjunto: :asc).distinct
         @capacidad=params[:ram_cp]+params[:mem_size]
-        logger.debug "**************** "+@capacidad.to_s
+        @tipo_mem=params[:tipo_mem]        
         @nuevo=true
         
+        @caracteriticas=RelacionCaracteristica.find_by("caracteristica_id=? and valor_caracteristica_id=?",@tipocamp.id,@tipo_mem)
+        @caracteriticas2=RelacionCaracteristica.find_by("caracteristica_id=? and valor_caracteristica_id=?",@carac.id,@capacidad)
+        if !@caracteriticas.nil? && !@caracteriticas2.nil?
+          if @caracteristicas.componente_id != @caracteristicas2.componente_id
+            if @nuevo == true          
+              @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad,conjunto:@conjunto)
+              @relacion.save
+              @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@tipocamp.id,valor_caracteristica:params[:tipo_mem],conjunto:@conjunto)
+              @relacion.save                           
+            end              
+          end 
+        end
+
+        while i < @numero.to_i         
+          @comp_serie=@ram.comp_serials.create(
+           componente_id:@ram.id,
+           no_serie:params[:no_serie],
+           no_activo_fijo:params[:no_activo_fijo],
+           tipocomp_id:@ram.tipocomp_id,
+           disponible:false,
+           conjunto:@conjunto)
+          @comp_serie.save
+      
+=begin
         if @conjuntos.count > 0
           logger.debug "********** conjuntos no nulos"
           @conjuntos.each do |cj|
@@ -232,23 +256,10 @@ class EquiposController < ApplicationController
         else
             @conjunto=0         
         end 
+=end
        
-        if @nuevo == true          
-          @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad,conjunto:@conjunto)
-          @relacion.save
-          @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@tipocamp.id,valor_caracteristica:params[:tipo_mem],conjunto:@conjunto)
-          @relacion.save                           
-        end   
 
-        while i < @numero.to_i         
-         @comp_serie=@ram.comp_serials.create(
-          componente_id:@ram.id,
-          no_serie:params[:no_serie],
-          no_activo_fijo:params[:no_activo_fijo],
-          tipocomp_id:@ram.tipocomp_id,
-          disponible:false,
-          conjunto:@conjunto)
-         @comp_serie.save
+
 
          @relacion_componente=RelacionComponente.new(
            componente_id:@ram.id,equipo_id:equipo_id,comp_serial_id:@comp_serie.id

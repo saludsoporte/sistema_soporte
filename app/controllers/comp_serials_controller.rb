@@ -1,6 +1,8 @@
 class CompSerialsController < ApplicationController
   def index
-    @comp_seriales=CompSerial.where(tipocomp_id:params[:comp_id])
+    #@comp_seriales=CompSerial.where(tipocomp_id:params[:comp_id])
+    @comp_seriales=CompSerial.paginate(page:params[:page]).where("componente_id=?",params[:comp_id])
+    logger.debug "***********************  "+@comp_seriales.count.to_s
   end
   def new
     logger.debug "33#####################333"
@@ -18,16 +20,18 @@ class CompSerialsController < ApplicationController
   def asignar_equipo
     logger.debug "************"+params[:comp].to_s
     unless params[:equipos].nil?      
-      @serie=CompSerial.find(params[:id])
-      @relacion=RelacionComponente.new(componente_id:params[:comp],equipo_id:params[:equipos],comp_serial_id:@serie.id)
-      if @relacion.save        
-        @serie.update(disponible:false)
-        @inventario=Inventario.find_by(tipocomp_id:@relacion.componente.tipocomp_id)
-        @inventario.update(disponibles:@inventario.disponibles-1)
-        redirect_to inventarios_path
-      else
-        render :asignar_equipo
-      end 
+      @serie=CompSerial.find(params[:id])   
+      @relacion=RelacionComponente.new(componente_id:params[:comp],equipo_id:params[:equipos],comp_serial_id:@serie.id)        
+        if @relacion.save             
+          @serial=CompSerial.find(@relacion.comp_serial_id)
+          @bollean=false
+          @serial.update(disponible:@bollean)          
+          @inventario=Inventario.find_by(tipocomp_id:@relacion.componente.tipocomp_id)
+          @inventario.update(disponibles:@inventario.disponibles-1)
+          redirect_to inventarios_path
+        else
+          render :asignar_equipo
+        end       
     end
   end 
   def carga_conjunto
@@ -45,7 +49,7 @@ class CompSerialsController < ApplicationController
   def buscar_eq
     @equipo=Equipo.find(params[:id])
     @arr=Array.new
-    if @equipo.nil?
+    if @equipo.nil? || @equipo.user_id.nil?
       @arr=false
     else
       @arr.push(serie:@equipo.no_serie,activo_fijo:@equipo.activo_fijo,
@@ -110,10 +114,20 @@ class CompSerialsController < ApplicationController
   def destroy
     @comp_serial=CompSerial.find(params[:id])    
     @inventario_f=Inventario.find_by("tipocomp_id=?",@comp_serial.tipocomp_id)
+    @relacion=RelacionComponente.find_by("comp_serial_id=?",@comp_serial.id)    
+    unless @relacion.nil?        
+      @relacion.destroy
+    end 
     @cantidad=@inventario_f.cantidad
-    @disponibles=@inventario_f.disponibles
-    @inventario_f.update(cantidad:@cantidad-1,disponibles:@disponibles-1)
+    @disponibles=@inventario_f.disponibles    
+    if @disponibles -1 < 0
+      @disponibles=0
+    else
+      @disponibles=@disponibles-1
+    end
+    @inventario_f.update(cantidad:@cantidad-1,disponibles:@disponibles)     
     @comp_serial.destroy
+    
     redirect_to inventarios_path(tipocomp_invt:@inventario_f.tipocomp_id)
   end
   private 

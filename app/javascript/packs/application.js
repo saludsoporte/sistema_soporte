@@ -233,35 +233,43 @@ function validarSubmitCarc() {
 }
 
 function info_equipo(id_equipo) {
-    $.ajax({
-        type: "get",
-        dataType: "json",
-        cache: true,
-        url: "buscar_eq",
-        data: { id: id_equipo },
-        error: function(XMLHttpRequest, errorTextStatus, error) {
-            console.log("Failed: " + errorTextStatus + " ;" + error);
-        },
-        success: function(data) {
-            console.log(data);
-            var div = "<table class='table table-sm'>" +
-                "<thead class='table-dark'><th>Serie</th>" +
-                "<th>Activo Fijo</th>" +
-                "<th>Tipo</th>" +
-                "<th>Piso</th>" +
-                "<th>Usuario</th></thead><tbody>";
-            var index = 0;
-            $.each(data, function() {
-                div += "<tr><td>" + data[index].serie + "</td>";
-                div += "<td>" + data[index].activo_fijo + "</td>";
-                div += "<td>" + data[index].tipo + "</td>";
-                div += "<td>" + data[index].piso + "</td>";
-                div += "<td>" + data[index].user + "</td>";
-            });
-            div += "</tbody></table>";
-            $("#info_eq").html(div);
-        }
-    });
+    if (id_equipo == null) {
+        alert("Equipo no encontrado");
+    } else {
+        $.ajax({
+            type: "get",
+            dataType: "json",
+            cache: true,
+            url: "buscar_eq",
+            data: { id: id_equipo },
+            error: function(XMLHttpRequest, errorTextStatus, error) {
+                console.log("Failed: " + errorTextStatus + " ;" + error);
+            },
+            success: function(data) {
+                console.log(data);
+                if (data == false) {
+                    $("#info_eq").html("Equipo sin asignacion");
+                } else {
+                    var div = "<table class='table table-sm'>" +
+                        "<thead class='table-dark'><th>Serie</th>" +
+                        "<th>Activo Fijo</th>" +
+                        "<th>Tipo</th>" +
+                        "<th>Piso</th>" +
+                        "<th>Usuario</th></thead><tbody>";
+                    var index = 0;
+                    $.each(data, function() {
+                        div += "<tr><td>" + data[index].serie + "</td>";
+                        div += "<td>" + data[index].activo_fijo + "</td>";
+                        div += "<td>" + data[index].tipo + "</td>";
+                        div += "<td>" + data[index].piso + "</td>";
+                        div += "<td>" + data[index].user + "</td>";
+                    });
+                    div += "</tbody></table>";
+                    $("#info_eq").html(div);
+                }
+            }
+        });
+    }
 }
 
 function verifica_no_serie(id_user) {

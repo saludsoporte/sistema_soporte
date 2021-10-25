@@ -43,7 +43,8 @@
         </thead>
         <tbody>        
         <% @componentes.each do |c|%>        
-        <% @caracteristicas=RelacionCaracteristica.where("componente_id=? and conjunto=?",c.comp_serial.componente_id,c.comp_serial.conjunto)%>
+        <% @serial = CompSerial.find(c.comp_serial_id)%>
+        <% @caracteristicas=RelacionCaracteristica.where("componente_id=? and conjunto=?",c.id,@serial.conjunto)%>
             <tr>
                 <td><div style="font-size:18px"><b><%= c.componente.tipocomp.nombre %></b></div></td>
                 <td><%= c.componente.modelo %></td>   

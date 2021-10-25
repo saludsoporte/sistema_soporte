@@ -23,7 +23,7 @@
                         <%= link_to raw("#{image_tag("binoculars.svg")} Ver componente"),componente_path(c.id,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-primary" %>
                         <%= link_to raw("#{image_tag("plus-circle.svg")} Características"), new_relacion_caracteristica_path(comp_id:c.id,page:params[:page]),style: :"margin:2px",class: :"btn-sm btn btn-success"%>
                         <%= link_to "Nueva existencia",new_comp_serial_path(comp_id:c.id,existencia:true,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-mod" %>
-                        <%= link_to 'Existencias', comp_serials_path(comp_id:c.id,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-danger" %>
+                        <%= link_to 'Existencias', comp_serials_path(comp_id:c.id),style: :"margin:2px",class: :"btn btn-sm btn-danger" %>
                     </td>            
                 </tr>         
                   
@@ -41,5 +41,4 @@
     <%= will_paginate @componentes, class: :footer%>
 </footer>
 <% end %>
-<%= javascript_pack_tag 'componentes.js' %>
 <%= render "partials/modal_plantilla" %>

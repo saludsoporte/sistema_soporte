@@ -30,10 +30,10 @@
             <div class="col-sm"> <%= f.label :no_serie,raw("N&uacutemero de Serie")%></div>
             <div class="col-sm"> <%= f.text_field :no_serie ,class: :"form-control" %>  </div>                  
         </div>
-        <div class="row" style="margin-top:10px" >
-            <div class="col-sm"><%= f.label :no_activo_fijo, "Activo fijo"%></div>
-            <div class="col-sm"><%= f.text_field :no_activo_fijo , class: :"form-control" %></div>
-        </div>     
+        <!--<div class="row" style="margin-top:10px" >
+            <div class="col-sm"><%# f.label :no_activo_fijo, "Activo fijo"%></div>
+            <div class="col-sm"><%# f.text_field :no_activo_fijo , class: :"form-control" %></div>
+        </div>-->
         <div class="row" style="margin-top:10px;">
             <div class="col-sm">Seleccionar las Características del Componente</div>
             <div class="col-sm">
@@ -56,14 +56,12 @@
 <div class="container borde-reporte letra">    
     <div class="row titulos">
         <div class="col"><b>Componente</b></div>
-        <div class="col"><b>Número de serie</b></div>
-        <div class="col"><b>Activo fijo</b></div>
+        <div class="col"><b>Número de serie</b></div>        
     </div>
     <% @seriales.each do |s| %>
     <div class="row"  style="border-bottom: 1px solid gainsboro;">
         <div class="col"><%= s.tipocomp.nombre %></div>
-        <div class="col"><%= s.no_serie %></div>
-        <div class="col"><%= s.no_activo_fijo %></div>
+        <div class="col"><%= s.no_serie %></div>        
     </div>
     <% end %>
 </div>
