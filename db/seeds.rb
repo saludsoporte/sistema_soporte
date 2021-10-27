@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if !Caracteristica.where("nombre in ('Frecuencia','Tipo de Memoria','Velocidad de Lectura','Voltaje',
+    'Socket','Resolución','Pulgadas','Lenguaje','Nucleos','Cache','Puerto','Capacidad de Memoria','Tipo de Disco Duro')").count == 13
 Caracteristica.create([
     {nombre:"Frecuencia"},
     {nombre:"Tipo de Memoria"},
@@ -20,6 +22,9 @@ Caracteristica.create([
     {nombre:"Capacidad de Memoria"},
     {nombre:"Tipo de Disco Duro"}
 ])  
+end
+if !Tipocomp.where("nombre in ('Disco Duro','Monitor','Teclado','Procesador',
+        'Ram','Tarjeta Madre','Equipo de Computo','Servidor','Salida de Video','Sistema Operativo')").count == 10
 Tipocomp.create([
     {nombre:"Disco Duro"},
     {nombre:"Monitor"},
@@ -31,9 +36,10 @@ Tipocomp.create([
     {nombre:"Servidor"},    
     {nombre:"Salida de Video"},
     {nombre:"Sistema Operativo"}])
-
+end 
 #Componenet ram
-@componentes=Tipocomp.all
+@componentes=Tipocomp.where("nombre in ('Disco Duro','Monitor','Teclado','Procesador',
+    'Ram','Tarjeta Madre','Equipo de Computo','Servidor','Salida de Video','Sistema Operativo')")
 @componentes.each do |co|
     Componente.create([
         {tipocomp_id:co.id,

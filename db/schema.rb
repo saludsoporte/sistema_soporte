@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_193314) do
+ActiveRecord::Schema.define(version: 2021_10_27_141754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_10_19_193314) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "disponible", default: true
-    t.integer "conjunto"
+    t.string "conjunto"
     t.index ["componente_id"], name: "index_comp_serials_on_componente_id"
     t.index ["tipocomp_id"], name: "index_comp_serials_on_tipocomp_id"
   end
@@ -206,7 +206,6 @@ ActiveRecord::Schema.define(version: 2021_10_19_193314) do
     t.text "valor_caracteristica"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "conjunto"
     t.index ["caracteristica_id"], name: "index_relacion_caracteristicas_on_caracteristica_id"
     t.index ["componente_id"], name: "index_relacion_caracteristicas_on_componente_id"
   end

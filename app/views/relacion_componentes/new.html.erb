@@ -81,15 +81,18 @@
                     <td><%= r.componente.modelo %></td>  
                 </tr>
             </tbody>
-            <% @relacionesCarac=RelacionCaracteristica.where(componente_id:r.componente_id,conjunto:r.comp_serial.conjunto) %>
+            
             <tbody id="group-of-rows-<%=r.id%>" class="collapse">      
                  <tr><td colspan="5"><b>Características</b></td><tr>            
-                <% @relacionesCarac.each do |rc| %>                        
+                <% r.comp_serials.any? do |p| %>
+                    p.
+                <% end %>
+                
                     <tr>                        
-                        <td><%= rc.caracteristica.nombre %></td>                        
-                        <td colspan="4">: <%= rc.valor_caracteristica %></td>                    
+                        <td><%# rc.caracteristica.nombre %></td>                        
+                        <td colspan="4">: <%# rc.valor_caracteristica %></td>                    
                     </tr>                    
-                <% end %> 
+                
             </tbody>            
         <% end %>
         </table>

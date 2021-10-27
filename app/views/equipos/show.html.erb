@@ -44,26 +44,25 @@
         <tbody>        
         <% @componentes.each do |c|%>        
         <% @serial = CompSerial.find(c.comp_serial_id)%>
-        <% @caracteristicas=RelacionCaracteristica.where("componente_id=? and conjunto=?",c.id,@serial.conjunto)%>
-            <tr>
-                <td><div style="font-size:18px"><b><%= c.componente.tipocomp.nombre %></b></div></td>
-                <td><%= c.componente.modelo %></td>   
-                <td><%= c.componente.marca %></td>   
-                <td style="text-align:center">
-                    <%#link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_relacion_componente_path(id:c.id),class: :"btn-mod btn btn-sm"%>
-                    <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),relacion_componente_path(c.id), data: { confirm:"Eliminará el componente del equipo \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                            
-                </td>
-            </tr>
-            <% @caracteristicas.each do |ca| %>
-            <tr>
-                <td><%= ca.caracteristica.nombre %></td>
-                <td colspan="3"><%= ca.valor_caracteristica %></td>
-                
-            </tr>
-            <% end %>
-        <% end %>
-        </tbody>
-    </table>
+        <tr rowspan="3">
+            <td><div style="font-size:18px"><b><%= c.componente.tipocomp.nombre %></b></div></td>
+            <td><b>Modelo: </b><%= c.componente.modelo %></td>   
+            <td><b>Marca :</b><%= c.componente.marca %></td>   
+            <td style="text-align:center">
+                <%#link_to raw("#{image_tag("pencil-square.svg")} Editar"), edit_relacion_componente_path(id:c.id),class: :"btn-mod btn btn-sm"%>
+                <%=link_to raw("#{image_tag("trash.svg")} Eliminar"),relacion_componente_path(c.id), data: { confirm:"Eliminará el componente del equipo \r ¿Desea continuar?"},method: :delete,class: :"btn btn-sm btn-danger" %>                            
+            </td>
+        </tr>   
+        <% @serial.conjunto_arr.each do |cj| %>
+            <tr >  
+                <td></td>              
+                <td><%= @serial.relacion_conjunto(cj).caracteristica.nombre %></td>
+                <td colspan="2"><%= @serial.relacion_conjunto(cj).valor_caracteristica %></td>
+            </tr>     
+        <% end%>          
+    <% end %>
+    </tbody>
+</table>
 </div>
 <footer >
     <%= will_paginate @componentes, class: :footer%>

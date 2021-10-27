@@ -1,7 +1,6 @@
 class CompSerial < ApplicationRecord
   belongs_to :componente
-  belongs_to :tipocomp  
-  
+  belongs_to :tipocomp    
   validates :no_serie, presence: { message: "no puede estar vacio"}
   #validates :no_activo_fijo, presence:  { message: "no puede estar vacio"}
   validates :conjunto , presence: { message: "no selecciono un conjunto"}
@@ -16,6 +15,13 @@ class CompSerial < ApplicationRecord
       Equipo.find(@relacion.equipo_id).id
     end
 
+  end
+
+  def conjunto_arr
+    @conjunto=self.conjunto.split(",")
+  end
+  def relacion_conjunto(id)
+    @caracteristicas=RelacionCaracteristica.find(id)    
   end
 
 end

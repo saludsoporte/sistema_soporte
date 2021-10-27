@@ -209,64 +209,33 @@ class EquiposController < ApplicationController
         #@conjuntos=RelacionCaracteristica.where("componente_id=? ",@ram.id).order(conjunto: :asc).distinct
         @capacidad=params[:ram_cp]+params[:mem_size]
         @tipo_mem=params[:tipo_mem]        
-        @nuevo=true
-        
-        @caracteriticas=RelacionCaracteristica.find_by("caracteristica_id=? and valor_caracteristica_id=?",@tipocamp.id,@tipo_mem)
-        @caracteriticas2=RelacionCaracteristica.find_by("caracteristica_id=? and valor_caracteristica_id=?",@carac.id,@capacidad)
-        if !@caracteriticas.nil? && !@caracteriticas2.nil?
-          if @caracteristicas.componente_id != @caracteristicas2.componente_id
-            if @nuevo == true          
-              @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad,conjunto:@conjunto)
-              @relacion.save
-              @relacion=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@tipocamp.id,valor_caracteristica:params[:tipo_mem],conjunto:@conjunto)
-              @relacion.save                           
-            end              
-          end 
+                
+        @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@tipocamp.id,@tipo_mem)
+        @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@carac.id,@capacidad)
+        if @caracteristicas.nil? && @caracteristicas2.nil?          
+          @caracteristicas=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
+          @caracteristicas.save
+          logger.debug "******************* carac "+@caracteristicas.id.to_s
+          @caracteristicas2=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@tipocamp.id,valor_caracteristica:@tipo_mem)
+          @caracteristicas2.save                                       
         end
-
+        @conjunto=@caracteristicas.id.to_s+","+@caracteristicas2.id.to_s
         while i < @numero.to_i         
           @comp_serie=@ram.comp_serials.create(
-           componente_id:@ram.id,
-           no_serie:params[:no_serie],
-           no_activo_fijo:params[:no_activo_fijo],
-           tipocomp_id:@ram.tipocomp_id,
-           disponible:false,
-           conjunto:@conjunto)
+          componente_id:@ram.id,
+          no_serie:params[:no_serie],
+          no_activo_fijo:params[:no_activo_fijo],
+          tipocomp_id:@ram.tipocomp_id,
+          disponible:false,
+          conjunto:@conjunto)
           @comp_serie.save
-      
-=begin
-        if @conjuntos.count > 0
-          logger.debug "********** conjuntos no nulos"
-          @conjuntos.each do |cj|
-            #@relacion=RelacionCaracteristica.where(" componente_id=? and caracteristica_id=? and valor_caracteristica ilike ('%#{params[:tipo_mem]}%') and conjunto=?",@ram.id,@tipocamp.id,cj.conjunto)            
-            @relacion2=RelacionCaracteristica.where(" componente_id=? and caracteristica_id=? and valor_caracteristica = '#{@capacidad}' and conjunto=?",@ram.id,@carac.id,cj.conjunto)            
-            if @relacion2.count == 0
-              @nuevo=true
-              logger.debug "entro en nil"
-            else 
-              @conjunto=cj.conjunto      
-              @nuevo=false 
-              break
-            end
-          end
-          
-          if @nuevo==true        
-              @conjunto=setConjunto(@ram).to_i 
-          end
-        else
-            @conjunto=0         
-        end 
-=end
-       
 
-
-
-         @relacion_componente=RelacionComponente.new(
-           componente_id:@ram.id,equipo_id:equipo_id,comp_serial_id:@comp_serie.id
-         )
-         @relacion_componente.save
-         @cantidad=@inventario_f.cantidad
-         @inventario_f.update(cantidad:@cantidad+1)
+          @relacion_componente=RelacionComponente.new(
+          componente_id:@ram.id,equipo_id:equipo_id,comp_serial_id:@comp_serie.id
+          )
+          @relacion_componente.save
+          @cantidad=@inventario_f.cantidad
+          @inventario_f.update(cantidad:@cantidad+1)
           i=i+1
         end
       end      
@@ -276,11 +245,24 @@ class EquiposController < ApplicationController
         @tipo=Tipocomp.find_by("nombre = 'Disco Duro'")
         @hdd=Componente.find_by("marca='All in one' and modelo='All in one' and tipocomp_id=?",@tipo.id) 
         @inventario_f=Inventario.find_by("tipocomp_id=?",@hdd.tipocomp_id)   
-        @conjuntos=RelacionCaracteristica.where("componente_id=? ",@hdd.id).order(conjunto: :asc).distinct 
+        #@conjuntos=RelacionCaracteristica.where("componente_id=? ",@hdd.id).order(conjunto: :asc).distinct 
         @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
         @carac2=Caracteristica.find_by("nombre = 'Tipo de Disco Duro'")
         @capacidad=params[:hdd_cap]+params[:hdd_mem_size]
+        @tipo=params[:tipoHDD]
         @nuevo=true
+
+        @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@hdd.id,@carac.id,@capacidad)
+        @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@hdd.id,@carac2.id,@tipo)
+        if @caracteristicas.nil? && @caracteristicas2.nil?          
+          @caracteristicas=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
+          @caracteristicas.save
+          logger.debug "******************* carac "+@caracteristicas.id.to_s
+          @caracteristicas2=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac2.id,valor_caracteristica:@tipo)
+          @caracteristicas2.save                                       
+        end
+        @conjunto = @caracteristicas.id.to_s+","+@caracteristicas2.id.to_s
+=begin
         if @conjuntos.count > 0
           @conjuntos.each do |cj|
             @relacion=RelacionCaracteristica.where(" componente_id=? and caracteristica_id=? and valor_caracteristica = '#{@capacidad}' and conjunto=?",@hdd.id,@carac.id,cj.conjunto)            
@@ -299,12 +281,7 @@ class EquiposController < ApplicationController
         else
           @conjunto=0
         end
-        if @nuevo == true          
-          @relacion=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad,conjunto:@conjunto)
-          @relacion.save
-          @relacion=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac2.id,valor_caracteristica:params[:tipoHDD],conjunto:@conjunto)
-          @relacion.save                           
-        end   
+=end       
         @comp_serie=@hdd.comp_serials.create(
           componente_id:@hdd.id,
           no_serie:params[:no_serie],
@@ -333,10 +310,11 @@ class EquiposController < ApplicationController
         end
         @inventario_f=Inventario.find_by("tipocomp_id=?",@procesador.tipocomp_id)           
         
-        @conjuntos=RelacionCaracteristica.where("componente_id=? ",@procesador.id).order(conjunto: :asc).distinct 
+        #@conjuntos=RelacionCaracteristica.where("componente_id=? ",@procesador.id).order(conjunto: :asc).distinct 
         @carac=Caracteristica.find_by("nombre = 'Frecuencia'")
         @frecuencia=params[:frecuencia]+params[:frenc_tipo]
         @nuevo=true
+=begin
         if @conjuntos.count > 0
           @conjuntos.each do |cj|
             @relacion=RelacionCaracteristica.where(" componente_id=? and caracteristica_id=? and valor_caracteristica = '#{@frecuencia}' and conjunto=?",@procesador.id,@carac.id,cj.conjunto)            
@@ -354,24 +332,28 @@ class EquiposController < ApplicationController
         else
           @conjunto=0
         end
-        if @nuevo == true          
-          @relacion=RelacionCaracteristica.new(componente_id:@procesador.id,caracteristica_id:@carac.id,valor_caracteristica:@frecuencia,conjunto:@conjunto)
-          @relacion.save                             
-        end   
-        @comp_serie=@procesador.comp_serials.create(
-          componente_id:@procesador.id,
-          no_serie:params[:no_serie],
-          no_activo_fijo:params[:no_activo_fijo],
-          tipocomp_id:@procesador.tipocomp_id,
-          disponible:false,
-          conjunto:@conjunto
-        )
-        @relacion_componente=RelacionComponente.new(
-          componente_id:@procesador.id,equipo_id:equipo_id,comp_serial_id:@comp_serie.id
-        )
-        @relacion_componente.save
-        @cantidad=@inventario_f.cantidad
-        @inventario_f.update(cantidad:@cantidad+1)
+=end 
+      @relacion=RelacionCaracteristica.find_by("componente_id=? and caracteristica_id=? and valor_caracteristica=?",@procesador.id,@carac.id,@frecuencia)
+      if @relacion.nil? 
+        @relacion=RelacionCaracteristica.new(componente_id:@procesador.id,caracteristica_id:@carac.id,valor_caracteristica:@frecuencia)
+        @relacion.save                             
+      end
+      @conjunto = @relacion.id
+
+      @comp_serie=@procesador.comp_serials.create(
+        componente_id:@procesador.id,
+        no_serie:params[:no_serie],
+        no_activo_fijo:params[:no_activo_fijo],
+        tipocomp_id:@procesador.tipocomp_id,
+        disponible:false,
+        conjunto:@conjunto
+      )
+      @relacion_componente=RelacionComponente.new(
+        componente_id:@procesador.id,equipo_id:equipo_id,comp_serial_id:@comp_serie.id
+      )
+      @relacion_componente.save
+      @cantidad=@inventario_f.cantidad
+      @inventario_f.update(cantidad:@cantidad+1)
       end
     end  
 
