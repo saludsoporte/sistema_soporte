@@ -25,18 +25,28 @@
             </tr>    
             <tr class="table-dark"><td colspan="4"><b>Características</b></td></tr>
             
-            <% if @componente.marca == "All in one" && @componente.modelo=="All in one" &&  ['Disco Duro'].include?(@componente.tipocomp.nombre) %>
-                <%= @componente.tipocomp.nombre%>
+            <% if @componente.marca == "All in one" && @componente.modelo=="All in one" &&  ['Disco Duro',"Monitor","Teclado","Procesador","Ram",
+                "Tarjeta Madre","Equipo de Computo","Servidor",
+                "Salida de Video","Sistema Operativo"].include?(@componente.tipocomp.nombre)
+            %>                
+                <tr>
+                    <td colspan="3">  
+                        <input id="comp_id" value="<%= params[:id] %>" hidden />
+                        Seleccionar una existencia
+                        <%= select :relacion,:conjunto,{},{},{style: :"width:100%",class: :"form-select",id: :relacion,name: :conjunto} do  %>
+                            <%= options_from_collection_for_select(CompSerial.where("componente_id=?",params[:id]),:id,:informacion) %> 
+                        <% end %>                    
+                    </td>
+                </tr>
+            <% else %>            
+                <% @caracteristicas = RelacionCaracteristica.where("componente_id = ? ",params[:id])%>
+                <% @caracteristicas.each do | ca| %>
+                <tr colspan="3">
+                    <td><%= ca.caracteristica.nombre %></td>
+                    <td><%= ca.valor_caracteristica %></td>
+                </tr>
+                <% end %>
             <% end %>
-            <tr>
-                <td colspan="3">  
-                    <input id="comp_id" value="<%= params[:id] %>" hidden />
-                    Seleccionar una existencia
-                    <%= select :relacion,:conjunto,{},{},{style: :"width:100%",class: :"form-select",id: :relacion,name: :conjunto} do  %>
-                        <%= options_from_collection_for_select(CompSerial.where("componente_id=?",params[:id]),:id,:informacion) %> 
-                    <% end %>                    
-                </td>
-            </tr>
             <tr>
                 <td>            
                     <div id="caracteristicas" >
@@ -46,13 +56,14 @@
         </tbody>
     </table>        
 </div>
-<%= form_with url: relacion_caracteristicas_cargar_conjuntos_path , method: :get do |f|%>
 <div class="borde-reporte container">
+<%= form_with url: relacion_caracteristicas_cargar_conjuntos_path , method: :get do |f|%>
+
     <%= f.text_field :compo_id ,value: params[:id], hidden: :true %>
     <input id="conjunto" name="conjunto" hidden />
-    <%= f.submit  "Editar", id: :submit_con, class: :"btn btn-mod btn-sm", disabled: :true %>        
-    <%= link_to raw("#{image_tag("plus-circle.svg")} Añadir Características"), new_relacion_caracteristica_path(comp_id:params[:id],page:params[:page]),{style: :"margin:2px",class: :"btn-sm btn btn-success" , disabled: :true }%>
-</div>
+    <%= f.submit  "Editar", id: :submit_con, class: :"btn btn-mod btn-sm", disabled: :true %>    
+    <%= link_to raw("#{image_tag("plus-circle.svg")} Añadir Características"), new_relacion_caracteristica_path(comp_id:params[:id],page:params[:page]),style: :"margin:2px",class: :"btn-sm btn btn-success" , disabled:true %>    
 <% end %>
+</div>
 <%= javascript_pack_tag 'componentes.js' %>
 <%= render "partials/modal_plantilla" %>

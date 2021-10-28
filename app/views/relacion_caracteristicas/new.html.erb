@@ -2,8 +2,7 @@
     <h4>Agregar Caracteristicas al Componente</h4>
 </div>
 <%= form_for(@relacion) do |f| %>
-<div class="container borde-reporte letra">    
- 
+<div class="container borde-reporte letra">     
         <div class="row">
             <div class="col-sm">
                 <%= f.label :caractersitica ,"Característica" %>
@@ -26,12 +25,20 @@
         <div id="div_carac" class="row padding-div">          
         </div>        
         <div id="caracteristicas" >
-        </div>        
-         
+        </div> 
     <input id="comp_id" value="<%=params[:comp_id]%>" hidden>
 </div> 
+<div class="borde-reporte container">
+<div class="row"><b>Caracteristicas</b></div>
+    <% @caracteristicas.each do |ca|%>
+    <div class="row">
+        <div class="col-sm"><%= ca.caracteristica.nombre %></div>
+        <div class="col-sm"><%= ca.valor_caracteristica %></div>
+    </div>
+    <% end %>
+</div>
 <div class="borde-reporte container">      
-    <%= f.submit "Agregar caracteristica",id: :submit_con,style: :"margin-top:3px",class: :"btn-sm btn btn-success padding-div",disabled: :true%>  
+    <%= f.submit "Agregar caracteristica",id: :submit_con,style: :"margin-top:3px",class: :"btn-sm btn btn-success padding-div"%>  
     <%= link_to "Nueva caracteristica" , new_caracteristica_path , class: :"btn-sm btn btn-primary padding-div"%>  
     <%= link_to 'Regresar a componentes ', componentes_path(page:params[:page]), class: :"btn btn-sm btn-secondary" %>
 </div>

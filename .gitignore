@@ -1,5 +1,5 @@
 node_modules
 tmp
 log
-/config/database.yml
-/log/development.log
+#/config/database.yml
+#/log/development.log

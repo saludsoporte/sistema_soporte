@@ -24,7 +24,7 @@ class RelacionCaracteristicasController < ApplicationController
   def new
     @componente=Componente.find(params[:comp_id])
     @relacion=RelacionCaracteristica.new
-    @caracteristicas=RelacionCaracteristica.paginate(page:params[:page]).where("conjunto=0 and componente_id=?",@componente.id)
+    @caracteristicas=RelacionCaracteristica.where("componente_id=?",@componente.id)
     
   end
   def carga_conjunto
@@ -71,9 +71,23 @@ class RelacionCaracteristicasController < ApplicationController
         @componente=Componente.find(@caracteristicas.componente_id)
         redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id])
       else
-        logger.debug "/*/*/*/*/**/*/54454"
+        
         @relacion=RelacionCaracteristica.new
-        redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id],alert:"Ya existe")
+        if params[:relacion_caracteristica][:caracteristica_id].nil?
+          logger.debug "/*/*/*/*/**/*/54454"  
+          @error=1
+        end
+        
+        if params[:relacion_caracteristica][:valor_caracteristica]==""
+          @error=2
+        end
+
+        if params[:relacion_caracteristica][:caracteristica_id].nil? && params[:relacion_caracteristica][:valor_caracteristica]==""
+          @error=3
+        end
+
+        params[:relacion_caracteristica][:valor_caracteristica].to_s
+        redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id],error:@error)
       end      
     else      
       @relacion=RelacionCaracteristica.new
@@ -83,12 +97,6 @@ class RelacionCaracteristicasController < ApplicationController
 
   private 
   def params_comp   
-    if params[:conjunto].nil? 
-      @conjunto=0
-    else
-      @conjunto=params[:conjunto]
-    end
-    params[:relacion_caracteristica][:conjunto]=@conjunto
-    params.require(:relacion_caracteristica).permit(:componente_id,:caracteristica_id,:valor_caracteristica,:conjunto)
+    params.require(:relacion_caracteristica).permit(:componente_id,:caracteristica_id,:valor_caracteristica)
   end
 end

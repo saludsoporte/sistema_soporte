@@ -26,8 +26,9 @@ class ComponentesController < ApplicationController
   def carga_conjunto
     logger.debug "************ "+@relacion.to_s
     @relacion=Array.new
-    @serial=CompSerial.find(params[:existencia])       
-    @caracteristicas=RelacionCaracteristica.where("componente_id=? and id in (?)",params[:comp],@serial.conjunto)
+    @serial=CompSerial.find(params[:existencia])    
+    
+    @caracteristicas=RelacionCaracteristica.where("componente_id=? and id in (#{@serial.conjunto})",params[:comp])
     @caracteristicas.each do |ca|
        @relacion.push(caracteristica:ca.caracteristica.nombre,valor:ca.valor_caracteristica)
     end   
