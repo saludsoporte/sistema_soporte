@@ -23,13 +23,7 @@
                 <%= f.text_field :valor_caracteristica, style: :"width:100%" %> <b>(Opcional)</b>
             </div>            
         </div>
-        <div id="div_carac" class="row padding-div">
-            <div class="col-sm">Seleccionar las Características del componente</div>
-            <div class="col-sm">
-                <%= select :relacion,:conjunto,{},{},{class: :"form-select",id: :relacion,name: :conjunto} do  %>
-                    <%= options_from_collection_for_select(RelacionCaracteristica.where("componente_id=?",params[:comp_id]).select(:conjunto).order(conjunto: :asc).distinct,:conjunto,:conjuntos) %> 
-                <% end %>                 
-            </div>
+        <div id="div_carac" class="row padding-div">          
         </div>        
         <div id="caracteristicas" >
         </div>        

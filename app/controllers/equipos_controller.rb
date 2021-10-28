@@ -212,10 +212,13 @@ class EquiposController < ApplicationController
                 
         @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@tipocamp.id,@tipo_mem)
         @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@carac.id,@capacidad)
-        if @caracteristicas.nil? && @caracteristicas2.nil?          
+        if @caracteristicas.nil? &&        
           @caracteristicas=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
           @caracteristicas.save
           logger.debug "******************* carac "+@caracteristicas.id.to_s
+        end
+        
+        if @caracteristicas2.nil?   
           @caracteristicas2=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@tipocamp.id,valor_caracteristica:@tipo_mem)
           @caracteristicas2.save                                       
         end
@@ -254,10 +257,14 @@ class EquiposController < ApplicationController
 
         @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@hdd.id,@carac.id,@capacidad)
         @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@hdd.id,@carac2.id,@tipo)
-        if @caracteristicas.nil? && @caracteristicas2.nil?          
+        logger.debug "*********** carac1"+@caracteristicas.nil?.to_s
+        logger.debug "*********** carac2"+@caracteristicas2.nil?.to_s
+        if @caracteristicas.nil? 
           @caracteristicas=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
           @caracteristicas.save
           logger.debug "******************* carac "+@caracteristicas.id.to_s
+        end
+        if @caracteristicas2.nil?          
           @caracteristicas2=RelacionCaracteristica.new(componente_id:@hdd.id,caracteristica_id:@carac2.id,valor_caracteristica:@tipo)
           @caracteristicas2.save                                       
         end

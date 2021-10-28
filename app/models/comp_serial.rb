@@ -17,6 +17,10 @@ class CompSerial < ApplicationRecord
 
   end
 
+  def informacion
+    "No. de Serie :"+self.no_serie+" | Marca :"+self.componente.marca+" | Modelo :"+self.componente.modelo
+  end
+
   def conjunto_arr
     @conjunto=self.conjunto.split(",")
   end

@@ -144,6 +144,13 @@ $(document).on('turbolinks:load', function() {
         remove: true
     })
 
+    $("#relacion").select2({
+        placeholder: "Selecciona uno",
+        allowClear: true,
+        clear: true,
+        remove: true
+    })
+
     $("#user_select").val(null).trigger("change");
     $("#equipos").val(null).trigger("change");
     $("#caracteristica_id").val(null).trigger("change");
@@ -181,10 +188,11 @@ $(document).on('turbolinks:load', function() {
     );
 
     $('#relacion').on('change', function() {
-        var id = $("#relacion").val();
+        var existencia = $("#relacion").val();
         var componente = $("#comp_id").val();
-        $("#conjunto").val(id);
-        carga_conjuntos(id, componente);
+        $("#conjunto").val(existencia);
+        if (existencia != null)
+            carga_conjuntos(existencia, componente);
     });
 
     $("#relacion").val(null).trigger("change");
@@ -294,14 +302,14 @@ function verifica_no_serie(id_user) {
     });
 }
 
-function carga_conjuntos(id_val, componente) {
+function carga_conjuntos(existencia_id, componente) {
 
     $.ajax({
         type: "get",
         dataType: "json",
         cache: false,
-        url: 'carga_conjunto?compo_id=' + componente + "&conjunto=" + id_val,
-        data: { id: id_val },
+        url: 'carga_conjunto',
+        data: { existencia: existencia_id, comp: componente },
         error: function(XMLHttpRequest, errorTextStatus, error) {
             console.log("Failed : " + errorTextStatus + " ;" + error);
         },

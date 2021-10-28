@@ -21,7 +21,7 @@
     <% if !@equipo.nil? %>
     <%= link_to "Equipo asignado", equipo_path(@equipo.id), class: :"form-control style-no",style: :"background-color: white;"%>   
     <% end %>
-    <%= link_to "Solicitudes creadas y seleccionadas", solicituds_path(id_perfil:Perfil.find_by(id_usuario:@user.id).id), class: :"form-control style-no",style: :"background-color: white;"%>
+    <%= link_to "Solicitudes creadas y seleccionadas", solicituds_path(id_perfil:params[:id]), class: :"form-control style-no",style: :"background-color: white;"%>
     <% if @user.permisos.include?(17) %>
         <%= link_to "Solicitudes disponibles", solicituds_path , class: :"form-control style-no",style: :"background-color: white;"%>
     <% end %>

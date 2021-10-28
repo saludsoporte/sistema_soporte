@@ -6,9 +6,9 @@ class RelacionCaracteristicasController < ApplicationController
     
   end
 
-  def cargar_conjuntos
-    logger.debug "dasdasdasdsad"
-    @relacion=RelacionCaracteristica.where("componente_id = ? and conjunto=?",params[:compo_id],params[:conjunto])           
+  def cargar_conjuntos    
+    @conjunto=CompSerial.find(params[:conjunto])
+    @relacion=RelacionCaracteristica.where("componente_id = ? and id in (?)",params[:compo_id],@conjunto.conjunto)           
   end
 
   def edit

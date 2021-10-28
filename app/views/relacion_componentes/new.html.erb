@@ -83,16 +83,13 @@
             </tbody>
             
             <tbody id="group-of-rows-<%=r.id%>" class="collapse">      
-                 <tr><td colspan="5"><b>Características</b></td><tr>            
-                <% r.comp_serials.any? do |p| %>
-                    p.
-                <% end %>
-                
+                 <tr><td colspan="5"><b>Características</b></td><tr>   
+                <% r.serial.conjunto_arr.each do |cj| %>                   
                     <tr>                        
-                        <td><%# rc.caracteristica.nombre %></td>                        
-                        <td colspan="4">: <%# rc.valor_caracteristica %></td>                    
+                        <td><%= r.serial.relacion_conjunto(cj).caracteristica.nombre %></td>                        
+                        <td colspan="4">: <%= r.serial.relacion_conjunto(cj).valor_caracteristica %></td>                    
                     </tr>                    
-                
+                <% end %>
             </tbody>            
         <% end %>
         </table>
