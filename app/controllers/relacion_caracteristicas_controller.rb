@@ -66,9 +66,20 @@ class RelacionCaracteristicasController < ApplicationController
     logger.debug "*************** "+params[:relacion_caracteristica][:valor_caracteristica].to_s
     
     if @carac.nil?
-      @caracteristicas=RelacionCaracteristica.new(params_comp) 
+      @caracteristicas=RelacionCaracteristica.new(params_comp)       
       if @caracteristicas.save
         @componente=Componente.find(@caracteristicas.componente_id)
+        @caracs=RelacionCaracteristica.where("componente_id=?",@componente.id)
+        @ids=""
+        @caracs.each.with_index do |c,i|
+          if @caracs.length-1 == i
+            @ids+=c.id.to_s
+          else
+            @ids+=c.id.to_s+","
+          end          
+        end
+        @seriales=CompSerial.where("componente_id=?",@componente.id)
+        @seriales.update_all(conjunto:@ids)
         redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id])
       else
         

@@ -20,9 +20,18 @@
                     <td><%= c.modelo %></td>         
                     <td><%= c.marca %></td>                
                     <td>
+                    <% if c.marca == "All in one" && c.modelo=="All in one" &&  ['Disco Duro',"Monitor","Teclado","Procesador","Ram",
+                "Tarjeta Madre","Equipo de Computo","Servidor",
+                "Salida de Video","Sistema Operativo"].include?(c.tipocomp.nombre)
+            %> 
                         <%= link_to raw("#{image_tag("binoculars.svg")} Ver componente"),componente_path(c.id,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-primary" %>                        
+            
+            <% else%>
+                        <%= link_to raw("#{image_tag("binoculars.svg")} Ver componente"),componente_path(c.id,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-primary" %>                        
+            
                         <%= link_to "Nueva existencia",new_comp_serial_path(comp_id:c.id,existencia:true,page:params[:page]),style: :"margin:2px",class: :"btn btn-sm btn-mod" %>
-                        <%# link_to 'Existencias', comp_serials_path(comp_id:c.id),style: :"margin:2px",class: :"btn btn-sm btn-danger" %>
+                        <%= link_to 'Existencias', comp_serials_path(comp_id:c.id),style: :"margin:2px",class: :"btn btn-sm btn-danger" %>
+                    <% end%>
                     </td>            
                 </tr>         
                   

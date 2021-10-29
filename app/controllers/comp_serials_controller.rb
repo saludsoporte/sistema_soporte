@@ -134,7 +134,16 @@ class CompSerialsController < ApplicationController
   
   def params_serie
     params[:comp_serial][:tipocomp_id]=@componente.tipocomp_id
-    params[:comp_serial][:conjunto]=params[:conjunto]
+    @caracs=RelacionCaracteristica.where("componente_id=?",@componente.id)
+    @ids=""
+    @caracs.each.with_index do |c,i|
+      if @caracs.length-1 == i
+        @ids+=c.id.to_s
+      else
+        @ids+=c.id.to_s+","
+      end          
+    end
+    params[:comp_serial][:conjunto]=@ids
     params.require(:comp_serial).permit(:no_serie,:no_activo_fijo,:tipocomp_id,:conjunto)
   end
 

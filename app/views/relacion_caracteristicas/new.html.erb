@@ -1,6 +1,26 @@
+<% if params[:error]=='1' %>
+    <div class="container borde-reporte alert-danger">
+        <p>No se ha seleccionado una caracteristica</p>
+    </div>
+<% end%>
+<% if params[:error]=='2' %>
+    <div class="container borde-reporte alert-danger">
+        <p>No se ha establecido un valor</p>
+    </div>
+<% end%>
+<% if params[:error]=='3' %>
+    <div class="container borde-reporte alert-danger">
+        <p>No se ha seleccionado una caracteristica</p>
+    </div>
+     <div class="container borde-reporte alert-danger">
+        <p>No se ha establecido un valor</p>
+    </div>
+<% end%>
+
 <div class="titulos letra container borde-reporte">
     <h4>Agregar Caracteristicas al Componente</h4>
 </div>
+<%= render "partials/datos_componente" %>
 <%= form_for(@relacion) do |f| %>
 <div class="container borde-reporte letra">     
         <div class="row">
@@ -19,7 +39,7 @@
                 <%= f.label :valor_caracteristica,"Descripción o Valor de la Característica" %>       
             </div>
             <div class="col-sm">
-                <%= f.text_field :valor_caracteristica, style: :"width:100%" %> <b>(Opcional)</b>
+                <%= f.text_field :valor_caracteristica, style: :"width:100%" %>
             </div>            
         </div>
         <div id="div_carac" class="row padding-div">          
