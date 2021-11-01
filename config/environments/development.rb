@@ -46,7 +46,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'informaticassslp@gmail.com',
-    password:             'Mb9&vp2020##',
+    password:             'Saludslp21**',
     authentication:       'plain',
     
   }
