@@ -151,6 +151,7 @@ $(document).on('turbolinks:load', function() {
         remove: true
     })
 
+
     $("#user_select").val(null).trigger("change");
     $("#equipos").val(null).trigger("change");
     $("#caracteristica_id").val(null).trigger("change");
@@ -188,11 +189,17 @@ $(document).on('turbolinks:load', function() {
     );
 
     $('#relacion').on('change', function() {
-        var existencia = $("#relacion").val();
-        var componente = $("#comp_id").val();
-        $("#conjunto").val(existencia);
-        if (existencia != null)
-            carga_conjuntos(existencia, componente);
+        var existencia_id = $("#relacion").val();
+        $("#conjunto").val(existencia_id);
+        $("#conjunto_2").val(existencia_id);
+        if ($("#relacion").val() != null) {
+            $("#submit_con").prop("hidden", false)
+            $("#añadir_c").prop("hidden", false);
+            // carga_conjuntos(existencia_id);
+        } else {
+            $("#submit_con").prop("hidden", true)
+            $("#añadir_c").prop("hidden", true);
+        }
     });
 
     $("#relacion").val(null).trigger("change");
@@ -302,37 +309,28 @@ function verifica_no_serie(id_user) {
     });
 }
 
-function carga_conjuntos(existencia_id, componente) {
+function carga_conjuntos(existencia_id) {
 
     $.ajax({
         type: "get",
         dataType: "json",
         cache: false,
         url: 'carga_conjunto',
-        data: { existencia: existencia_id, comp: componente },
+        data: { existencia: existencia_id },
         error: function(XMLHttpRequest, errorTextStatus, error) {
             console.log("Failed : " + errorTextStatus + " ;" + error);
         },
         success: function(data) {
-            if (data == false) {
-                $("#submit_con").prop("disabled", true);
-            } else if (data == true) {
-                $("#div_carac").html("");
-                $("#submit_con").prop("disabled", false);
-            } else if (data.length == 0) {
-                $("#submit_con").prop("disabled", false);
-            } else {
 
-                var div = " <b>Características</b>";
-                var index = 0;
-                $.each(data, function() {
-                    div += "<div class='row'><div class='col-sm' >" + data[index].caracteristica + "</div>" +
-                        "<div class='col-sm'>" + data[index].valor + "</div></div>";
-                    index++;
-                });
-                $("#caracteristicas").html(div);
-                $("#submit_con").prop("disabled", false);
-            }
+            var div = " <b>Características</b>";
+            var index = 0;
+            $.each(data, function() {
+                div += "<div class='row'><div class='col-sm' >" + data[index].caracteristica + "</div>" +
+                    "<div class='col-sm'>" + data[index].valor + "</div></div>";
+                index++;
+            });
+            $("#caracteristicas").html(div);
+            //$("#submit_con").prop("disabled", false);           
         }
     });
 }

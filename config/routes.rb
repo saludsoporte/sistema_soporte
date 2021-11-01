@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get "solicituds/cargar_solicitudes_por_user", to: "solicituds#cargar_solicitudes_por_user"
 
   get "relacion_caracteristicas/cargar_conjuntos", to: "relacion_caracteristicas#cargar_conjuntos"
+  get "relacion_caracteristicas/new_cargar_conjuntos", to: "relacion_caracteristicas#new_cargar_conjuntos"
   get "inventarios/carga_inventario", to: "invectarios#carga_inventario"
   
   get "comp_serials/asignar_equipo", to: "comp_serials#asignar_equipo"

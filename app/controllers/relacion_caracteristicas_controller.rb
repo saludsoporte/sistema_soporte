@@ -8,7 +8,13 @@ class RelacionCaracteristicasController < ApplicationController
 
   def cargar_conjuntos    
     @conjunto=CompSerial.find(params[:conjunto])
-    @relacion=RelacionCaracteristica.where("componente_id = ? and id in (?)",params[:compo_id],@conjunto.conjunto)           
+    @relacion=RelacionCaracteristica.where("componente_id = ? and id in (#{@conjunto.conjunto})",params[:compo_id])           
+  end
+
+  def new_cargar_conjuntos    
+    @conjunto=CompSerial.find(params[:conjunto_2])
+    @relacion=RelacionCaracteristica.where("componente_id = ? and id in (#{@conjunto.conjunto})",params[:compo_id])           
+    redirect_to new_relacion_caracteristica_path(comp_id:params[:compo_id],serial:@conjunto.id)
   end
 
   def edit
@@ -78,8 +84,13 @@ class RelacionCaracteristicasController < ApplicationController
             @ids+=c.id.to_s+","
           end          
         end
-        @seriales=CompSerial.where("componente_id=?",@componente.id)
-        @seriales.update_all(conjunto:@ids)
+        if params[:serial].nil?        
+          @seriales=CompSerial.where("componente_id=?",@componente.id)
+          @seriales.update_all(conjunto:@ids)
+        else
+            @serial=CompSerial.find(params[:serial])
+            @serial.update(conjunto:@ids)
+        end
         redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id])
       else
         

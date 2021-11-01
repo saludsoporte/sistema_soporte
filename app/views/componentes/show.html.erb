@@ -57,13 +57,24 @@
     </table>        
 </div>
 <div class="borde-reporte container">
-<%= form_with url: relacion_caracteristicas_cargar_conjuntos_path , method: :get do |f|%>
-
-    <%= f.text_field :compo_id ,value: params[:id], hidden: :true %>
-    <input id="conjunto" name="conjunto" hidden />
-    <%= f.submit  "Editar", id: :submit_con, class: :"btn btn-mod btn-sm", disabled: :true %>    
-    <%= link_to raw("#{image_tag("plus-circle.svg")} Añadir Características"), new_relacion_caracteristica_path(comp_id:params[:id],page:params[:page]),style: :"margin:2px",class: :"btn-sm btn btn-success" , disabled:true %>    
-<% end %>
+    <table>
+        <tr >
+        <td>
+            <%= form_with url: relacion_caracteristicas_cargar_conjuntos_path , method: :get do |f|%>
+            <%= f.text_field :compo_id ,value: params[:id],hidden: :true%>
+            <input id="conjunto" name="conjunto"   />
+            <%= f.submit  "Editar", id: :submit_con, class: :"btn btn-mod btn-sm", hidden: :true %>            
+            <% end %>
+        </td>
+        <td>
+            <%= form_with url: relacion_caracteristicas_new_cargar_conjuntos_path , method: :get do |f| %>
+            <%= f.text_field :compo_id ,value: params[:id],hidden: :true%>
+            <input id="conjunto_2" name="conjunto_2"  />
+            <%= f.submit "Añadir Características",style: :"margin:2px",class: :"btn-sm btn btn-success",id: :"añadir_c", hidden: :true %>    
+            <% end %>
+        </td>
+        </tr>
+    </table>
 </div>
 <%= javascript_pack_tag 'componentes.js' %>
 <%= render "partials/modal_plantilla" %>
