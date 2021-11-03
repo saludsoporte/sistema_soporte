@@ -66,7 +66,7 @@ function cargar_tabla() {
 }
 
 function tabla_normal(data) {
-    var div = '<table id = "tabla-normal" class = "borde-reporte letra container table table-striped letra tabla-resp" >';
+    var div = '<table id = "tabla-normal" class = "borde-reporte letra  table-sm table table-striped letra tabla-resp" >';
     div += '<thead class = "table-dark" ><th> Rol </th> <th> Nombre </th> <th> Nombre de Usuario </th> <th> Área </th> <th > Dirección </th>';
     div += '<th > Subdirección </th> <th> Departamento </th> <th > Correo </th> </thead> <tbody><tr ><td >' + data.rol;
     div += '</td> <td >' + data.nombre_personal + '</td> <td >' + data.username + '</td>';

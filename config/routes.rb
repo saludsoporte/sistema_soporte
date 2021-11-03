@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get "relacion_caracteristicas/new_cargar_conjuntos", to: "relacion_caracteristicas#new_cargar_conjuntos"
   get "inventarios/carga_inventario", to: "invectarios#carga_inventario"
   
+  get "reportes/crear_reporte", to: "reportes#crear_reporte"
+
   get "comp_serials/asignar_equipo", to: "comp_serials#asignar_equipo"
   get "equipos/cargar_equipo_completo", to: "equipos#cargar_equipo_completo"
 

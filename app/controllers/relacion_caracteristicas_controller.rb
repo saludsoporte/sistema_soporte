@@ -6,9 +6,13 @@ class RelacionCaracteristicasController < ApplicationController
     
   end
 
-  def cargar_conjuntos    
-    @conjunto=CompSerial.find(params[:conjunto])
-    @relacion=RelacionCaracteristica.where("componente_id = ? and id in (#{@conjunto.conjunto})",params[:compo_id])           
+  def cargar_conjuntos 
+    if !params[:conjunto].nil?
+      @conjunto=CompSerial.find(params[:conjunto])
+      @relacion=RelacionCaracteristica.where("componente_id = ? and id in (#{@conjunto.conjunto})",params[:compo_id])           
+    else 
+      @relacion=RelacionCaracteristica.where("componente_id=?",params[:componente])
+    end 
   end
 
   def new_cargar_conjuntos    
@@ -75,7 +79,7 @@ class RelacionCaracteristicasController < ApplicationController
       @caracteristicas=RelacionCaracteristica.new(params_comp)       
       if @caracteristicas.save
         @componente=Componente.find(@caracteristicas.componente_id)
-        @caracs=RelacionCaracteristica.where("componente_id=?",@componente.id)
+        @caracs=RelacionCaracteristica.where("componente_id=?",@componente.id).order(id: :asc)
         @ids=""
         @caracs.each.with_index do |c,i|
           if @caracs.length-1 == i
@@ -88,8 +92,8 @@ class RelacionCaracteristicasController < ApplicationController
           @seriales=CompSerial.where("componente_id=?",@componente.id)
           @seriales.update_all(conjunto:@ids)
         else
-            @serial=CompSerial.find(params[:serial])
-            @serial.update(conjunto:@ids)
+          @serial=CompSerial.find(params[:serial])
+          @serial.update(conjunto:@ids)
         end
         redirect_to new_relacion_caracteristica_path(comp_id:params_comp[:componente_id])
       else

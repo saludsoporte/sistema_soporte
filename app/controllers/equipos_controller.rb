@@ -6,7 +6,6 @@ class EquiposController < ApplicationController
   def show
     @equipo=Equipo.find(params[:id])
     @componentes=RelacionComponente.paginate(page:params[:page]).where("equipo_id = ?",@equipo.id)    
-    
   end
 
   def edit

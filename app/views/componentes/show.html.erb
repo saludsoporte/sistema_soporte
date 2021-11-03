@@ -58,7 +58,11 @@
 </div>
 <div class="borde-reporte container">
     <table>
-        <tr >
+        <tr >         
+        <% if @componente.marca == "All in one" && @componente.modelo=="All in one" &&  ['Disco Duro',"Monitor","Teclado","Procesador","Ram",
+            "Tarjeta Madre","Equipo de Computo","Servidor",
+            "Salida de Video","Sistema Operativo"].include?(@componente.tipocomp.nombre)
+        %>  
         <td>
             <%= form_with url: relacion_caracteristicas_cargar_conjuntos_path , method: :get do |f|%>
             <%= f.text_field :compo_id ,value: params[:id],hidden: :true%>
@@ -73,6 +77,14 @@
             <%= f.submit "Añadir Características",style: :"margin:2px",class: :"btn-sm btn btn-success",id: :"añadir_c", hidden: :true %>    
             <% end %>
         </td>
+        <% else %>
+         <td>
+            <%=  link_to  "Editar", relacion_caracteristicas_cargar_conjuntos_path(conjunto:nil,componente:@componente.id) ,id: :submit_con, class: :"btn btn-mod btn-sm"%>                        
+        </td>
+        <td>      
+            <%= link_to "Añadir Características",new_relacion_caracteristica_path(comp_id:@componente.id),style: :"margin:2px",class: :"btn-sm btn btn-success",id: :"añadir_c" %>                
+        </td>
+        <% end %>
         </tr>
     </table>
 </div>

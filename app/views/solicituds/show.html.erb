@@ -8,6 +8,7 @@
         <% if current_user.rol_id ==1 %>        
                 <%= link_to "Cancelar Solicitud", solicituds_cancel_sol_path(id:params[:id]),class: :"botones-sol letra btn btn-danger btn-sm" %>
         <% end %>
+        <%= link_to 'Crear reporte',reportes_crear_reporte_path(solicitud_id:params[:id]), class: :"btn btn-primary btn-sm" %>
     <% else %>
         <div style="text-align: center;" class="alert alert-danger estados">Cancelada</div>
     <% end %>

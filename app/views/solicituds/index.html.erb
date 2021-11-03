@@ -115,7 +115,7 @@
                                 <% if sol.tecnico_id != current_user.id %>
                                     <div class="btn-mod-oc btn btn-sm" title="Atiendendo por otro tecnico"><%= raw("#{image_tag("reception-0.svg")} Tomada") %></div>
                                 <% else %>
-                                    <%= link_to raw("#{image_tag("check-circle.svg")} Atender"),new_reporte_path(solicitud_id:sol.id),title: :"Atender Solicitud",class: :"btn btn-sm btn-mod" %>
+                                    <%= link_to raw("#{image_tag("check-circle.svg")} Atender "),reportes_crear_reporte_path(solicitud_id:sol.id),title: :"Atender Solicitud",class: :"btn btn-sm btn-mod" %>
                                 <% end %>
                             <% end %>
                         <% elsif sol.estado_id == 15 %>

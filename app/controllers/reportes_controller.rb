@@ -22,11 +22,60 @@ class ReportesController < ApplicationController
     end   
   end
 
+  def crear_reporte
+    @reporte=Reporte.new  
+    @asignacion=Asignacion.new
+    @solicitud=Solicitud.find(params[:solicitud_id])
+    @solicitante=User.find(@solicitud.solicitante_id)  
+    @repo_sol=Reporte.find_by(solicitud_id:@solicitud.id)
+    @error=true
+    if Reporte.all.count > 0
+      @folio=@solicitud.id.to_s+(Reporte.last.id+1).to_s
+    else
+     @folio=@solicitud.id.to_s+1.to_s
+    end
+    if @repo_sol.nil?
+      @hora=Time.now.strftime("%H:%M")
+      logger.debug"*//*/*/*/*/*/*/*/*/**************" +@hora.to_s
+      
+      @reporte=Reporte.new(
+        folio:@folio,
+        solicitud_id:@solicitud.id,
+        serie:@solicitud.serie,
+        estado_id:Estado.find_by(estado:"Pendiente").id,
+        user_id:@solicitud.solicitante_id,
+        descripcion_sencilla:@solicitud.descripcion_sencilla,
+        area:@solicitante.area_nombre,
+        direccion:@solicitante.direccion_nombre,
+        subdireccion:@solicitante.subdireccion_nombre,
+        departamento:@solicitante.departamento_nombre,
+        hora_ingreso:@hora,
+        fecha_ingreso:Time.now.strftime("%Y-%m-%d")
+
+      )
+      if @reporte.save              
+        @estado_id=Estado.find_by(estado:"Atendiendo",tipo:"Solicitud").id    
+        @solicitud.update(estado_id:@estado_id)
+        @asignacion=Asignacion.new(asignacion_params)
+        @asignacion.save
+        @error=false
+        redirect_to reporte_path(Reporte.last.id)
+      end
+    else
+      @reporte=Reporte.new  
+      @asignacion=Asignacion.new
+      @solicitud=Solicitud.find(params[:solicitud_id])
+      @solicitante=User.find(@solicitud.solicitante_id)
+      render :new
+    end
+  end
+
   def new
     @reporte=Reporte.new  
     @asignacion=Asignacion.new
     @solicitud=Solicitud.find(params[:solicitud_id])
     @solicitante=User.find(@solicitud.solicitante_id)
+    
   end
   
   def create
@@ -90,7 +139,8 @@ class ReportesController < ApplicationController
     @reporte=Reporte.find(params[:id])
     @solicitante=User.find(@reporte.user_id)
     @solicitud=Solicitud.find(@reporte.solicitud_id)
-    @actividades=Actividad.where("reporte_id = ?",params[:id])   
+    @actividades=Actividad.where("reporte_id = ?",params[:id]) 
+    @equipo=Equipo.find_by(user_id:@solicitante.id)  
     respond_to do |format|
       format.html { }
       format.json {} 

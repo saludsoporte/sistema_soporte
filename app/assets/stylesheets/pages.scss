@@ -1,3 +1,27 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+table.qrcode {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    margin-top: 100px;
+    margin-bottom: 12px;
+    td {
+        border-width: 0;
+        border-style: none;
+        border-color: #0000ff;
+        border-collapse: collapse;
+        padding: 0;
+        margin: 0;
+        width: 3px;
+        height: 3px;
+        &.black {
+            background-color: #000 !important
+        }
+        &.white {
+            background-color: #fff !important
+        }
+    }
+}

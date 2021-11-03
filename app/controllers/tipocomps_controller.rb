@@ -4,6 +4,7 @@ class TipocompsController < ApplicationController
   end
 
   def show
+    
   end
 
   def new
@@ -13,6 +14,8 @@ class TipocompsController < ApplicationController
   def create
     @tipo=Tipocomp.new(params_tipo)
     if @tipo.save
+      @inventario=Inventario.new(tipocomp_id:@tipo.id,cantidad:0,disponibles:0)
+      @inventario.save
       redirect_to tipocomps_path
     else
       render :new

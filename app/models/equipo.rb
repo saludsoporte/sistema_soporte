@@ -21,4 +21,14 @@ class Equipo < ApplicationRecord
       @msg+="Equipo no asignado"
     end    
   end
+
+  def qr_image
+    @qrcode = RQRCode::QRCode.new("https://sesalud.slpsalud.gob.mx:4000/equipos/"+self.id.to_s)
+    @svg=@qrcode.as_svg(
+      offset:0,
+      color:'000',        
+      shape_rendering: 'crispEdges',
+      module_size: 3
+    )
+  end
 end

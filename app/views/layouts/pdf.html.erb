@@ -19,10 +19,14 @@
             <tr>
                 <td><%= image_tag wicked_pdf_asset_base64  ("Logo_nuevo.png")%></td>
                 <td>
-                    <div style="font-size: 30px; text-align:center; width:800px"> <b>Servicios de Salud de San Luis Potosí</b></div>
-                    <div style="font-size: 30px; text-align:center; width:800px"> <b>Departamento de Informática</b></div>
+                    <div style="font-size: 30px; text-align:center; width:680px"> <b>Servicios de Salud de San Luis Potosí</b></div>
+                    <div style="font-size: 30px; text-align:center; width:680px"> <b>Departamento de Informática</b></div>
                 </td>  
-                <td><%= image_tag wicked_pdf_asset_base64  ("LOGO SERVICIOS DE SALUD-1 transparente.png")%></td>                         
+                <td> 
+                    <% unless @equipo.nil? %>  
+                        <%= @equipo.qr_image.html_safe %>
+                    <% end %>
+                </td>                         
             </tr>
         </table>   
         <%= yield %>
