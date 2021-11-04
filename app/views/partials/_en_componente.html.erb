@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm"><%= f.label :tipocomp_id,"Tipo de componente"%></div>
         <div class="col-sm">
-            <%= f.select(:tipocomp_id,"",{promt: "seleccione un tipo"},{style: :"width:100%",class: :"form-select",id: :tipocomp_id }) do %>
+            <%= f.select(:tipocomp_id,:name,{promt: "seleccione un tipo"},{style: :"width:100%",class: :"form-select",id: :tipocomp_id }) do %>
                 <%= options_from_collection_for_select(Tipocomp.all.order(id: :asc),:id,:nombre,0) %> 
             <% end %> 
         </div>
@@ -15,6 +15,54 @@
         <div class="col-sm"><%= f.label :marca,"Marca" %></div>
         <div class="col-sm" ><%= f.text_field :marca ,style: :"width:100%"%></div>        
     </div>
+
+    <div id="ram" style="margin-top:5px" class="row" hidden>
+        <div class="col-sm">
+        Tipo de memoria de ram
+        </div>
+        <div class="col-sm" >
+            <%= select_tag(:tipo_mem,options_for_select([['DDR',"DDR"],['DDR2',"DDR2"],['DDR3',"DDR3"],['DDR4',"DDR4"],['DDR5',"DDR5"]]),{style: :"width:100%",class: :"form-select" })%>                                            
+        </div>        
+     </div>
+     <div id="cap_ram" style="margin-top:5px" class="row" hidden>   
+        <div class="col">Capacidad</div>
+        <div class="col-sm" >
+           <input id="capacidad_mem" name="capacidad_mem" />       
+           <%= select_tag(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),style: :"width:25%")%>
+        </div>        
+    </div>
+    <div id="n_ram" style="margin-top:5px" class="row" hidden>
+        <div class="col-sm">No. modulos de ram</div>
+        <div class="col-sm"> <input  style="width:100%"  type="number" name="no_ram" value="1" min="1" /></div>
+    </div>
+
+
+    <div id="cap_hdd" style="margin-top:5px" class="row" hidden>   
+        <div class="col-sm">Capacidad</div>
+        <div class="col-sm" ><input style="width:100%" id="capacidad_hdd" name="capacidad_hdd" /></div>        
+    </div>
+    <div id="hdd" style="margin-top:5px" class="row" hidden>
+        <div class="col-sm">Tamaño</div>
+        <div class="col-sm" >
+            <%= select_tag(:hdd_mem_size,options_for_select([['Tb','Tb'],['Gb',"Gb"],['Mb','Mb']]),{style: :"width:100%",class: :"form-select" })%>                       
+        </div>        
+    </div>   
+    <div id="tipo_hdd" style="margin-top:5px" class="row" hidden>
+       <div class="col-sm"> Tipo de Disco duro</div>
+        <div class="col-sm"><%= select_tag(:tipoHDD,options_for_select([['SSD',"SSD"],['Mecánico','Mecánico']]),{class: :"form-select" })%>
+        </div>
+    </div>
+
+
+
+    <div id="proc" class="row" hidden>
+        <div class="col-sm">Frecuencia</div>            
+        <div class="col-sm" >
+            <input name="frec_proc" type="text"  style="margin-top:5px"   />
+            <%= select_tag(:frenc_tipo,options_for_select([['Ghz','Ghz'],['Mhz',"Mhz"]]))%>
+        </div>        
+    </div>       
+    
     <!-- >
       <div style="margin-top:5px" class="row">
         <div class="col-sm"><%= f.label :cantidad,"Cantidad" %></div>

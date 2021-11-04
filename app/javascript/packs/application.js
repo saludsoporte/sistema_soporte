@@ -176,6 +176,27 @@ $(document).on('turbolinks:load', function() {
         'change',
         function() {
             var id_value_string = $("#tipocomp_id").val();
+            $("#ram").prop("hidden", true);
+            $("#cap_ram").prop("hidden", true);
+            $("#n_ram").prop("hidden", true);
+            $("#hdd").prop("hidden", true);
+            $("#tipo_hdd").prop("hidden", true);
+            $("#cap_hdd").prop("hidden", true);
+            $("#proc").prop("hidden", true);
+            if ($("#tipocomp_id option:selected").text() == 'Ram') {
+                $("#ram").prop("hidden", false);
+                $("#cap_ram").prop("hidden", false);
+                $("#n_ram").prop("hidden", false);
+            }
+            if ($("#tipocomp_id option:selected").text() == 'Disco Duro') {
+                $("#hdd").prop("hidden", false);
+                $("#tipo_hdd").prop("hidden", false);
+                $("#cap_hdd").prop("hidden", false);
+            }
+            if ($("#tipocomp_id option:selected").text() == 'Procesador') {
+                $("#proc").prop("hidden", false);
+            }
+
             carga_componentes(id_value_string);
         }
     );
@@ -228,7 +249,7 @@ $(document).on('turbolinks:load', function() {
     $("#usuarios").on('change', function() {
         var user = $("#usuarios").val();
         verifica_no_serie(user);
-    })
+    });
     $("#equipos").on('change', function() {
         var user = $("#equipos").val();
         info_equipo(user);

@@ -39,7 +39,18 @@ class ComponentesController < ApplicationController
 
   def create
     @componente=Componente.new(params_comp)
-    if @componente.save
+    @ram=Tipocomp.find(params_comp[:tipocomp_id])
+    logger.debug "***********/////////////  "+@ram.id.to_s
+    if params[:componente][:capacidad_mem].nil? 
+
+    end
+
+    if params[:componente][:capacidad_hdd].nil?
+    end
+
+    #if params[:componente][:]
+
+    if @componente.savesdfds
       redirect_to new_comp_serial_path(comp_id:@componente.id)
     else
       render :new
