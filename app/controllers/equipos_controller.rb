@@ -211,7 +211,7 @@ class EquiposController < ApplicationController
                 
         @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@tipocamp.id,@tipo_mem)
         @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@ram.id,@carac.id,@capacidad)
-        if @caracteristicas.nil? &&        
+        if @caracteristicas.nil?         
           @caracteristicas=RelacionCaracteristica.new(componente_id:@ram.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
           @caracteristicas.save
           logger.debug "******************* carac "+@caracteristicas.id.to_s

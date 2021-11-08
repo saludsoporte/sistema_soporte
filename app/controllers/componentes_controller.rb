@@ -38,20 +38,47 @@ class ComponentesController < ApplicationController
   end
 
   def create
-    @componente=Componente.new(params_comp)
-    @ram=Tipocomp.find(params_comp[:tipocomp_id])
-    logger.debug "***********/////////////  "+@ram.id.to_s
-    if params[:componente][:capacidad_mem].nil? 
+    @modelo=Componente.find_by("modelo ilike ('%#{params[:componente][:modelo]}%')")
+    logger.debug"***************/////////"+params[:componente][:modelo].to_s
+    logger.debug"***************/////////"+@modelo.nil?.to_s
+    if @modelo.nil?
+      @componente=Componente.new(params_comp)
+      if @componente.saveadasdas
+        @comp=Tipocomp.find(componente.tipocomp_id)
+        if @comp.nombre == 'Ram'
+          @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
+          @tipocamp=Caracteristica.find_by("nombre = 'Tipo de Memoria'")
+          @capacidad=params[:ram_cp]+params[:mem_size]
+          @tipo_mem=params[:tipo_mem]    
+          @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
+          @caracteristicas.save
+          @caracteristicas2=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@tipocamp.id,valor_caracteristica:@tipo_mem)
+          @caracteristicas2.save   
+        end
 
-    end
+        if @comp.nombre == 'Disco Duro'
+          @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
+          @carac2=Caracteristica.find_by("nombre = 'Tipo de Disco Duro'")
+          @capacidad=params[:hdd_cap]+params[:hdd_mem_size]
+          @tipo=params[:tipoHDD]
+          @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac.id,@capacidad)
+          @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac2.id,@tipo)
+          @caracteristicas.save
+          @caracteristicas2.save 
+        end
 
-    if params[:componente][:capacidad_hdd].nil?
-    end
+        if @comp.nombre == 'Procesador'
+          @carac=Caracteristica.find_by("nombre = 'Frecuencia'")
+          @frecuencia=params[:frecuencia]+params[:frenc_tipo]
 
-    #if params[:componente][:]
-
-    if @componente.savesdfds
-      redirect_to new_comp_serial_path(comp_id:@componente.id)
+          @relacion=RelacionCaracteristica.find_by("componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac.id,@frecuencia)
+          @relacion.save
+        end
+        
+        redirect_to new_comp_serial_path(comp_id:@componente.id)
+      else
+        render :new
+      end
     else
       render :new
     end
