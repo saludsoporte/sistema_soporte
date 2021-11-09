@@ -27,7 +27,7 @@
      <div id="cap_ram" style="margin-top:5px" class="row" hidden>   
         <div class="col">Capacidad</div>
         <div class="col-sm" >
-           <input id="capacidad_mem" name="capacidad_mem" />       
+           <input type="number" value="0" id="capacidad_mem" name="capacidad_mem" />       
            <%= select_tag(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),style: :"width:25%")%>
         </div>        
     </div>
@@ -52,9 +52,6 @@
         <div class="col-sm"><%= select_tag(:tipoHDD,options_for_select([['SSD',"SSD"],['Mecánico','Mecánico']]),{class: :"form-select" })%>
         </div>
     </div>
-
-
-
     <div id="proc" class="row" hidden>
         <div class="col-sm">Frecuencia</div>            
         <div class="col-sm" >
@@ -70,4 +67,21 @@
     </div>
     < -->
     <%= f.submit "Continuar" , class: :"btn btn-sm btn-secondary" %>
+    <% end %><br>
+    <div class="container border-reporte alert-danger">
+    <% case params[:error].to_i  %>
+    <% when 1 %>
+        El modelo ya existe
+    <% when 2 %>
+        La cantidad no es valida
+    <% when 3 %>
+        No se ha seleccionado un tipo de componente
+    <% when 4 %>
+        No se ha colocado un modelo
+    <% when 5 %>
+        No se ha colocado una marca
+    <% when 6 %>
+        No se ha colocado un modelo o una marca
+    
     <% end %>
+    </div>
