@@ -58,7 +58,8 @@ class ComponentesController < ApplicationController
           @error=2
           logger.debug "################ "+params[:capacidad_mem].to_s
         end
-        if @error!=0
+        logger.debug "$$$$$$$$$$$$$$ "+@error.to_s
+        if @error.to_i == 0
           if @componente.saveadasdas       
             if @comp.nombre == 'Ram'         
               @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
@@ -113,7 +114,7 @@ class ComponentesController < ApplicationController
       redirect_to new_componente_path(error:@error)
     end
   end
-  
+
   def edit
     @componente=Componente.find(params[:id])
     @tipos=Tipocomp.all
