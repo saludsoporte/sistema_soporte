@@ -54,13 +54,13 @@ class ComponentesController < ApplicationController
           @tipo_mem=params[:tipo_mem]           
         end
 
-        if params[:capacidad_mem].to_i==0
+        if params[:capacidad_mem].to_i<2
           @error=2
           logger.debug "################ "+params[:capacidad_mem].to_s
         end
         logger.debug "$$$$$$$$$$$$$$ "+@error.to_s
         if @error.to_i == 0
-          if @componente.saveadasdas       
+          if @componente.save
             if @comp.nombre == 'Ram'         
               @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
               @caracteristicas.save

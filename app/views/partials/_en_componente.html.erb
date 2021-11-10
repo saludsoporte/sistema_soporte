@@ -31,12 +31,6 @@
            <%= select_tag(:mem_size,options_for_select([['Gb',"Gb"],['Mb','Mb']]),style: :"width:25%")%>
         </div>        
     </div>
-    <div id="n_ram" style="margin-top:5px" class="row" hidden>
-        <div class="col-sm">No. modulos de ram</div>
-        <div class="col-sm"> <input  style="width:100%"  type="number" name="no_ram" value="1" min="1" /></div>
-    </div>
-
-
     <div id="cap_hdd" style="margin-top:5px" class="row" hidden>   
         <div class="col-sm">Capacidad</div>
         <div class="col-sm" ><input style="width:100%" id="capacidad_hdd" name="capacidad_hdd" /></div>        
