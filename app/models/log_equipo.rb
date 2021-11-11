@@ -1,0 +1,2 @@
+class LogEquipo < ApplicationRecord
+end

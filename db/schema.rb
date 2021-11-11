@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_141754) do
+ActiveRecord::Schema.define(version: 2021_11_11_201555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,18 @@ ActiveRecord::Schema.define(version: 2021_10_27_141754) do
     t.integer "disponibles"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "log_equipos", force: :cascade do |t|
+    t.string "accion"
+    t.text "descripcion"
+    t.string "user_asignado"
+    t.string "user_asignado_id"
+    t.string "equipo_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["equipo_id"], name: "index_log_equipos_on_equipo_id"
+    t.index ["user_asignado_id"], name: "index_log_equipos_on_user_asignado_id"
   end
 
   create_table "opcion_avanzadas", force: :cascade do |t|

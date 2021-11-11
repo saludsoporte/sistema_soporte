@@ -28,13 +28,19 @@ class EquiposController < ApplicationController
   def update
     @tipocomp=Tipocomp.find_by("nombre = 'Equipo de Computo'")
     @equipo=Equipo.find(params[:id])
-    @user=@equipo.user_id
+    if @equipo.user_id.nil? && !params[:equipo][:user_id].nil?
+        @band_disminuir=true
+    end
     if @equipo.update(equipo_params)
-      if @user.nil?
-        @disponible=Inventario.find_by("tipocomp_id=?",@tipocomp.id).disponibles
-        @inventario=Inventario.find_by("tipocomp_id = ?",@tipocomp.id)
-        @inventario.update(disponibles:@disponible-1)
+      #@log
+      @disponible=Inventario.find_by("tipocomp_id=?",@tipocomp.id).disponibles
+      @inventario=Inventario.find_by("tipocomp_id = ?",@tipocomp.id)
+      if params[:equipo][:user_id].nil?
+        @inventario.update(disponibles:@disponible+1)      
+      elsif @band_disminuir
+        @inventario.update(disponibles:@disponible-1)      
       end
+
       redirect_to equipo_path(params[:id])
     else
       render :edit
@@ -191,6 +197,11 @@ class EquiposController < ApplicationController
     else
       logger.debug "***************  *///////////////////"
       params[:equipo][:tipocomp_id]=Tipocomp.find_by("nombre='Servidor'").id
+    end
+
+    if params[:equipo][:user_id].nil? 
+      logger.debug "/*/*/*/*/*///////////////////////////////*"
+      params[:equipo][:user_id]=nil
     end
     params.require(:equipo).permit(:user_id,:tipo,:piso,:tipocomp_id,:activo_fijo,:no_serie,:area,:subdireccion,:direccion,:departamento,:unidad)
   end

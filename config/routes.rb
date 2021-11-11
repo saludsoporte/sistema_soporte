@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  
- 
+  get 'index/show'
   get 'pages/qr_code_generator'
   get 'folios/index'
   get 'folio/index'
@@ -87,7 +86,8 @@ end
             :relacion_caracteristicas,
             :asignadors,
             :inventarios,
-            :comp_serials
+            :comp_serials,
+            :log_equipos
                         
 
 

@@ -39,7 +39,7 @@ class ComponentesController < ApplicationController
 
   def create
     @error=0
-    @modelo=Componente.find_by("modelo ilike ('%#{params[:componente][:modelo]}%')")
+    @modelo=Componente.find_by("modelo = ?",params[:componente][:modelo])
     @marca=params[:componente][:marca]
     logger.debug"***************/////////"+params[:componente][:modelo].to_s
     logger.debug"***************/////////"+@modelo.nil?.to_s
@@ -51,16 +51,33 @@ class ComponentesController < ApplicationController
           @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
           @tipocamp=Caracteristica.find_by("nombre = 'Tipo de Memoria'")
           @capacidad=params[:capacidad_mem]+params[:mem_size]
-          @tipo_mem=params[:tipo_mem]           
+          @tipo_mem=params[:tipo_mem]    
+          
+          if params[:capacidad_mem].to_i<2
+            @error=2
+            logger.debug "################ "+params[:capacidad_mem].to_s
+          end
+          
         end
 
-        if params[:capacidad_mem].to_i<2
-          @error=2
-          logger.debug "################ "+params[:capacidad_mem].to_s
+        if @comp.nombre == 'Disco Duro'
+          @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
+          @carac2=Caracteristica.find_by("nombre = 'Tipo de Disco Duro'")
+          @capacidad=params[:capacidad_hdd]+params[:hdd_mem_size]
+          @tipo_mem=params[:tipoHDD]           
         end
+
+        if @comp.nombre == "Procesador"
+          @carac=Caracteristica.find_by("nombre = 'Frecuencia'")
+          @frecuencia=params[:frec_proc]+params[:frenc_tipo]
+          
+        end
+
+        
         logger.debug "$$$$$$$$$$$$$$ "+@error.to_s
+       
         if @error.to_i == 0
-          if @componente.save
+          if @componente.savedjhsdhsajd
             if @comp.nombre == 'Ram'         
               @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
               @caracteristicas.save
@@ -68,24 +85,16 @@ class ComponentesController < ApplicationController
               @caracteristicas2.save   
             end
 
-            if @comp.nombre == 'Disco Duro'
-              @carac=Caracteristica.find_by("nombre = 'Capacidad de Memoria'")
-              @carac2=Caracteristica.find_by("nombre = 'Tipo de Disco Duro'")
-              @capacidad=params[:hdd_cap]+params[:hdd_mem_size]
-              @tipo=params[:tipoHDD]
-              @caracteristicas=RelacionCaracteristica.find_by("  componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac.id,@capacidad)
-              @caracteristicas2=RelacionCaracteristica.find_by(" componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac2.id,@tipo)
+            if @comp.nombre == 'Disco Duro'            
+              @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
+              @caracteristicas2=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac2.id,valor_caracteristica:@tipo_mem)
               @caracteristicas.save
               @caracteristicas2.save 
             end
             if @comp.nombre == 'Procesador'
-              @carac=Caracteristica.find_by("nombre = 'Frecuencia'")
-              @frecuencia=params[:frecuencia]+params[:frenc_tipo]
-
-              @relacion=RelacionCaracteristica.find_by("componente_id=? and caracteristica_id=? and valor_caracteristica=?",@componente.id,@carac.id,@frecuencia)
+              @relacion=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@frecuencia)
               @relacion.save
             end
-          
             redirect_to new_comp_serial_path(comp_id:@componente.id)
           end
         end
@@ -103,9 +112,12 @@ class ComponentesController < ApplicationController
         band2=true
         @error=4     
       end
-      if !@modelo.nil?
-        @error=1   
-      end      
+      unless band2
+        if !@modelo.nil?
+          @error=1   
+        end        
+      end
+      
       if band == true &&  band2 == true
         @error = 6
       end      

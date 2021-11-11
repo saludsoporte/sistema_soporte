@@ -12,7 +12,7 @@
                 <td ><%= r.caracteristica.nombre %></td>                 
                 <td ><%= r.valor_caracteristica %></td>
                 <td colspan="2" style="  text-align: left" >
-                    <%= link_to raw("#{image_tag("pencil-square.svg")}"),edit_relacion_caracteristica_path(r.id,comp_id:r.componente_id),class: :"btn btn-sm btn-mod",title: :"Editar" %>
+                    <%= link_to raw("#{image_tag("pencil-square.svg")}"),edit_relacion_caracteristica_path(r.id,comp_id:r.componente_id,edit:true),class: :"btn btn-sm btn-mod",title: :"Editar" %>
                     <%= link_to raw("#{image_tag("trash.svg")}"),relacion_caracteristica_path(r.id),data: { confirm: "¿Esta seguro que desea eliminar esta caracteristica del componente?"},method: :delete,class: :"btn-sm btn btn-danger",title: :"Eliminar" %>
                 </td>
             </tr>

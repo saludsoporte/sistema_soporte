@@ -103,6 +103,7 @@ class RelacionComponentesController < ApplicationController
     @caracteristicas.each do |c|
       @rel.push(caracteristica:c.caracteristica.nombre,valor:c.valor_caracteristica)
     end
+    @edit=true
   end
 
   def destroy 

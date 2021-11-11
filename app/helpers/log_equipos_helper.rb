@@ -1,0 +1,2 @@
+module LogEquiposHelper
+end
