@@ -32,15 +32,43 @@ class EquiposController < ApplicationController
         @band_disminuir=true
     end
     if @equipo.update(equipo_params)
-      #@log
+      
       @disponible=Inventario.find_by("tipocomp_id=?",@tipocomp.id).disponibles
       @inventario=Inventario.find_by("tipocomp_id = ?",@tipocomp.id)
+      
       if params[:equipo][:user_id].nil?
         @inventario.update(disponibles:@disponible+1)      
+        @user="sin usuario asignado"
+        @log=LogEquipo.new(
+          accion:"update->del_usuario",
+          descripcion:"Se actualiza el equipo y el inventario aumenta una a los disponibles, elimina el usuario asignado",
+          user_asignado:@user,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
       elsif @band_disminuir
         @inventario.update(disponibles:@disponible-1)      
+        @user=User.find(@equipo.user_id)
+        @log=LogEquipo.new(
+          accion:"update->asigna_usuario",
+          descripcion:"Se actualiza el equipo y el inventario disminuye una a los disponibles, asigna un usuario al equipo",
+          user_asignado:@user.nombre_personal,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
+      else
+        @user=User.find(@equipo.user_id)
+        @log=LogEquipo.new(
+          accion:"update",
+          descripcion:"Se actualiza el equipo",
+          user_asignado:@user.nombre_personal,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
       end
-
+      @log.save
+      
+      
       redirect_to equipo_path(params[:id])
     else
       render :edit
@@ -63,27 +91,54 @@ class EquiposController < ApplicationController
     if @equipo_q.nil? == true 
     @equipo=Equipo.new(equipo_params)    
     if @equipo.save
+      @log=LogEquipo.new(
+        accion:"create",
+        descripcion:"se ha creado un equipo nuevo ",
+        user_asignado:@equipo.user.nombre_completo,
+        user_asignado_id:@equipo.user_id,
+        equipo_id:@equipo.id
+      )
+      @log.save
+
       @inventario_f=Inventario.find_by("tipocomp_id=?",@equipo.tipocomp_id)
       if @inventario_f.nil?        
         if !@equipo.user_id.nil?
-          logger.debug "***************** con user"                    
-          @inventario=Inventario.new(tipocomp_id:@equipo.tipocomp_id,
-            cantidad:1,disponibles:0)          
+          logger.debug "***************** con user"   
+          @disponibles=0                           
         else
           logger.debug "***************** sin user"
-          @inventario=Inventario.new(tipocomp_id:@equipo.tipocomp_id,
-            cantidad:1,disponibles:1)       
+          @disponibles=1          
         end     
+        @inventario=Inventario.new(tipocomp_id:@equipo.tipocomp_id,cantidad:1,disponibles:@disponibles)       
         @inventario.save
+        @log=LogEquipo.new(
+          accion:"create-> Inventario",
+          descripcion:"se ha creado un registro nuevo en el inventario",
+          user_asignado:@equipo.user.nombre_completo,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
+        @log.save
+
       else
         if @equipo.user_id.nil?
           @cantidad=@inventario_f.cantidad
           @disponibles=@inventario_f.disponibles
-          @inventario_f.update(cantidad:@cantidad+1,disponibles:@disponibles+1)
+          @log_disponibles="y #{@disponibles} a #{@disponibles+1}"
+          @inventario_f.update(cantidad:@cantidad+1,disponibles:@disponibles+1)          
         else
           @cantidad=@inventario_f.cantidad
+          @log_disponibles=""
           @inventario_f.update(cantidad:@cantidad+1)
         end       
+        @log=LogEquipo.new(
+          accion:"update-> Inventario",
+          descripcion:"se ha actualizado un registro en el inventario, se aumento la cantidad #{@cantidad} a #{@cantidad +1} #{@log_disponibles}",
+          user_asignado:@equipo.user.nombre_completo,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
+        @log.save
       end
       
       redirect_to new_relacion_componente_path(equipo_id:@equipo.id)      

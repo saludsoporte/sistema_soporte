@@ -12,7 +12,8 @@
             <th>Usuario</th>        
             <th>Activo Fijo</th>
             <th>Tipo</th>
-            <th>Piso</th>                        
+            <th>Piso</th> 
+            <th>Historial</th>
         </thead>
         <tbody>
             <% if !@equipos.nil? %>
@@ -28,7 +29,8 @@
                         <% end %>                                        
                         <td><%= eq.activo_fijo %></td>
                         <td><%= eq.tipo %></td>
-                        <td><%= eq.piso %></td>                      
+                        <td><%= eq.piso %></td>   
+                        <td><%= link_to "Historial", log_equipos_path(equipo:eq.id),class: :"btn btn-sm btn-outline-dark"%></td>                   
                     </tr>
                 <% end %>
                 <tr></tr>
