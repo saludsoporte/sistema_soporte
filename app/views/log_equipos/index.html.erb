@@ -1,2 +1,32 @@
-<h1>LogEquipos#index</h1>
-<p>Find me in app/views/log_equipos/index.html.erb</p>
+<div class="container borde-reporte letra">
+    <table class="table table-sm" style="text-align:center">
+        <thead class="table-dark">
+            <th>id</th>   
+            <th>Acción</th>   
+            <th>Descripción</th>   
+            <th>Nombre de usuario</th>   
+            <th>Id de usuario</th>   
+            <th>Id del equipo</th>   
+            <th>Fecha de creación</th>   
+        </thead>
+        <tbody>
+        <% @logs_equipo.each do |l| %>
+        <tr>
+            <td><%= l.id%></td>
+            <td><%= l.accion%></td>
+            <td><%= l.descripcion%></td>
+            <td><%= l.user_asignado%></td>
+            <td>
+                <% if l.user_asignado_id.nil?%>
+                    <%= l.user_asignado_id%>
+                <% else %>
+                    <%= link_to "#{l.user_asignado_id}", user_path(l.user_asignado_id),class: :"btn btn-sm btn-success",title: :"ver usuario" %>
+                <% end %>
+            </td>
+            <td><%= link_to "#{l.equipo_id}", equipo_path(l.equipo_id), class: :"btn btn-sm btn-success",title: :"ver equipo" %></td>
+            <td><%= l.created_at%></td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>

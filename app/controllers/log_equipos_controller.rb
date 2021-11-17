@@ -1,6 +1,6 @@
 class LogEquiposController < ApplicationController
   def index
-    @logs=LogEquipo.all
+    @logs_equipo=LogEquipo.where("equipo_id=?",params[:equipo])
   end
 
   def show

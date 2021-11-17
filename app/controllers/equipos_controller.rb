@@ -91,10 +91,15 @@ class EquiposController < ApplicationController
     if @equipo_q.nil? == true 
     @equipo=Equipo.new(equipo_params)    
     if @equipo.save
+      if @equipo.user_id.nil?
+        @user="Sin usuario asignado"
+      else
+        @user=User.find(@equipo.user_id).nombre_personal
+      end
       @log=LogEquipo.new(
         accion:"create",
         descripcion:"se ha creado un equipo nuevo ",
-        user_asignado:@equipo.user.nombre_completo,
+        user_asignado:@user,
         user_asignado_id:@equipo.user_id,
         equipo_id:@equipo.id
       )
@@ -124,17 +129,22 @@ class EquiposController < ApplicationController
         if @equipo.user_id.nil?
           @cantidad=@inventario_f.cantidad
           @disponibles=@inventario_f.disponibles
-          @log_disponibles="y #{@disponibles} a #{@disponibles+1}"
+          @log_disponibles="y disponibles de #{@disponibles} a #{@disponibles+1}"
           @inventario_f.update(cantidad:@cantidad+1,disponibles:@disponibles+1)          
         else
           @cantidad=@inventario_f.cantidad
           @log_disponibles=""
           @inventario_f.update(cantidad:@cantidad+1)
-        end       
+        end      
+        if @equipo.user_id.nil?
+          @user="Sin usuario asignado"
+        else
+          @user=User.find(@equipo.user_id).nombre_personal
+        end 
         @log=LogEquipo.new(
           accion:"update-> Inventario",
           descripcion:"se ha actualizado un registro en el inventario, se aumento la cantidad #{@cantidad} a #{@cantidad +1} #{@log_disponibles}",
-          user_asignado:@equipo.user.nombre_completo,
+          user_asignado:@user,
           user_asignado_id:@equipo.user_id,
           equipo_id:@equipo.id
         )
@@ -161,12 +171,29 @@ class EquiposController < ApplicationController
   def quitar_asignacion
     @tipocomp=Tipocomp.find_by("nombre = 'Equipo de Computo'")
     @inventario=Inventario.find_by("tipocomp_id = ? ",@tipocomp.id)
-    @disponible=@inventario.disponibles.to_i+1
-    logger.debug "/**************/"+@disponible.to_s
-    @inventario.update(disponibles:@disponible)
+    @disponible=@inventario.disponibles.to_i+1    
     @equipo=Equipo.find(params[:id])
-    @equipo.update(user_id:nil)
-
+    if @inventario.update(disponibles:@disponible)
+      @log=LogEquipo.new(
+        accion:"update-> Inventario",
+        descripcion:"se ha actualizado un registro en el inventario, se actualizaron los disponibles a #{@disponible}",
+        user_asignado:@equipo.user.nombre_personal,
+        user_asignado_id:@equipo.user_id,
+        equipo_id:@equipo.id
+      )
+      @log.save
+    end
+    @user=@equipo.user
+    if @equipo.update(user_id:nil)
+      @log=LogEquipo.new(
+        accion:"update-> Equipos",
+        descripcion:"se ha actualizado equipo #{@equipo.id} , se elimino el usuario #{@user.id}",
+        user_asignado:@user.nombre_personal,
+        user_asignado_id:@user_id,
+        equipo_id:@equipo.id
+      )
+      @log.save
+    end
     redirect_to equipo_path(params[:id])
   end
 

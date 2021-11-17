@@ -77,7 +77,7 @@ class ComponentesController < ApplicationController
         logger.debug "$$$$$$$$$$$$$$ "+@error.to_s
        
         if @error.to_i == 0
-          if @componente.savedjhsdhsajd
+          if @componente.save
             if @comp.nombre == 'Ram'         
               @caracteristicas=RelacionCaracteristica.new(componente_id:@componente.id,caracteristica_id:@carac.id,valor_caracteristica:@capacidad)
               @caracteristicas.save
