@@ -15,7 +15,7 @@ development:
   host: localhost     
   username: postgres 
   password: 12345
-  port: 57361
+  port: 5432
   #host: 10.24.0.17
   #port: 5432
   #username: postgres 
