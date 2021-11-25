@@ -248,14 +248,21 @@ class EquiposController < ApplicationController
   end
 
   def destroy
-    @tipo=Tipocomp.find_by("nombre='Equipo de Computo'")
-   
+    @tipo=Tipocomp.find_by("nombre='Equipo de Computo'")   
     @equipo=Equipo.find(params[:id])
     @relaciones=RelacionComponente.where("equipo_id=?",params[:id])
     #update el inventario , para cada componente devuelto 
     @relaciones.each do |r|
       @comp_serial=CompSerial.find(r.comp_serial_id)
       @comp_serial.update(disponible:true)
+      @log=LogEquipo.new(
+        accion:"update-> Existencias",
+        descripcion:"Se prepara para eliminar el componente #{@comp_serial.tipocomp.nombre} con id: #{@comp_serial.id} ",
+        user_asignado:@equipo.user_nombre,
+        user_asignado_id:@equipo.user_id,
+        equipo_id:@equipo.id
+      )
+      @log.save
       @inventario_f=Inventario.find_by(tipocomp_id:@comp_serial.tipocomp_id)
       @disponible=@inventario_f.disponibles
       @inventario_f.update(disponibles:@disponible+1)
@@ -266,8 +273,17 @@ class EquiposController < ApplicationController
         @inventario_f=Inventario.find_by(tipocomp_id:@tipo.id)
         @disponibles=@inventario_f.disponibles
         @cantidad=@inventario_f.cantidad
-        @inventario_f.update(cantidad:@cantidad-1,disponibles:@disponibles-1)        
-      end
+        @inventario_f.update(cantidad:@cantidad-1,disponibles:@disponibles-1)  
+        
+        @log=LogEquipo.new(
+          accion:"update-> Inventario",
+          descripcion:"Se ha actualizado un registro en el inventario, cantidad: #{@inventario.cantidad} , disponible:#{@inventario_f.disponibles}",
+          user_asignado:@equipo.user_nombre,
+          user_asignado_id:@equipo.user_id,
+          equipo_id:@equipo.id
+        )
+        @log.save
+      end      
     end
     redirect_to equipos_path
   end

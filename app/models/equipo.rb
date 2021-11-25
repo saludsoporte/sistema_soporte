@@ -22,6 +22,10 @@ class Equipo < ApplicationRecord
     end    
   end
 
+  def user_nombre
+    self.user_id.nil? ? "Sin usuario asignado" : User.find(self.user_id).nombre_personal
+  end
+
   def qr_image
     @qrcode = RQRCode::QRCode.new("https://sesalud.slpsalud.gob.mx:4000/equipos/"+self.id.to_s)
     @svg=@qrcode.as_svg(

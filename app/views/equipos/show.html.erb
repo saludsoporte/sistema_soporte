@@ -10,11 +10,11 @@
         <% end %>
         <% @qr="https://sesalud.slpsalud.gob.mx:4000/equipos/"+params[:id]%>
         <%= link_to "Imprimir Qr", qr_code_generator_path(qr:@qr), class: :"btn btn-sm btn-outline-dark" %>        
-        
+        <%= link_to "Historial", log_equipos_path(equipo:params[:id]),class: :"btn btn-sm btn-outline-dark"%>
     <% end %>
     <table class="table table-stripered letra">
     <thead class="table-dark">
-        <th>Id</th>
+        <th>Id:&nbsp;&nbsp;&nbsp;<%= params[:id] %></th>
         <th >Usuario</th>
         <th>Serie</th>
         <th>Activo Fijo</th>

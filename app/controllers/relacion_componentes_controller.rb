@@ -83,11 +83,29 @@ class RelacionComponentesController < ApplicationController
       equipo_id:params[:equipo],
       comp_serial_id:@comp.id
     )    
-    if @relacion.save
+    if @relacion.save      
       @comp.update(disponible:false)
       @inventario_f=Inventario.find_by("tipocomp_id=?",@relacion.componente.tipocomp_id) 
       @cantidad=@inventario_f.disponibles
       @inventario_f.update(disponibles:@cantidad-1) 
+
+      @log=LogEquipo.new(
+        accion:"update-> Existencias",
+        descripcion:"Se agrega el componente #{@comp.tipocomp.nombre} con id: #{@comp.id} ",
+        user_asignado:@relacion.equipo.user_nombre,
+        user_asignado_id:@relacion.equipo.user_id,
+        equipo_id:@relacion.equipo_id
+      )
+      @log.save
+      @log=LogEquipo.new(
+        accion:"update-> Inventario",
+        descripcion:"Se ha actualizado un registro en el inventario, cantidad: #{@inventario_f.cantidad} , disponible:#{@inventario_f.disponibles}",
+        user_asignado:@relacion.equipo.user_nombre,
+        user_asignado_id:@relacion.equipo.user_id,
+        equipo_id:@relacion.equipo_id
+      )
+      @log.save
+
       redirect_to new_relacion_componente_path(equipo_id:params[:equipo])
     else
       render :new
@@ -114,6 +132,22 @@ class RelacionComponentesController < ApplicationController
     @inventario_f=Inventario.find_by("tipocomp_id=?",@tipo.id)
     @disponible=@inventario_f.disponibles
     @inventario_f.update(disponibles:@disponible+1)
+    @log=LogEquipo.new(
+      accion:"update-> Existencias",
+      descripcion:"Se elimina el componente #{@comp.tipocomp.nombre} con id: #{@comp.id} ",
+      user_asignado:@relacion.equipo.user_nombre,
+      user_asignado_id:@relacion.equipo.user_id,
+      equipo_id:@relacion.equipo_id
+    )
+    @log.save
+    @log=LogEquipo.new(
+      accion:"update-> Inventario",
+      descripcion:"Se ha actualizado un registro en el inventario, cantidad: #{@inventario_f.cantidad} , disponible:#{@inventario_f.disponibles}",
+      user_asignado:@relacion.equipo.user_nombre,
+      user_asignado_id:@relacion.equipo.user_id,
+      equipo_id:@relacion.equipo_id
+    )
+    @log.save
     @relacion.destroy
     redirect_to equipo_path(@relacion.equipo_id)
   end

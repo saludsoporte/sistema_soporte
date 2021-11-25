@@ -8,6 +8,7 @@
     </div>
     <table class=" table table-striped letra table-sm">
         <thead class="table-dark ">
+            <th>Id</th>
             <th>No. Serie</th>
             <th>Usuario</th>        
             <th>Activo Fijo</th>
@@ -19,6 +20,7 @@
             <% if !@equipos.nil? %>
                 <% @equipos.each do |eq|%>
                     <tr>
+                        <td><%= link_to eq.id ,equipo_path(eq.id) , class: :"btn btn-outline-dark btn-sm" ,title: :"Ver equipo"%></td>
                         <td><%= link_to eq.no_serie , equipo_path(eq.id),style: :"color:black",title: :"Ver equipo"%></td>
                         <% if eq.user_id.nil? %>
                             <td> 

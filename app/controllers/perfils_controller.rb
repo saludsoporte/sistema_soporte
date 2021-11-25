@@ -37,11 +37,11 @@ class PerfilsController < ApplicationController
    
     if @pid.nil?
       @perfil=Perfil.new(perfil_params)
-     if @perfil.save
+      if @perfil.save
         redirect_to @perfil
-     else
+      else
         render :new
-     end    
+      end    
     end
   end
 
