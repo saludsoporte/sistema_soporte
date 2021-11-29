@@ -3,7 +3,7 @@ class Equipo < ApplicationRecord
   has_many :relacion_componentes
   #validates :user_id, presence: {message: "Escoja un usuario"}
   validates :no_serie, presence: { message: "no puede estar vacio"}
-  validates :activo_fijo, presence:  { message: "no puede estar vacio"}
+  #validates :activo_fijo, presence:  { message: "no puede estar vacio"}
   validates :tipo, presence: { message: "no puede estar vacio"}  
 
   self.per_page = 10

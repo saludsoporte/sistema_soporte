@@ -86,9 +86,9 @@ class EquiposController < ApplicationController
     @edit=false
   end
   def create
-    @equipo_q=Equipo.find_by("activo_fijo = ?",params[:equipo][:activo_fijo])
+    #@equipo_q=Equipo.find_by("activo_fijo = ?",params[:equipo][:activo_fijo])
     logger.debug "#33###################3 "+@equipo_q.nil?.to_s
-    if @equipo_q.nil? == true 
+    #if @equipo_q.nil? == true 
     @equipo=Equipo.new(equipo_params)    
     if @equipo.save
       if @equipo.user_id.nil?
@@ -150,7 +150,7 @@ class EquiposController < ApplicationController
         )
         @log.save
       end
-      
+    
       redirect_to new_relacion_componente_path(equipo_id:@equipo.id)      
     else
       @usuarios=User.all.order(id: :asc)
@@ -161,11 +161,11 @@ class EquiposController < ApplicationController
       @unidad=Unidad.all.order(id: :asc)    
       render :new
     end 
-  else
-    logger.debug "888888888888888888888888888888888888888888888888888888888"
-    redirect_to new_equipo_path(error:1)      
-    
-  end    
+    #else
+    #  logger.debug "888888888888888888888888888888888888888888888888888888888"
+    #  redirect_to new_equipo_path(error:1)      
+    #  
+    #end    
   end
 
   def quitar_asignacion
