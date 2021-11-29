@@ -28,7 +28,7 @@ class CompSerialsController < ApplicationController
           @serial.update(disponible:@bollean)     
           @log=LogEquipo.new(
             accion:"create-> Existencias",
-            descripcion:"Se crea una existencia de el componente #{@comp.tipocomp.nombre} con id: #{@comp.id} ",
+            descripcion:"Se crea una existencia de el componente #{@relacion.componente.tipocomp.nombre} con id: #{@relacion.comp_serial_id} ",
             user_asignado:@relacion.equipo.user_nombre,
             user_asignado_id:@relacion.equipo.user_id,
             equipo_id:@relacion.equipo_id
