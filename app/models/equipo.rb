@@ -14,7 +14,7 @@ class Equipo < ApplicationRecord
   end
 
   def informacion
-    @msg="Equipo : Serie "+self.no_serie+", Activo fijo "+self.activo_fijo+" "+self.tipo+" Piso:"+self.piso+" "
+    @msg="Equipo : Serie "+self.no_serie.to_s+", Activo fijo "+self.activo_fijo.to_s+" "+self.tipo.to_s+" Piso:"+self.piso.to_s+" "
     if !user_id.nil?
       @msg+="Usuario: "+User.find(self.user_id).nombre_personal
     else

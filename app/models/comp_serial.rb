@@ -18,7 +18,7 @@ class CompSerial < ApplicationRecord
   end
 
   def informacion
-    "No. de Serie :"+self.no_serie+" | Marca :"+self.componente.marca+" | Modelo :"+self.componente.modelo
+    "No. de Serie :"+self.no_serie.to_s+" | Marca :"+self.componente.marca.to_s+" | Modelo :"+self.componente.modelo.to_s
   end
 
   def conjunto_arr
