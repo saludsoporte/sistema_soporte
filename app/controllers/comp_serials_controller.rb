@@ -25,9 +25,25 @@ class CompSerialsController < ApplicationController
         if @relacion.save             
           @serial=CompSerial.find(@relacion.comp_serial_id)
           @bollean=false
-          @serial.update(disponible:@bollean)          
+          @serial.update(disponible:@bollean)     
+          @log=LogEquipo.new(
+            accion:"create-> Existencias",
+            descripcion:"Se crea una existencia de el componente #{@comp.tipocomp.nombre} con id: #{@comp.id} ",
+            user_asignado:@relacion.equipo.user_nombre,
+            user_asignado_id:@relacion.equipo.user_id,
+            equipo_id:@relacion.equipo_id
+          )
+          @log.save     
           @inventario=Inventario.find_by(tipocomp_id:@relacion.componente.tipocomp_id)
           @inventario.update(disponibles:@inventario.disponibles-1)
+          @log=LogEquipo.new(
+            accion:"update-> Inventario",
+            descripcion:"Se ha actualizado un registro en el inventario, cantidad: #{@inventario.cantidad} , disponible:#{@inventario.disponibles}",
+            user_asignado:@relacion.equipo.user_nombre,
+            user_asignado_id:@relacion.equipo.user_id,
+            equipo_id:@relacion.equipo_id
+          )
+          @log.save
           redirect_to inventarios_path
         else
           render :asignar_equipo
