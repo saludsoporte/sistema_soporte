@@ -53,7 +53,7 @@ class ComponentesController < ApplicationController
           @capacidad=params[:capacidad_mem]+params[:mem_size]
           @tipo_mem=params[:tipo_mem]    
           
-          if params[:capacidad_mem].to_i<2
+          if params[:capacidad_mem].to_i<0
             @error=2
             logger.debug "################ "+params[:capacidad_mem].to_s
           end
