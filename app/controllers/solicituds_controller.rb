@@ -11,6 +11,9 @@ class SolicitudsController < ApplicationController
     if !params[:user_id].nil?
       @perfil=Perfil.find_by("id_usuario=?",current_user.id)
       @lista=Solicitud.paginate(page:params[:page]).where("solicitante_id=?",params[:user_id])            
+    elsif !params[:solicitante].nil?
+      @perfil=Perfil.find_by("id_usuario=?",current_user.id)
+      @lista=Solicitud.paginate(page:params[:page]).where("nombre_user ilike ('%#{params[:solicitante]}%')")            
     else
       if params[:id_perfil].nil?
         @lista=Solicitud.paginate(page:params[:page]).all.order('id DESC')
@@ -26,6 +29,11 @@ class SolicitudsController < ApplicationController
       end 
     end
   end
+
+  def buscar_por_nombre
+    redirect_to solicituds_path(solicitante:params[:user])
+  end 
+
 
   def new
     @solicitud=Solicitud.new

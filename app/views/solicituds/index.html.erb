@@ -5,7 +5,25 @@
 <% end %>
 <% @columnas=3 %>
 <%= link_to  "","",{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: :"btn btn-secondary btn-sm style-no",id:"boton",hidden:true }  %></td>               
-<div class="container padding-div borde-reporte"><%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %></div>                
+
+<div class="container borde-reporte">
+    <table>
+        <tr>
+            <td>    
+                <%= link_to raw("#{image_tag("arrow-return-left.svg")} Regresar al perfil"), perfil_path(current_user.perfil_id), class: :"btn btn-secondary btn-sm " %>
+            </td>
+            <td>
+            <%= form_with url: solicituds_buscar_por_nombre_path , method: :get do |f|%>
+                <%= f.label :user , " Buscar Solicitante" %>
+                <%= f.text_field :user %>
+                <%= f.submit "Buscar" ,class: :"btn btn-sm btn-outline-dark" %>
+            <% end %>
+            </td>
+        </tr>
+    </table>
+</div>
+    
+
 <div class="container borde-reporte">
     <table style="width: 100%;" class="letra container table table-striped">
         <thead class="table-dark">

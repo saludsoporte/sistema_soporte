@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "users/usuario_nuevo", to: "users#usuario_nuevo"
   post "folios/reporte", to: "folios#reporte"
 
+  get  "solicituds/buscar_por_nombre", to: "solicituds#buscar_por_nombre"
+
   get "folios/:id/vobo", to: "folios#vobo"
   get 'relacion_per_rols/:id/agregar', to: "relacion_per_rols#agregar"
   get "perfils/carga_relacion", to: "perfils#carga_relacion"  
