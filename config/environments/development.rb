@@ -43,12 +43,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host =>"sesalud.slpsalud.gob.mx:4000"}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.office365.com',
-    port:                 587,
-    domain:               'depto.informatica@slp.gob.mx',
-    user_name:            'depto.informatica@slp.gob.mx',#'informaticassslp@gmail.com',
+    address:              'smtp-mail.outlook.com',
+    port:                 587,    
+    user_name:            'depto.informatica@slpsalud.gob.mx',#'informaticassslp@gmail.com',
     password:             'Salud21//',
-    authentication:       'plain',
+    authentication:       'login',
+    enable_starttls_auto: true
     
   }
 
