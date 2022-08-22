@@ -45,7 +45,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'smtp.office365.com',
     port:                 587,
-    domain:               'outlook.com',
+    domain:               'depto.informatica@slp.gob.mx',
     user_name:            'depto.informatica@slp.gob.mx',#'informaticassslp@gmail.com',
     password:             'Salud21//',
     authentication:       'plain',
