@@ -42,11 +42,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host =>"sesalud.slpsalud.gob.mx:4000"}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'smtp.office365.com',
     port:                 587,
-    domain:               'gmail.com',
-    user_name:            'informaticassslp@gmail.com',
-    password:             'M4ntenimi3nto2021*',
+    domain:               'outlook.com',
+    user_name:            'depto.informatica@slp.gob.mx',#'informaticassslp@gmail.com',
+    password:             'Salud21//',
     authentication:       'plain',
     
   }
