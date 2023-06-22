@@ -119,7 +119,7 @@ class ReportesController < ApplicationController
         @perfil=Perfil.find(@asignacion.perfil_id)
         @perfil.update(disponible:false)
         
-        UserMailer.welcome_email(@solicitud.solicitante_id,@reporte.folio).deliver
+        #UserMailer.welcome_email(@solicitud.solicitante_id,@reporte.folio).deliver
         redirect_to reporte_path(params[:id])
       end      
     end
